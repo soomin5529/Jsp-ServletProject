@@ -13,6 +13,7 @@
 <script type="text/javascript" src="../js/common.js" charset="utf-8">
 </script>
 <title>BLUEOCEAN에 온것을 환영합니다</title>
+<!-- //규성테스트 -->
 </head>
 <body class="intro">
 	<div class="jb-box">
