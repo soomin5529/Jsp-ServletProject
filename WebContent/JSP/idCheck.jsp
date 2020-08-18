@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <jsp:useBean id="DAO" class="user.UserDAO"></jsp:useBean>
-<!-- 수민 테스트 -->
+
 <script>
 	function idCheckOk(check){
 		if(!check){
