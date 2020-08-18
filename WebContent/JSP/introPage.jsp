@@ -13,13 +13,11 @@
 <script type="text/javascript" src="../js/common.js" charset="utf-8">
 </script>
 <title>BLUEOCEAN에 온것을 환영합니다</title>
-<!-- //규성테스트 -->
 </head>
 <body class="intro">
 	<div class="jb-box">
 		<video muted autoplay loop id="video">
 			<source src="../images/jetsurf.mp4" type="video/mp4">
-			<source src="../images/jetsurf.ogg" type="video/ogg">
 		</video>
 		
 		<div class="jb-text">
@@ -43,7 +41,7 @@
 					<label for="id">아이디</label><br> <input TYPE="text" name="id" placeholder="아이디를 입력해주세요"><br> 
 					<label for="pwd">패스워드</label><br>
 					<input TYPE="password" name="pwd" placeholder="비밀번호를  입력해주세요">
-					<a href="findID.jsp"><b>아이디 찾기</b></a>&nbsp;<a href="findPWD.jsp"><b>비밀번호 찾기</b></a>
+					<a href="userFindId.jsp"><b>아이디 찾기</b></a>&nbsp;<a href="userFindPwd.jsp"><b>비밀번호 찾기</b></a>
 					<br><br> <input TYPE="button" value="로그인" onClick="loginCheck();"> <br>
 				</fieldset>
 			</form>
