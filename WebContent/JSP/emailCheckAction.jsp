@@ -6,7 +6,7 @@
 <% 
 	request.setCharacterEncoding("UTF-8");
 	String id = null;
-	String code = null;
+	String code = request.getParameter("code");
 	String msg = null;
 	String location = null;
 	
@@ -21,10 +21,11 @@
 	
 	String email = userDAO.getUserEmail(id);
 	
-	boolean isRight = (new SHA256().getSHA256(email).equals(email)) ? true : false;
+	boolean isRight = (new SHA256().getSHA256(email).equals(code)) ? true : false;
 	if(isRight == true){
 		 msg = "인증에 성공했습니다";
 		 location = "mainPage.jsp";
+		 
 	}
 	else{
 		 msg = "유효하지 않는 코드입니다";

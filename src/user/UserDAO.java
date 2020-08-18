@@ -133,15 +133,13 @@ public class UserDAO {
 		}
 		
 		//회원가입
-		public boolean join(UserDTO user){
+		public int join(UserDTO user){
 			Connection con = null;
 			PreparedStatement pstmt = null;
-			boolean flag = false;
-			
 			
 			try {
 				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
-				String strQuery = "insert into MEMBER(id,pwd,name,email,agency,tel,birthdate,gender,zipcode,address,userEmailHash) values(?,?,?,?,?,?,?,?,?,?,?)";
+				String strQuery = "insert into MEMBER values(?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(strQuery);
 				
 				pstmt.setString(1, user.getId());
@@ -155,20 +153,14 @@ public class UserDAO {
 				pstmt.setString(9, user.getZipcode());
 				pstmt.setString(10, user.getAddress());
 				pstmt.setString(11, user.getUserEmailHash());
-
-				if(pstmt.executeUpdate()==1) {
-					flag = true;
-				}
+				pstmt.setBoolean(12, user.isUserEmailChecked());
+				
+				return pstmt.executeUpdate();
 			}
 			catch(Exception ex) {
 				ex.printStackTrace();
 			}
-			finally {
-				
-					Util.close(con, pstmt);
-			}
-			
-			return flag;
+			return -1;
 		}
 		//특정회원의 이메일 자체를 반환하는 함수
 		public String getUserEmail(String id) {
@@ -184,8 +176,8 @@ public class UserDAO {
 				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();	//db에서 실행된 값을 rs로 담아준다
 				
-				if(rs.next()) {
-					return rs.getString(1);
+				while(rs.next()) {
+					return rs.getString(1);	//이메일 주소 반환
 				}
 			}
 			catch(Exception e) {
@@ -211,8 +203,9 @@ public class UserDAO {
 				pstmt.setString(1, id);
 
 				rs = pstmt.executeQuery();	//db에서 실행된 값을 rs로 담아준다
-				if(rs.next()) {
-					return rs.getBoolean(1);
+				
+				while(rs.next()) {
+					return rs.getBoolean(1);	//이메일 등록 여부 반환
 				}
 			}
 			catch(Exception e) {
@@ -236,8 +229,8 @@ public class UserDAO {
 				sql = "update MEMBER set userEmailChecked = true where id=?";
 				pstmt = con.prepareStatement(sql); //sql문을 쓸 수 있게 준비
 				pstmt.setString(1, id);
-				rs = pstmt.executeQuery();	//db에서 실행된 값을 rs로 담아준다
-				return true;
+				pstmt.executeUpdate();
+				return true;	//이메일 등록 설정 성공
 			}
 			catch(Exception e) {
 				e.printStackTrace();
@@ -245,6 +238,6 @@ public class UserDAO {
 			finally {
 				Util.close(con, pstmt, rs);
 			}
-			return false; //데이터베이스 오류
+			return false; //이메일 등록 설정 실패
 		}
 }
