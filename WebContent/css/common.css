@@ -36,3 +36,23 @@ button {padding : 0 15px; border-radius: 15px;  font-size: 1.5rem; line-height: 
 .intro .regform input[type="button"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
 .intro .regform input[type="submit"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
 
+/*userMain*/
+/*userMain gnb*/
+.main {height:100%}
+.main .gnb {position:fixed; top:0; left:0; padding:20px; width:300px; height:100%; }
+.main .gnb .logo {margin-bottom:30px; padding:10px; width:100px; height:100px; font-size:2rem; background-color:#2f66ff; color:#fff; }
+.main .gnb .gnb-list {font-size: 2rem; font-weight:600;}
+.main .gnb .gnb-list li {margin:20px 0;}
+.main .gnb .gnb-bottom {position:absolute; bottom:20px; left:20px; }
+/*serMain content-wrap*/
+.userMain .content-wrap {background-color:#efefef; width:calc(100% - 300px); height:100%; margin-left: 300px;}
+/*userMain content-wrap header*/
+.userMain .content-wrap .header {padding:10px 20px; height:50px;}
+.userMain .content-wrap .header .info {float:left; line-height:3rem; font-size:1.4rem;}
+.userMain .content-wrap .header .info span {color:#2f66ff; font-weight:500;}
+.userMain .content-wrap .header .right {float:right; line-height:3rem;}
+.userMain .content-wrap .header .right a {color: #aaa; font-size:1.2rem;}
+/*userMain content-wrap content*/
+.userMain .content-wrap .content {max-width: 800px; margin:0 auto; }
+.userMain .content-wrap .content .p-thumb {width:300px; height:600px}
+
