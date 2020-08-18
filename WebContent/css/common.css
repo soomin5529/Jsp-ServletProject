@@ -1,0 +1,38 @@
+button {padding : 0 15px; border-radius: 15px;  font-size: 1.5rem; line-height: 30px; font-weight: 500;}
+.btn01 {border:1px solid #fff; color: white; }
+.btn01:hover {background-color:#fff; color: #ff267e;}
+.btn02 {border:1px solid #ff267e; color: #ff267e; }
+.btn02:hover {background-color:#ff267e; color: white;}
+.btn03 {border:1px solid #2f66ff; color: #2f66ff; }
+.btn03:hover {background-color:#2f66ff; color: white;}
+
+/* intro */
+.intro .jb-box { width: 100%; height:100%; overflow: hidden;margin: 0px auto; position: relative; }
+.intro .jb-text {position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center }
+.intro .jb-text span {display: inline-block; vertical-align: middle; text-align: center; font-size: 48px; color: #ffffff; font-weight: 900;}
+.intro .jb-text:before { content: ''; display: inline-block; width: 0; height: 100%; vertical-align: middle;}
+.intro .btn-box {position: absolute; top:55%; left:50%; transform: translate(-50%,0)}
+
+/* intro login */
+.intro #logbar {height: 100%;	width: 100%; display: none;	position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
+.intro .closeb {position: absolute; top:20px; right: 45px;	font-size: 50px; cursor: pointer; color: white;}
+.intro .closeb:hover {color: #ccc;}
+.intro .form {position:absolute; top:0; left:0; bottom:0; right:0; width: 300px; height:300px; margin: auto; padding: 30px;	background-color: #fff;	border-radius: 1em;	overflow: hidden;}
+.intro .form h2 {margin-bottom:20px;}
+.intro .form label {color: #aaa; font-size: 12px; text-align: left;}
+.intro .form input {width:100%; border: none; border-bottom: 1px solid #ccc; background: transparent; height: 40px; color: #666; font-size: 16px; margin-bottom:10px;}
+.intro .form input[type="button"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
+
+/* intro register */
+.intro #regbar {height: 100%;	width: 100%; display: none;	position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
+.intro .registerClose {position: absolute; top:20px; right: 45px;	font-size: 50px; cursor: pointer; color: white;}
+.intro .registerClose:hover {color: #ccc;}
+.intro .regform {position:absolute; top:0; left:0; bottom:0; right:0; width: 600px; height:700px; margin: auto; padding: 30px;	background-color: #fff;	border-radius: 1em;	overflow: hidden;}
+.intro .regform h2 {margin-bottom:20px;}
+.intro .regform td,small{vertical-align: top; color: red;}
+.intro .regform td,span {color:black; font-size: 16px; height:40px; }
+.intro .regform label {color: #aaa; font-size: 12px; text-align: left;}
+.intro .regform input {width:40%; border: none; border-bottom: 1px solid #ccc; background: transparent; height: 35px; color: #666; font-size: 16px; margin-bottom:10px;}
+.intro .regform input[type="button"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
+.intro .regform input[type="submit"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
+
