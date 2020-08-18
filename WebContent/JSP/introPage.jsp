@@ -57,7 +57,7 @@
 				<fieldset>
 					<h2 align="center">회원가입</h2>
 					<div style="text-align: right;"><span style="color: red; font-weight: bold;">v </span><span>표시항목 필수 입력 항목입니다</span><br>
-               <table style="text-align: left; width: 700px; height: 320px; font-weight: bold;"border="1" cellpadding="2" cellspacing="2">
+               <table style="text-align: left; width: 100%; height: 320px; font-weight: bold;"border="1" cellpadding="2" cellspacing="2">
                   <tbody><br><br>
                   <tr>
                         <td><small>v</small>
