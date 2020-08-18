@@ -229,22 +229,23 @@ public class UserDAO {
 		public boolean setUserEmailChecked(String id) {
 			Connection con = null;
 			PreparedStatement pstmt = null;
-			ResultSet rs = null;
 			String sql = null;
+			
 			
 			try {
 				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
-				sql = "update MEMBER set userEmailChecked = true where id=?";
+				sql = "update MEMBER set userEmailChecked = 1 where id=?";
 				pstmt = con.prepareStatement(sql); //sql문을 쓸 수 있게 준비
 				pstmt.setString(1, id);
 				pstmt.executeUpdate();
+				
 				return true;	//이메일 등록 설정 성공
 			}
 			catch(Exception e) {
 				e.printStackTrace();
 			}
 			finally {
-				Util.close(con, pstmt, rs);
+				Util.close(con, pstmt);
 			}
 			return false; //이메일 등록 설정 실패
 		}

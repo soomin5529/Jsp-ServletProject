@@ -5,12 +5,13 @@
 
 <% 
 	request.setCharacterEncoding("UTF-8");
-	String id = null;
 	String code = request.getParameter("code");
+	UserDAO userDAO = new UserDAO();
+	String id = null;
 	String msg = null;
 	String location = null;
 	
-	UserDAO userDAO = new UserDAO();
+	
 	if(session.getAttribute("id") != null){
 		 id = (String) session.getAttribute("id");
 	}
@@ -19,10 +20,13 @@
 		 location = "introPage.jsp";
 	}
 	
-	String email = userDAO.getUserEmail(id);
+
+	String userEmail = userDAO.getUserEmail(id);
 	
-	boolean isRight = (new SHA256().getSHA256(email).equals(code)) ? true : false;
+	boolean isRight = (new SHA256().getSHA256(userEmail).equals(code)) ? true : false;
+	
 	if(isRight == true){
+		userDAO.setUserEmailChecked(id);
 		 msg = "인증에 성공했습니다";
 		 location = "mainPage.jsp";
 		 

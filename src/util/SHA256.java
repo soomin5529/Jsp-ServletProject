@@ -22,7 +22,7 @@ public class SHA256 {
 				//한지리수면 0을 더해 두자리로 만든다
 				String hex = Integer.toHexString(0xff & chars[i]);
 				if(hex.length() == 1) {
-					result.append("0");
+					result.append('0');
 					result.append(hex);
 				}
 			}

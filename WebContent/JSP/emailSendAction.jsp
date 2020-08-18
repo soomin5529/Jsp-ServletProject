@@ -46,7 +46,7 @@
 	String to = userDAO.getUserEmail(id);
 	String subject = "BLUEOCEAN을 위한 이메일 인증 메일입니다.";
 	String content = "다음 링크에 접속하여 이메일 인증을 진행하세요." + 
-		"<a href='" + host + "emailCheckAction.jsp?code=" + new SHA256().getSHA256(to) + "'>이메일 인증하기</a>";
+			"<a href='" + host + "emailCheckAction.jsp?code=" + new SHA256().getSHA256(to) + "'>이메일 인증하기</a>";
 	
 	//메일 환경 변수 설정
 	Properties p  = new Properties();

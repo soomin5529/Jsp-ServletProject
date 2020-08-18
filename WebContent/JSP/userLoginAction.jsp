@@ -6,11 +6,19 @@
 	String url = null;
 	String msg = null;
 	
+	
 	int result = dao.loginUser(id, pwd);
-	if(result == 1){
+	boolean chk = dao.getUserEmailChecked(id);
+	
+	if(result == 1 && chk==true){
 		session.setAttribute("id", id);
 		msg = "환영합니다";
 		url = "mainPage.jsp";
+	}
+	
+	else if(result == 1 && chk==false){
+		msg = "이메일 인증이 안되었습니다";
+		url = "emailSendConfirm.jsp";
 	}
 	else if(result == 0){
 		url="introPage.jsp";

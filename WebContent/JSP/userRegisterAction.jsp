@@ -29,7 +29,7 @@
 	
 	int result = userDAO.join(new UserDTO(id, pwd, name, email,agency, tel, birthdate, gender, zipcode, address, SHA256.getSHA256(email), false));
 
-	if(result== -1){
+	if(result == -1){
 		msg = "회원가입에 실패 하였습니다";
 		location = "introPage.jsp";
 	}
