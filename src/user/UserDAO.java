@@ -49,21 +49,29 @@ public class UserDAO {
 		
 		
 		//로그인
-		public boolean loginUser(String id, String pwd) {
+		public int loginUser(String id, String pwd) {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			String sql = null;
-			boolean flag = false;
+			
 			
 			try {
 				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
-				sql = "select id from MEMBER where id = ? and pwd = ?";
+				sql = "select pwd from MEMBER where id = ?";
 				pstmt = con.prepareStatement(sql); //sql문을 쓸 수 있게 준비
 				pstmt.setString(1, id);
-				pstmt.setString(2, pwd);
 				rs = pstmt.executeQuery();	//db에서 실행된 값을 rs로 담아준다
-				flag = rs.next();
+				
+				if(rs.next()) {
+					if(rs.getString(1).equals(pwd)) {
+						return 1;	//로그인 성공
+					}
+					else {
+						return 0;	//비밀번호 틀림
+					}
+				}
+				return -1; //아이디 없음
 			}
 			catch(Exception e) {
 				e.printStackTrace();
@@ -71,7 +79,7 @@ public class UserDAO {
 			finally {
 				Util.close(con, pstmt, rs);
 			}
-			return flag;
+			return -2;	//오류
 		}
 		
 		//아이디 찾기
