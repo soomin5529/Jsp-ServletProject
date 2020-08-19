@@ -9,7 +9,7 @@ button {padding : 0 15px; border-radius: 15px;  font-size: 1.5rem; line-height: 
 .highlight {color:#2f66ff; font-weight:500;}
 input {width:100%; font-size:1.6rem; line-height:3rem; padding:5px 10px;}
 .cf:after{content:''; display: block; clear:both;}
-
+/* 준혁 */
 /* intro */
 .intro .jb-box { width: 100%; height:100%; overflow: hidden;margin: 0px auto; position: relative; }
 .intro .jb-text {position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center }
