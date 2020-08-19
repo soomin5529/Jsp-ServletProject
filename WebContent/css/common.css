@@ -5,6 +5,10 @@ button {padding : 0 15px; border-radius: 15px;  font-size: 1.5rem; line-height: 
 .btn02:hover {background-color:#ff267e; color: white;}
 .btn03 {border:1px solid #2f66ff; color: #2f66ff; }
 .btn03:hover {background-color:#2f66ff; color: white;}
+.btn03-reverse {background-color:#2f66ff; color: white;}
+.highlight {color:#2f66ff; font-weight:500;}
+input {width:100%; font-size:1.6rem; line-height:3rem; padding:5px 10px;}
+.cf:after{content:''; display: block; clear:both;}
 
 /* intro */
 .intro .jb-box { width: 100%; height:100%; overflow: hidden;margin: 0px auto; position: relative; }
@@ -42,17 +46,27 @@ button {padding : 0 15px; border-radius: 15px;  font-size: 1.5rem; line-height: 
 .main .gnb {position:fixed; top:0; left:0; padding:20px; width:300px; height:100%; }
 .main .gnb .logo {margin-bottom:30px; padding:10px; width:100px; height:100px; font-size:2rem; background-color:#2f66ff; color:#fff; }
 .main .gnb .gnb-list {font-size: 2rem; font-weight:600;}
-.main .gnb .gnb-list li {margin:20px 0;}
+.main .gnb .gnb-list li {margin:20px 0; cursor:pointer; }
+.main .gnb .gnb-list li a {color:#333;}
+.main .gnb .gnb-list li.on a {color:#2f66ff; border-bottom: 4px solid #2f66ff;}
 .main .gnb .gnb-bottom {position:absolute; bottom:20px; left:20px; }
 /*serMain content-wrap*/
-.userMain .content-wrap {background-color:#efefef; width:calc(100% - 300px); height:100%; margin-left: 300px;}
+.userMain .content-wrap {background-color:#f9f9f9; width:calc(100% - 300px); height:100%; margin-left: 300px; overflow:auto;}
 /*userMain content-wrap header*/
 .userMain .content-wrap .header {padding:10px 20px; height:50px;}
 .userMain .content-wrap .header .info {float:left; line-height:3rem; font-size:1.4rem;}
-.userMain .content-wrap .header .info span {color:#2f66ff; font-weight:500;}
 .userMain .content-wrap .header .right {float:right; line-height:3rem;}
 .userMain .content-wrap .header .right a {color: #aaa; font-size:1.2rem;}
 /*userMain content-wrap content*/
-.userMain .content-wrap .content {max-width: 800px; margin:0 auto; }
-.userMain .content-wrap .content .p-thumb {width:300px; height:600px}
+.userMain .content-wrap .content {max-width: 850px; margin:0 auto; padding: 50px;}
+.userMain .content-wrap .content .p-thumb {float:left; margin-right:40px; width:400px; height:500px; background-size:cover; background-position:center; background-repeat:no-repeat; background-color: #efefef;}
+.userMain .content-wrap .content .p-text {position:relative; float:right; width:calc(100% - 440px);  height:500px;}
+.userMain .content-wrap .content .p-text .timer {margin-bottom:20px; font-size:4rem; font-weight:100;}
+.userMain .content-wrap .content .p-text .tit {font-size:2.6rem; font-weight:500; }
+.userMain .content-wrap .content .p-text .desc {font-size:1.6rem; color:#999;}
+.userMain .content-wrap .content .p-text .input-wrap {position:absolute; bottom: 20px;}
+.userMain .content-wrap .content .p-text .input-wrap input {margin-bottom:10px;}
+.userMain .content-wrap .content .p-text .input-wrap button {width:100%; padding:8px; border-radius:0; margin-bottom:20px;}
+.userMain .content-wrap .content .chat-wrap {float:left; margin-top:50px; width:100%; height:300px; background-color: #fff; border: 1px solid #ddd;}
+
 
