@@ -31,12 +31,12 @@
 
 	if(result == -1){
 		msg = "회원가입에 실패 하였습니다";
-		location = "introPage.jsp";
+		location = "/jspProject/JSP/introPage.jsp";
 	}
 	else{
 		session.setAttribute("id", id);
 		msg = "회원가입이 되었습니다 반갑습니다.";
-		location = "emailSendAction.jsp";
+		location = "/jspProject/JSP/introBack/emailSendAction.jsp";
 	}
 
 %>

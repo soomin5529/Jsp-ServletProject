@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
+	String id = (String) session.getAttribute("id");
 %>
 <html>
 <head>
@@ -8,11 +9,6 @@
 <script type="text/javascript">
 
 	function inputCheck() {
-		if (document.findidFrm.id.value == "") {	
-			alert("아이디를 입력해 주세요");
-			document.findidFrm.id.focus();
-			return;
-		}
 		if (document.findidFrm.name.value == "") {
 			alert("이름을 입력해 주세요");
 			document.findidFrm.name.focus();
@@ -33,14 +29,10 @@
 </script>
 </head>
 
-		<form name="findidFrm" method="post" action="userFindPwdAction.jsp">
+		<form name="findidFrm" method="post" action="<%=request.getContextPath()%>/JSP/introBack/userFindIdAction.jsp">
 			<table>
 				<tr>
-					<td align="center" colspan="2"><h4>비밀번호 찾기</h4></td>
-				</tr>
-					<tr>
-					<td>아 이 디</td>
-					<td><input name="id"></td>
+					<td align="center" colspan="2"><h4>아이디 찾기</h4></td>
 				</tr>
 				<tr>
 					<td>이  름</td>

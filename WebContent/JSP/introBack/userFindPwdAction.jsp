@@ -2,23 +2,24 @@
 <jsp:useBean id="dao" class="user.UserDAO"></jsp:useBean>
 <%
 	request.setCharacterEncoding("UTF-8");
+	String id = request.getParameter("id");
 	String name = request.getParameter("name");
 	String tel = request.getParameter("tel");
 	String email = request.getParameter("email");
 	String url = null;
 	String msg = null;
 	
-	String id = dao.findId(name, tel, email);
-	if(id == null){
-		 url = "introPage.jsp";
+	String pwd = dao.findPwd(id, name, email, tel);
+	if(pwd == null){
+		 url = "/jspProject/JSP/introBack/userFindPwd.jsp";
 		 msg = "존재하지 않은 계정입니다";
 	}
 	else{
-		url = "introPage.jsp";
-		 msg = id + " 입니다";
+		url = "/jspProject/JSP/introPage.jsp";
+		 msg = pwd + " 입니다";
 	}
 %>
 <script>
-	alert("찾으시는 계정은 <%=msg%>");
+	alert("찾으시는 비밀번호는 <%=msg%>");
 	location.href="<%=url%>";
 </script>

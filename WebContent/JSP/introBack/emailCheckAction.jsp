@@ -28,12 +28,12 @@
 	if(isRight == true){
 		userDAO.setUserEmailChecked(id);
 		 msg = "인증에 성공했습니다";
-		 location = "mainPage.jsp";
+		 location = "/jspProject/JSP/introPage.jsp";
 		 
 	}
 	else{
 		 msg = "유효하지 않는 코드입니다";
-		 location = "introPage.jsp";
+		 location = "/jspProject/JSP/introPage.jsp";
 	}
 	
 

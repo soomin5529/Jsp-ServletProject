@@ -8,16 +8,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" type="text/css" href="../css/201901_reset.css">
-<link rel="stylesheet" type="text/css" href="../css/common.css">
-<script type="text/javascript" src="../js/common.js" charset="utf-8">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/201901_reset.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js" charset="utf-8">
 </script>
 <title>BLUEOCEAN에 온것을 환영합니다</title>
 </head>
 <body class="intro">
 	<div class="jb-box">
 		<video muted autoplay loop id="video">
-			<source src="../images/jetsurf.mp4" type="video/mp4">
+			<source src="<%=request.getContextPath()%>/images/jetsurf.mp4" type="video/mp4">
 		</video>
 		
 		<div class="jb-text">
@@ -35,13 +35,13 @@
 	<div id="logbar">
 		<span class="closeb" onclick="closeLogin()">×</span>
 		<div>
-			<form class="form" name="formm" method="post" action="/jspProject/JSP/userLoginAction.jsp">
+			<form class="form" name="formm" method="post" action="<%=request.getContextPath()%>/JSP/introBack/userLoginAction.jsp">
 				<fieldset> 
 					<h2>로그인</h2>
 					<label for="id">아이디</label><br> <input TYPE="text" name="id" placeholder="아이디를 입력해주세요"><br> 
 					<label for="pwd">패스워드</label><br>
 					<input TYPE="password" name="pwd" placeholder="비밀번호를  입력해주세요">
-					<a href="userFindId.jsp"><b>아이디 찾기</b></a>&nbsp;<a href="userFindPwd.jsp"><b>비밀번호 찾기</b></a>
+					<a href="<%=request.getContextPath()%>/JSP/introBack/userFindId.jsp"><b>아이디 찾기</b></a>&nbsp;<a href="<%=request.getContextPath()%>/JSP/introBack/userFindPwd.jsp"><b>비밀번호 찾기</b></a>
 					<br><br> <input TYPE="button" value="로그인" onClick="loginCheck();"> <br>
 				</fieldset>
 			</form>
@@ -51,7 +51,7 @@
 	<div id="regbar">
 		<span class="registerClose" onclick="closeRegister()">×</span>
 		<div>
-			<form class="regform" name="reg_form" method="post" action="userRegisterAction.jsp" onsubmit="return inputCheck()" >
+			<form class="regform" name="reg_form" method="post" action="<%=request.getContextPath()%>/JSP/introBack/userRegisterAction.jsp" onsubmit="return inputCheck()" >
 			<input type= "hidden" name="idCheckOk" value="no">
 				<fieldset>
 					<h2 align="center">회원가입</h2>
