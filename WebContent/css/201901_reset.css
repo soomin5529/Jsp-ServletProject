@@ -67,9 +67,7 @@ textarea, input, select, textarea {
 	padding:0; margin:0; outline:0; font-size:inherit; font-family: 'Noto Sans KR', sans-serif; border:1px solid #d2d2d2;
 	-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;
 }
-/* input[type="radio"], input[type="checkbox"] {
-	-webkit-appearance: none; -moz-appearance: none; appearance: none;
-} */
+
 
 input[type=date]::-webkit-inner-spin-button, .top_wrap .input_wrap input[type=date]::-webkit-outer-spin-button {
 	-webkit-appearance: none; -moz-appearance: none; appearance: none;
@@ -98,8 +96,8 @@ img { width:100%; max-width:100%; height:auto; }
 
 /* 스크롤 */
 ::-webkit-scrollbar-track { -color: #f5f5f5; }
-::-webkit-scrollbar { width: 0px;  /* remove scrollbar space */
-                      background: transparent;  /* optional: just make scrollbar invisible */
-                      height: 0px !important; }
-::-webkit-scrollbar-thumb { background-color: #aaa; }
+::-webkit-scrollbar { width: 6px;  /* remove scrollbar space */
+                      background: #f5f5f5;  /* optional: just make scrollbar invisible */
+                      height: 6px !important; }
+::-webkit-scrollbar-thumb { background-color: #aaa; border-radius:3px;}
 S

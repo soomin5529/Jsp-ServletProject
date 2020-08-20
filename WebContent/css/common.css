@@ -1,23 +1,79 @@
-button {padding : 0 15px; border-radius: 15px;  font-size: 1.5rem; line-height: 30px; font-weight: 500;}
+/* 공통 엘리먼트  */
+input[type="button"], input[type="submit"], button {padding : 0 15px; border-radius: 15px;  font-size: 1.5rem; line-height: 30px; font-weight: 500;}
 .btn01 {border:1px solid #fff; color: white; }
 .btn01:hover {background-color:#fff; color: #ff267e;}
 .btn02 {border:1px solid #ff267e; color: #ff267e; }
 .btn02:hover {background-color:#ff267e; color: white;}
 .btn03 {border:1px solid #2f66ff; color: #2f66ff; }
 .btn03:hover {background-color:#2f66ff; color: white;}
-.btn03-reverse {background-color:#2f66ff; color: white;}
-.highlight {color:#2f66ff; font-weight:500;}
-input {width:100%; font-size:1.6rem; line-height:3rem; padding:5px 10px;}
-.cf:after{content:''; display: block; clear:both;}
+.btn04 {border:1px solid #434c65; color: #434c65; }
+.btn04:hover {background-color:#434c65; color: white;}
+.btn03-reverse {background-color:#2f66ff; color: white; line-height:3.2rem; border-radius:0;}
+.highlight01 {color:#2f66ff; font-weight:500;}
+.highlight02 {color:#00ec8a; font-weight:500;}
+.highlight03 {color:#ff267e; font-weight:500;}
+.highlight04 {color:#999; font-weight:500;}
+.pointer {cursor:pointer;}
+.margin-l {margin-left:10px;}
+.margin-r {margin-right:10px;}
+.cf:after {content:''; display: block; clear:both;}
+input,select {width:100%; height:32px; font-size:1.4rem; line-height:2rem; padding:5px 10px;}
+textarea {width:100%;  font-size:1.4rem; line-height:2rem; padding:5px 10px;}
+input:focus, select:focus {border:1px solid #2f66ff; color:#2f66ff;}
+select {background-image:url(/jspProject/images/ic_arrow.png); background-repeat:no-repeat; background-size:16px; background-position: right 5px center;}
+table.tbl, .tbl tr, .tbl td, .tbl th {	border-collapse : collapse; font-size:1.4rem;}
+table.tbl {width:100%; border-top: 2px solid #2f66ff;}
+.tbl th {padding:10px; color : #2f66ff; background-color:#f1f4ff; vertical-align:middle;}
+.tbl tr {background-color:white; border-bottom:1px solid #d2d2d2; vertical-align:middle; text-align:center;}
+.tbl tr:hover {background-color:#f1f4ff; cursor:pointer;}
+.tbl td {padding:10px;}
 
-/* intro */
+
+/*공통 영역 */
+/*gnb*/
+.gnb {position:fixed; top:0; left:0; padding:20px; width:300px; height:100%; background-color:#fff;}
+.gnb .logo {margin-bottom:30px; padding:10px; width:100px; height:100px; font-size:2rem; background-color:#2f66ff; color:#fff; }
+.gnb .gnb-list {font-size: 2rem; font-weight:600;}
+.gnb .gnb-list li {margin:20px 0; cursor:pointer; }
+.gnb .gnb-list li a {color:#333;}
+.gnb .gnb-list li.on a {color:#2f66ff; border-bottom: 4px solid #2f66ff;}
+.gnb .gnb-bottom {position:absolute; bottom:20px; left:20px; }
+/*header*/
+.header {position:fixed; top:0; left: 300px; padding:10px 20px; width:calc(100% - 300px); height:50px;}
+.header .info {float:left; line-height:3rem; font-size:1.4rem;}
+.header .right {float:right; line-height:3rem;}
+.header .right a {color: #aaa; font-size:1.2rem;}
+/*content-wrap*/
+.content-wrap {width:calc(100% - 300px); height:100%; margin-left: 300px; overflow:auto; background-color:#f9f9f9;}
+.content-wrap .content { margin:50px auto 0; padding: 50px;}
+/*page-top*/
+.page-top {margin-bottom:20px;}
+.page-top .page-name {font-size:2.2rem; float:left;}
+.page-top button {float:right;}
+/*page-num*/
+.page-num {font-size:1.4rem; margin-top : 20px;}
+.page-num a {color:#333; margin:0 2px;}
+.page-num a.on {color:#2f66ff}
+/* page-bottom */
+.page-bottom {margin-top : 20px;}
+.page-bottom .category {width:100px; margin-right:5px;}
+.page-bottom .sentence {width:200px; margin-right:5px;}
+/* 등록테이블,정의테이블 */
+.tbl-reg th {width:200px;}
+.tbl-reg td {text-align:left;}
+.tbl-reg tr:hover {background-color:#fff; cursor:auto;}
+.tbl-reg input {max-width:500px;}
+.tbl-reg textarea {max-width:500px;}
+.tbl-reg select{max-width:500px;}
+
+/* 화면별 - intro */
 .intro .jb-box { width: 100%; height:100%; overflow: hidden;margin: 0px auto; position: relative; }
 .intro .jb-text {position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center }
 .intro .jb-text span {display: inline-block; vertical-align: middle; text-align: center; font-size: 48px; color: #ffffff; font-weight: 900;}
 .intro .jb-text:before { content: ''; display: inline-block; width: 0; height: 100%; vertical-align: middle;}
 .intro .btn-box {position: absolute; top:55%; left:50%; transform: translate(-50%,0)}
 
-/* intro login */
+/* 화면별 - intro login */
 .intro #logbar {height: 100%;	width: 100%; display: none;	position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
 .intro .closeb {position: absolute; top:20px; right: 45px;	font-size: 50px; cursor: pointer; color: white;}
 .intro .closeb:hover {color: #ccc;}
@@ -27,46 +83,30 @@ input {width:100%; font-size:1.6rem; line-height:3rem; padding:5px 10px;}
 .intro .form input {width:100%; border: none; border-bottom: 1px solid #ccc; background: transparent; height: 40px; color: #666; font-size: 16px; margin-bottom:10px;}
 .intro .form input[type="button"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
 
-/* intro register */
+/* 화면별 - intro register */
 .intro #regbar {height: 100%;	width: 100%; display: none;	position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
 .intro .registerClose {position: absolute; top:20px; right: 45px;	font-size: 50px; cursor: pointer; color: white;}
 .intro .registerClose:hover {color: #ccc;}
 .intro .regform {position:absolute; top:0; left:0; bottom:0; right:0; width: 470px; height:700px; margin: auto; padding: 30px;	background-color: #fff;	border-radius: 1em;	overflow: hidden;}
 .intro .regform h2 {margin-bottom:20px;}
 .intro .regform td,small{vertical-align: top; color: red;}
-.intro .regform td,span {color:black; font-size: 16px; height:40px; }
+.intro .regform td, .intro .regform span {color:black; font-size: 16px; height:40px; }
 .intro .regform label {color: #aaa; font-size: 12px; text-align: left;}
 .intro .regform input {border: none; border-bottom: 1px solid #ccc; background: transparent; height: 35px; color: #666; font-size: 16px; margin-bottom:10px;}
 .intro .regform input[type="button"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
 .intro .regform input[type="submit"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
 
-/*userMain*/
-/*userMain gnb  */
-.main {height:100%}
-.main .gnb {position:fixed; top:0; left:0; padding:20px; width:300px; height:100%; }
-.main .gnb .logo {margin-bottom:30px; padding:10px; width:100px; height:100px; font-size:2rem; background-color:#2f66ff; color:#fff; }
-.main .gnb .gnb-list {font-size: 2rem; font-weight:600;}
-.main .gnb .gnb-list li {margin:20px 0; cursor:pointer; }
-.main .gnb .gnb-list li a {color:#333;}
-.main .gnb .gnb-list li.on a {color:#2f66ff; border-bottom: 4px solid #2f66ff;}
-.main .gnb .gnb-bottom {position:absolute; bottom:20px; left:20px; }
-/*serMain content-wrap*/
-.userMain .content-wrap {background-color:#f9f9f9; width:calc(100% - 300px); height:100%; margin-left: 300px; overflow:auto;}
-/*userMain content-wrap header*/
-.userMain .content-wrap .header {padding:10px 20px; height:50px;}
-.userMain .content-wrap .header .info {float:left; line-height:3rem; font-size:1.4rem;}
-.userMain .content-wrap .header .right {float:right; line-height:3rem;}
-.userMain .content-wrap .header .right a {color: #aaa; font-size:1.2rem;}
-/*userMain content-wrap content*/
-.userMain .content-wrap .content {max-width: 850px; margin:0 auto; padding: 50px;}
-.userMain .content-wrap .content .p-thumb {float:left; margin-right:40px; width:400px; height:500px; background-size:cover; background-position:center; background-repeat:no-repeat; background-color: #efefef;}
-.userMain .content-wrap .content .p-text {position:relative; float:right; width:calc(100% - 440px);  height:500px;}
-.userMain .content-wrap .content .p-text .timer {margin-bottom:20px; font-size:4rem; font-weight:100;}
-.userMain .content-wrap .content .p-text .tit {font-size:2.6rem; font-weight:500; }
-.userMain .content-wrap .content .p-text .desc {font-size:1.6rem; color:#999;}
-.userMain .content-wrap .content .p-text .input-wrap {position:absolute; bottom: 20px;}
-.userMain .content-wrap .content .p-text .input-wrap input {margin-bottom:10px;}
-.userMain .content-wrap .content .p-text .input-wrap button {width:100%; padding:8px; border-radius:0; margin-bottom:20px;}
-.userMain .content-wrap .content .chat-wrap {float:left; margin-top:50px; width:100%; height:300px; background-color: #fff; border: 1px solid #ddd;}
+/*화면별 - 유저메인 userMain*/
+.userMain.content-wrap .content {max-width: 1000px;}
+.userMain.content-wrap .content .p-thumb {float:left; margin-right:40px; width:500px; height:500px; background-size:cover; background-position:center; background-repeat:no-repeat; background-color: #efefef;}
+.userMain.content-wrap .content .p-text {position:relative; float:right; width:calc(100% - 540px);  height:500px;}
+.userMain.content-wrap .content .p-text .timer {margin-bottom:20px; font-size:4rem; font-weight:100;}
+.userMain.content-wrap .content .p-text .tit {font-size:2.6rem; font-weight:500; }
+.userMain.content-wrap .content .p-text .desc {font-size:1.6rem; color:#999;}
+.userMain.content-wrap .content .p-text .input-wrap {position:absolute; bottom: 20px; width:100%;}
+.userMain.content-wrap .content .p-text .input-wrap input {margin-bottom:10px; height:42px; font-size:1.6rem; line-height:3rem;}
+.userMain.content-wrap .content .p-text .input-wrap button {width:100%; padding:5px; margin-bottom:20px;}
+.userMain.content-wrap .content .p-text .input-wrap .mem {font-size:1.6rem;}
+.userMain.content-wrap .content .chat-wrap {float:left; margin-top:50px; width:100%; height:300px; background-color: #fff; border: 1px solid #ddd;}
 
 

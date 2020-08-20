@@ -48,4 +48,14 @@
 	<location>/error/errorNullPointer.jsp</location>
 </error-page>
  
+<jsp-config>
+	<jsp-property-group>
+		<url-pattern>/JSP/front/*</url-pattern>
+		<include-prelude>/JSP/common/gnb.jsp</include-prelude>
+		<include-coda>/JSP/common/footer.jsp</include-coda>
+	
+	</jsp-property-group>
+</jsp-config> 
+ 
+
 </web-app>
