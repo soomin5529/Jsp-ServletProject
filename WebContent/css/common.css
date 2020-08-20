@@ -1,4 +1,4 @@
-/* Í≥µÌÜµ ÏóòÎ¶¨Î®ºÌä∏  */
+/* ∞¯≈Î ø§∏Æ∏’∆Æ  */
 input[type="button"], input[type="submit"], button {padding : 0 15px; border-radius: 15px;  font-size: 1.5rem; line-height: 30px; font-weight: 500;}
 .btn01 {border:1px solid #fff; color: white; }
 .btn01:hover {background-color:#fff; color: #ff267e;}
@@ -21,7 +21,7 @@ input,select {width:100%; height:32px; font-size:1.4rem; line-height:2rem; paddi
 textarea {width:100%;  font-size:1.4rem; line-height:2rem; padding:5px 10px;}
 input:focus, select:focus {border:1px solid #2f66ff; color:#2f66ff;}
 select {background-image:url(/jspProject/images/ic_arrow.png); background-repeat:no-repeat; background-size:16px; background-position: right 5px center;}
-table.tbl, .tbl tr, .tbl td, .tbl th {	border-collapse : collapse; font-size:1.4rem;}
+table.tbl, .tbl tr, .tbl td, .tbl th {   border-collapse : collapse; font-size:1.4rem;}
 table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .tbl th {padding:10px; color : #2f66ff; background-color:#f1f4ff; vertical-align:middle;}
 .tbl tr {background-color:white; border-bottom:1px solid #d2d2d2; vertical-align:middle; text-align:center;}
@@ -29,7 +29,7 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .tbl td {padding:10px;}
 
 
-/*Í≥µÌÜµ ÏòÅÏó≠ */
+/*∞¯≈Î øµø™ */
 /*gnb*/
 .gnb {position:fixed; top:0; left:0; padding:20px; width:300px; height:100%; background-color:#fff;}
 .gnb .logo {margin-bottom:30px; padding:10px; width:100px; height:100px; font-size:2rem; background-color:#2f66ff; color:#fff; }
@@ -58,7 +58,7 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .page-bottom {margin-top : 20px;}
 .page-bottom .category {width:100px; margin-right:5px;}
 .page-bottom .sentence {width:200px; margin-right:5px;}
-/* Îì±Î°ùÌÖåÏù¥Î∏î,Ï†ïÏùòÌÖåÏù¥Î∏î */
+/* µÓ∑œ≈◊¿Ã∫Ì,¡§¿«≈◊¿Ã∫Ì */
 .tbl-reg th {width:200px;}
 .tbl-reg td {text-align:left;}
 .tbl-reg tr:hover {background-color:#fff; cursor:auto;}
@@ -66,28 +66,28 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .tbl-reg textarea {max-width:500px;}
 .tbl-reg select{max-width:500px;}
 
-/* ÌôîÎ©¥Î≥Ñ - intro */
+/* »≠∏È∫∞ - intro */
 .intro .jb-box { width: 100%; height:100%; overflow: hidden;margin: 0px auto; position: relative; }
 .intro .jb-text {position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center }
 .intro .jb-text span {display: inline-block; vertical-align: middle; text-align: center; font-size: 48px; color: #ffffff; font-weight: 900;}
 .intro .jb-text:before { content: ''; display: inline-block; width: 0; height: 100%; vertical-align: middle;}
 .intro .btn-box {position: absolute; top:55%; left:50%; transform: translate(-50%,0)}
 
-/* ÌôîÎ©¥Î≥Ñ - intro login */
-.intro #logbar {height: 100%;	width: 100%; display: none;	position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
-.intro .closeb {position: absolute; top:20px; right: 45px;	font-size: 50px; cursor: pointer; color: white;}
+/* »≠∏È∫∞ - intro login */
+.intro #logbar {height: 100%;   width: 100%; display: none;   position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
+.intro .closeb {position: absolute; top:20px; right: 45px;   font-size: 50px; cursor: pointer; color: white;}
 .intro .closeb:hover {color: #ccc;}
-.intro .form {position:absolute; top:0; left:0; bottom:0; right:0; width: 300px; height:300px; margin: auto; padding: 30px;	background-color: #fff;	border-radius: 1em;	overflow: hidden;}
+.intro .form {position:absolute; top:0; left:0; bottom:0; right:0; width: 300px; height:300px; margin: auto; padding: 30px;   background-color: #fff;   border-radius: 1em;   overflow: hidden;}
 .intro .form h2 {margin-bottom:20px;}
 .intro .form label {color: #aaa; font-size: 12px; text-align: left;}
 .intro .form input {width:100%; border: none; border-bottom: 1px solid #ccc; background: transparent; height: 40px; color: #666; font-size: 16px; margin-bottom:10px;}
 .intro .form input[type="button"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
 
-/* ÌôîÎ©¥Î≥Ñ - intro register */
-.intro #regbar {height: 100%;	width: 100%; display: none;	position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
-.intro .registerClose {position: absolute; top:20px; right: 45px;	font-size: 50px; cursor: pointer; color: white;}
+/* »≠∏È∫∞ - intro register */
+.intro #regbar {height: 100%;   width: 100%; display: none;   position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
+.intro .registerClose {position: absolute; top:20px; right: 45px;   font-size: 50px; cursor: pointer; color: white;}
 .intro .registerClose:hover {color: #ccc;}
-.intro .regform {position:absolute; top:0; left:0; bottom:0; right:0; width: 470px; height:700px; margin: auto; padding: 30px;	background-color: #fff;	border-radius: 1em;	overflow: hidden;}
+.intro .regform {position:absolute; top:0; left:0; bottom:0; right:0; width: 470px; height:700px; margin: auto; padding: 30px;   background-color: #fff;   border-radius: 1em;   overflow: hidden;}
 .intro .regform h2 {margin-bottom:20px;}
 .intro .regform td,small{vertical-align: top; color: red;}
 .intro .regform td, .intro .regform span {color:black; font-size: 16px; height:40px; }
@@ -96,7 +96,7 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .intro .regform input[type="button"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
 .intro .regform input[type="submit"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
 
-/*ÌôîÎ©¥Î≥Ñ - Ïú†Ï†ÄÎ©îÏù∏ userMain*/
+/*»≠∏È∫∞ - ¿Ø¿˙∏ﬁ¿Œ userMain*/
 .userMain.content-wrap .content {max-width: 1000px;}
 .userMain.content-wrap .content .p-thumb {float:left; margin-right:40px; width:500px; height:500px; background-size:cover; background-position:center; background-repeat:no-repeat; background-color: #efefef;}
 .userMain.content-wrap .content .p-text {position:relative; float:right; width:calc(100% - 540px);  height:500px;}
@@ -108,5 +108,4 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .userMain.content-wrap .content .p-text .input-wrap button {width:100%; padding:5px; margin-bottom:20px;}
 .userMain.content-wrap .content .p-text .input-wrap .mem {font-size:1.6rem;}
 .userMain.content-wrap .content .chat-wrap {float:left; margin-top:50px; width:100%; height:300px; background-color: #fff; border: 1px solid #ddd;}
-
 
