@@ -8,7 +8,6 @@
 		<div class="page-name">Q&A</div>
 	</div>
 	
-	
 </div>
 </div>
 </body>

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%
+	String id = (String) session.getAttribute("id");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,9 +41,9 @@
 	<!-- 상단 헤더 영역-->
 	<div class="header">
 		<div class="info">
-			<span class="highlight01 pointer" onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMypage.jsp'">홍길동</span>님 반갑습니다
+			<span class="highlight01 pointer" onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMypage.jsp'"><%=id%></span>님 반갑습니다
 		</div>
 		<div class="right">
-			<a href="<%=request.getContextPath()%>/JSP/introPage.jsp">logout</a>
+			<a href="<%=request.getContextPath()%>/JSP/introBack/userLogOut.jsp">logout</a>
 		</div>
 	</div>
