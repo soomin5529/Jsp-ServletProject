@@ -45,7 +45,7 @@
 	}
 //사용자에게 보낼 메시지
 
-	String host=""
+	String host="";
 	
 	%>
 	
