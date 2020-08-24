@@ -6,12 +6,13 @@
 	String url = null;
 	String msg = null;
 	
-	
+	//String name = dao.findName(id,pwd);
 	int result = dao.loginUser(id, pwd);
 	boolean chk = dao.getUserEmailChecked(id);
 	
 	if(result == 1 && chk==true){
 		session.setAttribute("id", id);
+		//session.setAttribute("name", name);
 		msg = "환영합니다";
 		url = "/jspProject/JSP/front/userMain.jsp";
 	}
