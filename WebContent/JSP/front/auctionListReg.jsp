@@ -16,7 +16,7 @@
 			<tr>
 				<th>상품명</th>
 				<td>
-					<input type="text" placeholder="상품명을 입력하세요"/>
+					dsjfhkj
 				</td>
 			</tr>
 			<tr>

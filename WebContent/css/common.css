@@ -1,4 +1,4 @@
-/* ∞¯≈Î ø§∏Æ∏’∆Æ  */
+/* Í≥µÌÜµ ÏóòÎ¶¨Î®ºÌä∏  */
 input[type="button"], input[type="submit"], button {padding : 0 15px; border-radius: 15px;  font-size: 1.5rem; line-height: 30px; font-weight: 500;}
 .btn01 {border:1px solid #fff; color: white; }
 .btn01:hover {background-color:#fff; color: #ff267e;}
@@ -29,7 +29,7 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .tbl td {padding:10px;}
 
 
-/*∞¯≈Î øµø™ */
+/*Í≥µÌÜµ ÏòÅÏó≠ */
 /*gnb*/
 .gnb {position:fixed; top:0; left:0; padding:20px; width:300px; height:100%; background-color:#fff;}
 .gnb .logo {margin-bottom:30px; padding:10px; width:100px; height:100px; font-size:2rem; background-color:#2f66ff; color:#fff; }
@@ -58,7 +58,7 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .page-bottom {margin-top : 20px;}
 .page-bottom .category {width:100px; margin-right:5px;}
 .page-bottom .sentence {width:200px; margin-right:5px;}
-/* µÓ∑œ≈◊¿Ã∫Ì,¡§¿«≈◊¿Ã∫Ì */
+/* Îì±Î°ùÌÖåÏù¥Î∏î,Ï†ïÏùòÌÖåÏù¥Î∏î */
 .tbl-reg th {width:200px;}
 .tbl-reg td {text-align:left;}
 .tbl-reg tr:hover {background-color:#fff; cursor:auto;}
@@ -66,14 +66,14 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .tbl-reg textarea {max-width:500px;}
 .tbl-reg select{max-width:500px;}
 
-/* »≠∏È∫∞ - intro */
+/* ÌôîÎ©¥Î≥Ñ - intro */
 .intro .jb-box { width: 100%; height:100%; overflow: hidden;margin: 0px auto; position: relative; }
 .intro .jb-text {position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center }
 .intro .jb-text span {display: inline-block; vertical-align: middle; text-align: center; font-size: 48px; color: #ffffff; font-weight: 900;}
 .intro .jb-text:before { content: ''; display: inline-block; width: 0; height: 100%; vertical-align: middle;}
 .intro .btn-box {position: absolute; top:55%; left:50%; transform: translate(-50%,0)}
 
-/* »≠∏È∫∞ - intro login */
+/* ÌôîÎ©¥Î≥Ñ - intro login */
 .intro #logbar {height: 100%;   width: 100%; display: none;   position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
 .intro .closeb {position: absolute; top:20px; right: 45px;   font-size: 50px; cursor: pointer; color: white;}
 .intro .closeb:hover {color: #ccc;}
@@ -83,7 +83,7 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .intro .form input {width:100%; border: none; border-bottom: 1px solid #ccc; background: transparent; height: 40px; color: #666; font-size: 16px; margin-bottom:10px;}
 .intro .form input[type="button"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
 
-/* »≠∏È∫∞ - intro register */
+/* ÌôîÎ©¥Î≥Ñ - intro register */
 .intro #regbar {height: 100%;   width: 100%; display: none;   position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
 .intro .registerClose {position: absolute; top:20px; right: 45px;   font-size: 50px; cursor: pointer; color: white;}
 .intro .registerClose:hover {color: #ccc;}
@@ -96,7 +96,7 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .intro .regform input[type="button"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
 .intro .regform input[type="submit"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
 
-/*»≠∏È∫∞ - ¿Ø¿˙∏ﬁ¿Œ userMain*/
+/*ÌôîÎ©¥Î≥Ñ - Ïú†Ï†ÄÎ©îÏù∏ userMain*/
 .userMain.content-wrap .content {max-width: 1000px;}
 .userMain.content-wrap .content .p-thumb {float:left; margin-right:40px; width:500px; height:500px; background-size:cover; background-position:center; background-repeat:no-repeat; background-color: #efefef;}
 .userMain.content-wrap .content .p-text {position:relative; float:right; width:calc(100% - 540px);  height:500px;}
@@ -104,6 +104,8 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .userMain.content-wrap .content .p-text .tit {font-size:2.6rem; font-weight:500; }
 .userMain.content-wrap .content .p-text .desc {font-size:1.6rem; color:#999;}
 .userMain.content-wrap .content .p-text .input-wrap {position:absolute; bottom: 20px; width:100%;}
+.userMain.content-wrap .content .p-text .input-wrap .min-price{font-size:2rem; margin-bottom:10px;}
+.userMain.content-wrap .content .p-text .input-wrap .min-price :last-child{float:right;}
 .userMain.content-wrap .content .p-text .input-wrap input {margin-bottom:10px; height:42px; font-size:1.6rem; line-height:3rem;}
 .userMain.content-wrap .content .p-text .input-wrap button {width:100%; padding:5px; margin-bottom:20px;}
 .userMain.content-wrap .content .p-text .input-wrap .mem {font-size:1.6rem;}

@@ -8,10 +8,14 @@
 		<div class="p-thumb"
 			style="background-image: url(/jspProject/images/thumbnail01.jpeg)"></div>
 		<div class="p-text">
-			<div class="timer">01일 12시간 30분</div>
+			<div class="timer" >01일 12시간 30분</div>
 			<div class="tit">콩나물 두쪽</div>
 			<div class="desc">이건 사과가 만든 콩나물 두쪽임</div>
 			<div class="input-wrap">
+				<div class="min-price">
+					<span>최저 입찰가</span>
+					<span class="highlight01">1,000원</span>
+				</div>
 				<input type="text" name="price" placeholder="경매가를 입력하세요" />
 				<button class="btn03-reverse">참여하기</button>
 				<div class="mem">
