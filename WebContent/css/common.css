@@ -87,14 +87,15 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .intro #regbar {height: 100%;   width: 100%; display: none;   position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
 .intro .registerClose {position: absolute; top:20px; right: 45px;   font-size: 50px; cursor: pointer; color: white;}
 .intro .registerClose:hover {color: #ccc;}
-.intro .regform {position:absolute; top:0; left:0; bottom:0; right:0; width: 470px; height:700px; margin: auto; padding: 30px;   background-color: #fff;   border-radius: 1em;   overflow: hidden;}
+.intro .regform {position:absolute; top:0; left:0; bottom:0; right:0; width: 470px; height:760px; margin: auto; padding: 30px;   background-color: #fff;   border-radius: 1em;   overflow: hidden;}
 .intro .regform h2 {margin-bottom:20px;}
 .intro .regform td,small{vertical-align: top; color: red;}
 .intro .regform td, .intro .regform span {color:black; font-size: 16px; height:40px; }
-.intro .regform label {color: #aaa; font-size: 12px; text-align: left;}
+.intro .regform label {font-size: 12px; float:left; margin:0 10px;}
 .intro .regform input {border: none; border-bottom: 1px solid #ccc; background: transparent; height: 35px; color: #666; font-size: 16px; margin-bottom:10px;}
 .intro .regform input[type="button"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
 .intro .regform input[type="submit"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
+.intro .regform input[type="radio"]{width:20px; height:20px; float:left;}
 
 /*화면별 - 유저메인 userMain*/
 .userMain.content-wrap .content {max-width: 1000px;}

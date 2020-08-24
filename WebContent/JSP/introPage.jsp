@@ -60,9 +60,9 @@
                   <tbody><br><br>
                   <tr>
                         <td><small>v</small>
-                        <span>아이디</span> </td>
-                        <td><input name="id" autofocus placeholder = "아이디를 입력해주세요" title = "아이디 입력창입니다."  >
-                        <input type="button" value="중복확인"  style="vertical-align: top; height:30px ; width:90px ;  font-size : 13px" onClick="idCheck(this.form.id.value)"><br>   
+                        <span>아이디</span></td>
+                        <td><input name="id" autofocus placeholder = "아이디를 입력해주세요" title = "아이디 입력창입니다."  style="width:calc(100% - 95px)">
+                        <input type="button" value="중복확인"  style="vertical-align: top; height:35px ; width:90px ;  font-size : 13px" onClick="idCheck(this.form.id.value)"><br>   
                         </td>
                      </tr>
                      <tr>
@@ -93,9 +93,9 @@
                      <tr>
                         <td>&nbsp;&nbsp;핸드폰번호</td>
                         <td> 
-                            <input type = "radio" name = "agency" value="skt" style="width:20px;"> <span>SKT </span>
-                            <input type = "radio" name = "agency" value="kt" style="width:20px;"> <span >KT </span>
-                            <input type = "radio" name = "agency" value="lgu+" style="width:20px;"> <span>LGU+</span><br> 
+                            <input type = "radio" name = "agency" value="skt" id="agency01" > <label for="agency01">SKT </label>
+                            <input type = "radio" name = "agency" value="kt" id="agency02" > <label for="agency02">KT </label>
+                            <input type = "radio" name = "agency" value="lgu+" id="agency03"> <label for="agency03">LGU+</label><br> 
                             <input type="text" name="tel" placeholder="-빼고 입력해주세요">
                            </td>
                      </tr>
@@ -106,7 +106,7 @@
                      </tr>
                      <tr>
                         <td>&nbsp;&nbsp;성별</td>
-                        <td><select style="width:50px;" name="gender">
+                        <td><select style="width:100px;" name="gender">
                        	 <option value="성별" selected>성별
                            <option value="남">남</option>
                            <option value="여">여</option>
@@ -115,8 +115,8 @@
                      </tr>  
                      <tr>
 						<td>우변번호</td>
-						<td><input type = "text" name="zipcode" id="sample4_postcode" placeholder="우편번호를 검색하세요" size="5">
-						<input type="button" value="우편번호 찾기" style="vertical-align: top; height:30px ; width:90px ;  font-size : 13px" onclick="sample4_execDaumPostcode()">
+						<td><input type = "text" name="zipcode" id="sample4_postcode" placeholder="우편번호를 검색하세요" style="width:180px">
+						<input type="button" value="우편번호 찾기" style="vertical-align: top; height:35px ; width:110px ;  font-size : 13px" onclick="sample4_execDaumPostcode()">
 						</td>
 					</tr>	
                      <tr>
