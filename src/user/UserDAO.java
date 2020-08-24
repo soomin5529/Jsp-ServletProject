@@ -139,17 +139,33 @@ public class UserDAO {
 			}
 			return pwd;
 		}
-	/*
-	 * //이름 가져오기 public String findName(String id, String pwd) { Connection con =
-	 * null; PreparedStatement pstmt = null; ResultSet rs = null; String name = "";
-	 * String sql = null; try { con =
-	 * DriverManager.getConnection(JDBC_URL,USER,PASS); sql =
-	 * "select name from MEMBER where id=?, pwd=?"; pstmt =
-	 * con.prepareStatement(sql); pstmt.setString(1,id); pstmt.setString(2,pwd); rs
-	 * = pstmt.executeQuery(); while(rs.next()){ return name= rs.getString(name); }
-	 * } catch(Exception e) { e.printStackTrace(); } finally { Util.close(con,
-	 * pstmt, rs); } return null; //데이터베이스 오류 }
-	 */
+		
+		//이름 가져오기
+		public String findName(String id, String pwd) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String name = null;
+			String sql = null;
+			try {
+				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
+				sql = "select name from MEMBER where id=? and pwd=?";
+				pstmt = con.prepareStatement(sql); 
+				pstmt.setString(1,id);
+				pstmt.setString(2,pwd);
+				rs = pstmt.executeQuery();	
+				 while(rs.next()){
+					    name= rs.getString("name");
+					   }
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				Util.close(con, pstmt, rs);
+			}
+			return name; //데이터베이스 오류
+		}
 		
 		//회원가입
 		public int join(UserDTO user){
