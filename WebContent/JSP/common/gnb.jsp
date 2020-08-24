@@ -3,6 +3,7 @@
 	
 <%
 	String id = (String) session.getAttribute("id");
+	String name= (String) session.getAttribute("name");
 %>
 <!DOCTYPE html>
 <html>
@@ -41,7 +42,7 @@
 	<!-- 상단 헤더 영역-->
 	<div class="header">
 		<div class="info">
-			<span class="highlight01 pointer" onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMypage.jsp'"><%=id%></span>님 반갑습니다
+			<span class="highlight01 pointer" onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMypage.jsp'"><%=name%></span>님 반갑습니다
 		</div>
 		<div class="right">
 			<a href="<%=request.getContextPath()%>/JSP/introBack/userLogOut.jsp">logout</a>
