@@ -17,7 +17,7 @@
 	String birthdate = request.getParameter("birthdate");
 	String gender = request.getParameter("gender");
 	String zipcode = request.getParameter("zipcode");
-	String address = request.getParameter("address");	
+	String address = request.getParameter("address");
 	
 %>
 	
@@ -27,7 +27,7 @@
 	String msg = null;
 	String location = null;
 	
-	int result = userDAO.join(new UserDTO(id, pwd, name, email,agency, tel, birthdate, gender, zipcode, address, SHA256.getSHA256(email), false));
+	int result = userDAO.join(new UserDTO(id, pwd, name, email,agency, tel, birthdate, gender, zipcode, address, SHA256.getSHA256(email), false, 0));
 
 	if(result == -1){
 		msg = "회원가입에 실패 하였습니다";

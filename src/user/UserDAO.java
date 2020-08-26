@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import user.Util;
 import user.UserDTO;
 
@@ -174,7 +176,7 @@ public class UserDAO {
 			
 			try {
 				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
-				String strQuery = "insert into MEMBER values(?,?,?,?,?,?,?,?,?,?,?,?)";
+				String strQuery = "insert into MEMBER values(?,?,?,?,?,?,?,?,?,?,?,?,0)";
 				pstmt = con.prepareStatement(strQuery);
 				
 				pstmt.setString(1, user.getId());
@@ -275,5 +277,40 @@ public class UserDAO {
 				Util.close(con, pstmt);
 			}
 			return false; //이메일 등록 설정 실패
+		}
+		
+		//멤버리스트 조회
+		public ArrayList<UserDTO> memberList() {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String strQuery = null;
+			ArrayList<UserDTO> list = new ArrayList<UserDTO>();
+			try {
+				con=DriverManager.getConnection(JDBC_URL,USER,PASS);
+				strQuery = "select * from member";
+				pstmt = con.prepareStatement(strQuery);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
+					UserDTO bean = new UserDTO();
+					bean.setId(rs.getString("id"));
+					bean.setName(rs.getString("name"));
+					bean.setEmail(rs.getString("email"));
+					bean.setTel(rs.getString("tel"));
+					bean.setBirthdate(rs.getString("birthdate"));
+					bean.setGender(rs.getString("gender"));
+					bean.setZipcode(rs.getString("zipcode"));
+					bean.setAddress(rs.getString("address"));
+					bean.setUserEmailChecked(rs.getBoolean("userEmailChecked"));
+					
+					list.add(bean);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				Util.close(con, pstmt, rs);
+			}
+			return list;
+			
 		}
 }

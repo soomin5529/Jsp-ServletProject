@@ -14,6 +14,7 @@ public class UserDTO {
 	private String address;
 	private String userEmailHash;
 	private boolean userEmailChecked;
+	private int author;
 	
 	
 	public String getId() {
@@ -28,6 +29,7 @@ public class UserDTO {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -88,11 +90,18 @@ public class UserDTO {
 	public void setUserEmailChecked(boolean userEmailChecked) {
 		this.userEmailChecked = userEmailChecked;
 	}
+	
+	public int getAuthor() {
+		return author;
+	}
+	public void setAuthor(int author) {
+		this.author = author;
+	}
 	public UserDTO() {
 		
 	}
 	public UserDTO(String id, String pwd, String name, String email, String agency, String tel, String birthdate,
-			String gender, String zipcode, String address, String userEmailHash, boolean userEmailChecked) {
+			String gender, String zipcode, String address, String userEmailHash, boolean userEmailChecked, int author) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -106,6 +115,7 @@ public class UserDTO {
 		this.address = address;
 		this.userEmailHash = userEmailHash;
 		this.userEmailChecked = userEmailChecked;
+		this.author = author;
 	}
 	
 
