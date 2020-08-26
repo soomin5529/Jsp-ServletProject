@@ -30,7 +30,8 @@
 </head>
 
 		<form name="findidFrm" method="post" action="<%=request.getContextPath()%>/JSP/introBack/userFindIdAction.jsp">
-			<table>
+	
+			<table align="center" >
 				<tr>
 					<td align="center" colspan="2"><h4>아이디 찾기</h4></td>
 				</tr>
@@ -50,7 +51,7 @@
 				<tr>
 					<td colspan="2">
 						<div align="right">
-							<input type="button" value="입력" onclick="inputCheck()">&nbsp;
+							<button class="btn03" onclick="inputCheck()">입력</button>&nbsp;
 							<input type="reset" value="다시쓰기"> 
 						</div>
 					</td>
