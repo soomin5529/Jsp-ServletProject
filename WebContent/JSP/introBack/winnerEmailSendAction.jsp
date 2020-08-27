@@ -45,8 +45,8 @@
 	String from = "kyusung612@gmail.com";
 	String to = userDAO.getUserEmail(id);
 	String subject = "BLUEOCEAN에서 당첨된 결과 이메일입니다.";
-	String content = "축하드립니다 경매에 당첨 되셨습니다. 다음 링크에 접속하여  주소를 입력해주세요." + 
-			"<a href='" + host + "emailCheckAction.jsp?code=" + new SHA256().getSHA256(to) + "'>이메일 인증하기</a>";
+	String content = "축하드립니다 경매에 당첨 되셨습니다. 다음 링크에 접속하여  주소와 결제정보를 입력해주세요." + 
+			"<a href='" + host + "winnerAdressPayInfo.jsp?code=" + "'>링크</a>";
 	
 	//메일 환경 변수 설정
 	Properties p  = new Properties();

@@ -1,3 +1,4 @@
+<%@page import="java.io.PrintWriter"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,6 +7,19 @@
 <%@ page import="user.UserDAO" %>
 <body>
 <%	
+	if(session.getAttribute("id") != null){
+	 	id = (String) session.getAttribute("id");
+	}
+	
+	if(id == null){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인을 해주세요');");
+		script.println("location.href = '/jspProject/JSP/introPage.jsp'");
+		script.println("</script>");
+		script.close();
+		return;	
+	}
 	String msg=null;
 	String location=null;
 	
@@ -38,12 +52,15 @@
 		<div class="card-box">
 			<div class="card-head">
 				<span class="highlight01"><%=list.get(i).getId()%>님</span>
-				<span><%=list.get(i).getRegDate()%></span>
-				<%-- <img src="<%=request.getContextPath()%>/images/ic_arrow.png"/> --%>
+				<span class="regdate"><%=list.get(i).getRegDate()%></span>
+				<img src="<%=request.getContextPath()%>/images/ic_arrow.png"/>
 			</div>
 			<div class="card-body">
-				<div class="tit"><%=list.get(i).getQnaTitle()%></div>
-				<div class="con"><%=list.get(i).getQnaCon() %></div>
+				<div class="question">
+					<div class="tit"><%=list.get(i).getQnaTitle()%></div>
+					<div class="con"><%=list.get(i).getQnaCon() %></div>
+				</div>
+			
 				
 		<% 
 			boolean replyChk = dao.chkReply(list.get(i).getQnaCode());
@@ -52,16 +69,10 @@
 		
 			 	<div class="answer">
 					<div class="reply-back">
-						<span>관리자 답변 : </span>
-						<span><%=list.get(i).getReplyDate()%></span>
+						<span class="highlight01">관리자 </span>
+						<span class="regdate"><%=list.get(i).getReplyDate()%></span>
 						<div class="con"><%=list.get(i).getQnaReply()%></div>
 					</div>
-				
-				</div> 
-			<%
-			
-			}
-			%>
 				
 				<% if(AuthorChk == 1){ %>
 				<form action="<%=request.getContextPath()%>/JSP/front/qnaReply.jsp" method="post">
@@ -73,8 +84,12 @@
 				<%
 				}
 				%>
+				</div> 
+			<%
+			}
+			%>
+				
 			</div>
-			
 		</div>
 	</div>
 	<%
@@ -85,13 +100,13 @@
 					if (pageNumber != 1) {
 				%>
 				<a href="qna.jsp?pageNumber=<%=pageNumber - 1%>"
-					class="btn btn-success btn-arrow-left">이전</a>
+					class="pagination float-l">이전</a>
 				<%
 					}
 					if (dao.nextPage(pageNumber)) {
 				%>
 				<a href="qna.jsp?pageNumber=<%=pageNumber + 1%>"
-					class="btn btn-success btn-arrow-left">다음</a>
+					class="pagination float-r">다음</a>
 				<%
 					}
 				%>
