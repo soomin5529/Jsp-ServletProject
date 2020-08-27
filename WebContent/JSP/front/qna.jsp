@@ -4,9 +4,6 @@
 <%@ page import="qna.QnaDTO" %>
 <%@ page import="qna.QnaDAO" %>
 <%@ page import="user.UserDAO" %>
-
-<%-- <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/201901_reset.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css"> --%>
 <body>
 <%	
 	int pageNumber=1; //기본 페이지 넘버
@@ -30,13 +27,6 @@
 		%>
 	</div>
 		<%
-				
-			//	UserDAO user = new UserDAO();
-			//  String userID = (String) session.getAttribute("id");
-			//	String chkID = user.getID("userID");
-			//	boolean authorChk = dao.getAuthorCheck(id);
-				
-				
 				ArrayList<QnaDTO> list = dao.getList(pageNumber);
 				for(int i = 0; i<list.size(); i++){
 			%>
@@ -44,22 +34,31 @@
 	<div class="card-wrap">
 		<div class="card-box">
 			<div class="card-head">
-				<span class="highlight01"><%=list.get(i).getId()%></span>
+				<span class="highlight01"><%=list.get(i).getId()%>님</span>
 				<span><%=list.get(i).getRegDate()%></span>
 				<%-- <img src="<%=request.getContextPath()%>/images/ic_arrow.png"/> --%>
 			</div>
 			<div class="card-body">
 				<div class="tit"><%=list.get(i).getQnaTitle()%></div>
 				<div class="con"><%=list.get(i).getQnaCon() %></div>
-		<%-- 
+				
+		<% 
+			boolean replyChk = dao.chkReply(list.get(i).getQnaCode());
+			if(replyChk != false){
+		%>
+		
 			 	<div class="answer">
 					<div class="reply-back">
-						<span>관리자</span>
+						<span>관리자 답변 : </span>
 						<span><%=list.get(i).getReplyDate()%></span>
 						<div class="con"><%=list.get(i).getQnaReply()%></div>
 					</div>
 				
-				</div>  --%>
+				</div> 
+			<%
+			
+			}
+			%>
 				
 				<% if(AuthorChk == 1){ %>
 				<form action="<%=request.getContextPath()%>/JSP/front/qnaReply.jsp" method="post">
@@ -93,15 +92,6 @@
 				<%
 					}
 				%>
-				
-	<%-- 	<%
-			if(userID == chkID){
-		%>
-				<a href="update.jsp" class="btn btn-primary">수정</a>
-				<a href="delete.jsp" class="btn btn-primary">삭제</a>
-		<%					
-			}
-		%> --%>
 </div>
 </div>
 </body>

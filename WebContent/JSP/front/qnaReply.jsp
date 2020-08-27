@@ -17,9 +17,9 @@
 	<form action="<%=request.getContextPath()%>/JSP/qnaBack/qnaReplyAction.jsp"  method="post">
 	
 		<button class="btn03" type="submit">답변하기</button>
-	</form>
-	<button class="btn04 margin-r" onclick="location.href='/jspProject/JSP/front/qna.jsp'">Q&A</button>
 	
+	<button class="btn04 margin-r" type="button" onclick="location.href='/jspProject/JSP/front/qna.jsp'">Q&A</button>
+
 	</div>
 	<!-- 테이블 영역 -->
 	
@@ -33,7 +33,8 @@
 			<tr>
 				<th>답변하기</th>
 				<td>
-					<textarea cols="30" name="qnaCon" rows="10"></textarea>
+					<textarea cols="30" name="qnaReply" rows="10"></textarea>
+					<input type="hidden" name="qnaCode" value="<%=qnaCode%>">
 				</td>
 			</tr>			
 		</table>

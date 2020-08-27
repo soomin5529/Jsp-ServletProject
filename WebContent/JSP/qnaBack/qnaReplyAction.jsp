@@ -5,7 +5,8 @@
 <%	request.setCharacterEncoding("UTF-8"); %>
 
 <jsp:useBean id="dto" class="qna.QnaDTO" scope="page"></jsp:useBean>
-<jsp:setProperty property="qnaReply" name="dto"/> 
+<jsp:setProperty property="qnaReply" name="dto"/>
+<jsp:setProperty property="qnaCode" name="dto"/>  
     
 <%
 	QnaDAO dao = new QnaDAO(); 
@@ -22,7 +23,7 @@
 			msg = "답변 등록 권한이 없습니다.관리자가 아닙니다.";
 			location = "/jspProject/JSP/front/qna.jsp";
 		} else {
-			int result = dao.updateQna(dto.getQnaTitle(), id, dto.getQnaCon());
+			int result = dao.qnaReply(dto.getQnaReply(),dto.getQnaCode());
 			if (result == -1) {
 				msg = "답변등록을 실패했습니다.";
 				location = "/jspProject/JSP/front/qnaReg.jsp";

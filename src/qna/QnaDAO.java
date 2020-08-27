@@ -208,14 +208,13 @@ public class QnaDAO {
 			public int qnaReply(String qnaReply, int qnaCode) throws Exception {
 				Connection conn = getConnection();
 				PreparedStatement pstmt = null;
-				String sql = "update qna set qnaReply=? , replyDate=? where qnaCode = ?  ";
+				String sql = "update QNA set qnaReply=? , replyDate=? where qnaCode = ?  ";
 				try {
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, qnaReply);
 					pstmt.setTimestamp(2, getDate());
 					pstmt.setInt(3, qnaCode);
 					return pstmt.executeUpdate();
-										
 				}
 				catch(Exception e) {
 					e.printStackTrace();
@@ -223,4 +222,33 @@ public class QnaDAO {
 				return -1;	//데이터베이스 오류
 			}
 			
+		//QNA에 답변이 달려있으면 보여주는 쿼리 없으면 안 보여준다
+			public boolean chkReply(int qnaCode) throws Exception{
+				Connection conn = getConnection();
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				boolean chk = false;
+				String sql = "select qnaReply, replyDate from qna where qnaCode=?";
+				try {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, qnaCode);
+					rs = pstmt.executeQuery();
+					
+					while(rs.next()) {
+						if(rs.getString(1) != null && rs.getString(2) != null) {
+							chk = true;
+						}
+						else {
+							chk = false;
+						}
+					}
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
+				finally{
+					user.Util.close(conn, pstmt, rs);
+				}
+				return chk;
+			}
 }

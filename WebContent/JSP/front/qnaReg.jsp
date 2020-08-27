@@ -9,14 +9,11 @@
 	<!-- 상단 페이지이름/버튼 영역 -->
 	<div class="page-top cf">
 	<form action="<%=request.getContextPath()%>/JSP/qnaBack/qnaRegAction.jsp"  method="post">
-	
 		<div class="page-name">질문하기</div>
 		<button class="btn03" type="submit">등록하기</button>
-		</form>
-		<button class="btn04 margin-r" onclick="location.href='/jspProject/JSP/front/qna.jsp'">Q&A</button> 
+		<button class="btn04 margin-r" type="button" onclick="location.href='/jspProject/JSP/front/qna.jsp'">돌아가기</button>
 	</div>
 	<!-- 테이블 영역 -->
-	
 		<table class="tbl tbl-reg">
 			<tr>
 				<th>제목</th>
@@ -31,7 +28,9 @@
 				</td>
 			</tr>			
 		</table>
+		
 	</form>
+	 
 </div>
 </div>
 </body>
