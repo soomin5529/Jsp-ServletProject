@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import user.Util;
+
 public class QnaDAO {
 	private static QnaDAO instance = new QnaDAO();
 	public static QnaDAO getInstance() {
@@ -143,6 +145,37 @@ public class QnaDAO {
 					user.Util.close(conn, pstmt, rs);
 				}
 				return false;
+			}
+			
+			//관리자인지 아닌지
+			public int checkAuthor(String id) throws Exception {
+				Connection conn = getConnection();
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				String sql = null;
+				try {
+					sql = "select author from MEMBER where id = ?";
+					pstmt = conn.prepareStatement(sql); 
+					pstmt.setString(1, id);
+					rs = pstmt.executeQuery();	
+					
+					if(rs.next()) {
+						if(rs.getInt(1)==1) {
+							return 1;	
+						}
+						else {
+							return 0;	
+						}
+					}
+					return -1; 
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
+				finally {
+					Util.close(conn, pstmt, rs);
+				}
+				return -2;	
 			}
 			
 }

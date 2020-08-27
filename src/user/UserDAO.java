@@ -21,11 +21,11 @@ public class UserDAO {
 			Class.forName(JDBC_Driver);
 		}
 		catch(Exception e) {
-			System.out.println("ERRPR : JDBC µå¶óÀÌ¹ö ·Îµù ½ÇÆÐ");
+			System.out.println("ERRPR : JDBC ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 	
-	//ID Áßº¹È®ÀÎ
+	//ID ï¿½ßºï¿½È®ï¿½ï¿½
 		public boolean checkId(String id) {
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -50,7 +50,7 @@ public class UserDAO {
 		}
 		
 		
-		//·Î±×ÀÎ
+		//ï¿½Î±ï¿½ï¿½ï¿½
 		public int loginUser(String id, String pwd) {
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -61,19 +61,19 @@ public class UserDAO {
 			try {
 				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
 				sql = "select pwd from MEMBER where id = ?";
-				pstmt = con.prepareStatement(sql); //sql¹®À» ¾µ ¼ö ÀÖ°Ô ÁØºñ
+				pstmt = con.prepareStatement(sql); //sqlï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½Øºï¿½
 				pstmt.setString(1, id);
-				rs = pstmt.executeQuery();	//db¿¡¼­ ½ÇÇàµÈ °ªÀ» rs·Î ´ã¾ÆÁØ´Ù
+				rs = pstmt.executeQuery();	//dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ rsï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø´ï¿½
 				
 				if(rs.next()) {
 					if(rs.getString(1).equals(pwd)) {
-						return 1;	//·Î±×ÀÎ ¼º°ø
+						return 1;	//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 					}
 					else {
-						return 0;	//ºñ¹Ð¹øÈ£ Æ²¸²
+						return 0;	//ï¿½ï¿½Ð¹ï¿½È£ Æ²ï¿½ï¿½
 					}
 				}
-				return -1; //¾ÆÀÌµð ¾øÀ½
+				return -1; //ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
 			}
 			catch(Exception e) {
 				e.printStackTrace();
@@ -81,10 +81,10 @@ public class UserDAO {
 			finally {
 				Util.close(con, pstmt, rs);
 			}
-			return -2;	//¿À·ù
+			return -2;	//ï¿½ï¿½ï¿½ï¿½
 		}
 		
-		//¾ÆÀÌµð Ã£±â
+		//ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
 		public String findId(String name, String tel, String email) {
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -112,7 +112,7 @@ public class UserDAO {
 			return id;
 		}
 		
-		//ºñ¹Ð¹øÈ£ Ã£±â
+		//ï¿½ï¿½Ð¹ï¿½È£ Ã£ï¿½ï¿½
 		public String findPwd(String id, String name, String email, String tel) {
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -142,7 +142,7 @@ public class UserDAO {
 			return pwd;
 		}
 		
-		//ÀÌ¸§ °¡Á®¿À±â
+		//ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		public String findName(String id, String pwd) {
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -166,17 +166,17 @@ public class UserDAO {
 			finally {
 				Util.close(con, pstmt, rs);
 			}
-			return name; //µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+			return name; //ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		}
 		
-		//È¸¿ø°¡ÀÔ
+		//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		public int join(UserDTO user){
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			
 			try {
 				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
-				String strQuery = "insert into MEMBER values(?,?,?,?,?,?,?,?,?,?,?,?,0)";
+				String strQuery = "insert into MEMBER values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(strQuery);
 				
 				pstmt.setString(1, user.getId());
@@ -191,6 +191,7 @@ public class UserDAO {
 				pstmt.setString(10, user.getAddress());
 				pstmt.setString(11, user.getUserEmailHash());
 				pstmt.setBoolean(12, user.isUserEmailChecked());
+				pstmt.setInt(13, user.getAuthor());
 				
 				return pstmt.executeUpdate();
 			}
@@ -199,7 +200,7 @@ public class UserDAO {
 			}
 			return -1;
 		}
-		//Æ¯Á¤È¸¿øÀÇ ÀÌ¸ÞÀÏ ÀÚÃ¼¸¦ ¹ÝÈ¯ÇÏ´Â ÇÔ¼ö
+		//Æ¯ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
 		public String getUserEmail(String id) {
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -209,12 +210,12 @@ public class UserDAO {
 			try {
 				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
 				sql = "select email from MEMBER where id=?";
-				pstmt = con.prepareStatement(sql); //sql¹®À» ¾µ ¼ö ÀÖ°Ô ÁØºñ
+				pstmt = con.prepareStatement(sql); //sqlï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½Øºï¿½
 				pstmt.setString(1, id);
-				rs = pstmt.executeQuery();	//db¿¡¼­ ½ÇÇàµÈ °ªÀ» rs·Î ´ã¾ÆÁØ´Ù
+				rs = pstmt.executeQuery();	//dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ rsï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø´ï¿½
 				
 				while(rs.next()) {
-					return rs.getString(1);	//ÀÌ¸ÞÀÏ ÁÖ¼Ò ¹ÝÈ¯
+					return rs.getString(1);	//ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½È¯
 				}
 			}
 			catch(Exception e) {
@@ -223,10 +224,10 @@ public class UserDAO {
 			finally {
 				Util.close(con, pstmt, rs);
 			}
-			return null; //µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+			return null; //ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		}
 
-		//ÀÌ¸ÞÀÏ ÀÎÁõÀÌ µÇ¾ú´ÂÁö È®ÀÎ
+		//ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 		public boolean getUserEmailChecked(String id) {
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -236,13 +237,13 @@ public class UserDAO {
 			try {
 				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
 				sql = "select userEmailChecked from MEMBER where id=?";
-				pstmt = con.prepareStatement(sql); //sql¹®À» ¾µ ¼ö ÀÖ°Ô ÁØºñ
+				pstmt = con.prepareStatement(sql); //sqlï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½Øºï¿½
 				pstmt.setString(1, id);
 
-				rs = pstmt.executeQuery();	//db¿¡¼­ ½ÇÇàµÈ °ªÀ» rs·Î ´ã¾ÆÁØ´Ù
+				rs = pstmt.executeQuery();	//dbï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ rsï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø´ï¿½
 				
 				while(rs.next()) {
-					return rs.getBoolean(1);	//ÀÌ¸ÞÀÏ µî·Ï ¿©ºÎ ¹ÝÈ¯
+					return rs.getBoolean(1);	//ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 				}
 			}
 			catch(Exception e) {
@@ -251,10 +252,10 @@ public class UserDAO {
 			finally {
 				Util.close(con, pstmt, rs);
 			}
-			return false; //µ¥ÀÌÅÍº£ÀÌ½º ¿À·ù
+			return false; //ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		}
 		
-		//ÀÌ¸ÞÀÏ ¿Ï·á½ÃÅ°´Â ÇÔ¼ö
+		//ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ô¼ï¿½
 		public boolean setUserEmailChecked(String id) {
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -264,11 +265,11 @@ public class UserDAO {
 			try {
 				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
 				sql = "update MEMBER set userEmailChecked = 1 where id=?";
-				pstmt = con.prepareStatement(sql); //sql¹®À» ¾µ ¼ö ÀÖ°Ô ÁØºñ
+				pstmt = con.prepareStatement(sql); //sqlï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½Øºï¿½
 				pstmt.setString(1, id);
 				pstmt.executeUpdate();
 				
-				return true;	//ÀÌ¸ÞÀÏ µî·Ï ¼³Á¤ ¼º°ø
+				return true;	//ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			}
 			catch(Exception e) {
 				e.printStackTrace();
@@ -276,10 +277,10 @@ public class UserDAO {
 			finally {
 				Util.close(con, pstmt);
 			}
-			return false; //ÀÌ¸ÞÀÏ µî·Ï ¼³Á¤ ½ÇÆÐ
+			return false; //ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		}
 		
-		//¸â¹ö¸®½ºÆ® Á¶È¸
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È¸
 		public ArrayList<UserDTO> memberList() {
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -313,4 +314,62 @@ public class UserDAO {
 			return list;
 			
 		}
+		
+		public int checkAuthor(String id, String pwd) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql = null;
+			try {
+				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
+				sql = "select author from MEMBER where id = ? and pwd = ?";
+				pstmt = con.prepareStatement(sql); 
+				pstmt.setString(1, id);
+				pstmt.setString(2, pwd);
+				rs = pstmt.executeQuery();	
+				
+				if(rs.next()) {
+					if(rs.getInt(1)==1) {
+						return 1;	
+					}
+					else {
+						return 0;	
+					}
+				}
+				return -1; 
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				Util.close(con, pstmt, rs);
+			}
+			return -2;	
+		}
+		/*
+		public String getID(String id) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String loginID = null;
+			String sql = null;
+			try {
+				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
+				sql = "select id from MEMBER where id=?";
+				pstmt = con.prepareStatement(sql); 
+				pstmt.setString(1,id);
+				rs = pstmt.executeQuery();	
+				 while(rs.next()){
+					 loginID= rs.getString("id");
+					   }
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			finally {
+				Util.close(con, pstmt, rs);
+			}
+			return loginID; 
+		}
+		*/
 }

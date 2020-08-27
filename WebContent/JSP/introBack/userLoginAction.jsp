@@ -8,12 +8,20 @@
 	 
 	String name = dao.findName(id,pwd);
 	int result = dao.loginUser(id, pwd);
+	int authorCheck = dao.checkAuthor(id, pwd);
 	boolean chk = dao.getUserEmailChecked(id);
 	
-	if(result == 1 && chk==true){
+	if(result == 1 && chk==true && authorCheck== 1){
 		session.setAttribute("id", id);
 		session.setAttribute("name", name);
-		msg = "환영합니다";
+		session.setAttribute("author", authorCheck);
+		msg = "~!!어서 오십시오 관리자님!!~";
+		url = "/jspProject/JSP/front/adminMain.jsp";
+	}
+	else if(result == 1 && chk==true && authorCheck == 0){
+		session.setAttribute("id", id);
+		session.setAttribute("name", name);
+		msg = "~~!!환영합니다 회원님~~!!";
 		url = "/jspProject/JSP/front/userMain.jsp";
 	}
 	

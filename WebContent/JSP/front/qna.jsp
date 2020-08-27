@@ -3,9 +3,13 @@
     pageEncoding="UTF-8"%>
 <%@ page import="qna.QnaDTO" %>
 <%@ page import="qna.QnaDAO" %>
+<%@ page import="user.UserDAO" %>
+
+<%-- <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/201901_reset.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css"> --%>
 <body>
 <%	
-	int pageNumber=-1; //기본 페이지 넘버
+	int pageNumber=1; //기본 페이지 넘버
 	
 	//페이지 넘버값이 있을때
 	
@@ -22,7 +26,9 @@
 	</div>
 		<%
 				QnaDAO dao = new QnaDAO();
-			//	String id = session.getAttribute("id");
+				UserDAO user = new UserDAO();
+			//	String userID = (String) session.getAttribute("id");
+			//	String chkID = user.getID("userID");
 			//	boolean authorChk = dao.getAuthorCheck(id);
 				ArrayList<QnaDTO> list = dao.getList(pageNumber);
 				for(int i = 0; i<list.size(); i++){
@@ -33,13 +39,13 @@
 			<div class="card-head">
 				<span class="highlight01"><%=list.get(i).getId()%></span>
 				<span><%=list.get(i).getRegDate()%></span>
-				<img src="<%=request.getContextPath()%>/images/ic_arrow.png"/>
+				<%-- <img src="<%=request.getContextPath()%>/images/ic_arrow.png"/> --%>
 			</div>
 			<div class="card-body">
 				<div class="tit"><%=list.get(i).getQnaTitle()%></div>
 				<div class="con"><%=list.get(i).getQnaCon() %></div>
-				
-			<%-- 	<div class="answer">
+		<%-- 
+			 	<div class="answer">
 					<div class="reply-back">
 						<span>관리자</span>
 						<span><%=list.get(i).getReplyDate()%></span>
@@ -49,7 +55,7 @@
 						<input type="text" />
 						<button class="btn03">등록</button>
 					</div>
-				</div> --%>
+				</div>  --%>
 				
 			</div>
 			
@@ -73,6 +79,15 @@
 				<%
 					}
 				%>
+				
+	<%-- 	<%
+			if(userID == chkID){
+		%>
+				<a href="update.jsp" class="btn btn-primary">수정</a>
+				<a href="delete.jsp" class="btn btn-primary">삭제</a>
+		<%					
+			}
+		%> --%>
 </div>
 </div>
 </body>
