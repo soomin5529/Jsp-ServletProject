@@ -1,5 +1,7 @@
 package user;
 
+import java.sql.Timestamp;
+
 public class UserDTO {
 	
 	private String id;
@@ -14,9 +16,8 @@ public class UserDTO {
 	private String address;
 	private String userEmailHash;
 	private boolean userEmailChecked;
+	private String regDate;
 	private int author;
-	
-	
 	public String getId() {
 		return id;
 	}
@@ -29,7 +30,6 @@ public class UserDTO {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	
 	public String getName() {
 		return name;
 	}
@@ -90,18 +90,26 @@ public class UserDTO {
 	public void setUserEmailChecked(boolean userEmailChecked) {
 		this.userEmailChecked = userEmailChecked;
 	}
-	
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
 	public int getAuthor() {
 		return author;
 	}
 	public void setAuthor(int author) {
 		this.author = author;
 	}
+	
 	public UserDTO() {
 		
 	}
+	
 	public UserDTO(String id, String pwd, String name, String email, String agency, String tel, String birthdate,
-			String gender, String zipcode, String address, String userEmailHash, boolean userEmailChecked, int author) {
+			String gender, String zipcode, String address, String userEmailHash, boolean userEmailChecked,
+			String regDate, int author) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -115,8 +123,9 @@ public class UserDTO {
 		this.address = address;
 		this.userEmailHash = userEmailHash;
 		this.userEmailChecked = userEmailChecked;
+		this.regDate = regDate;
 		this.author = author;
 	}
-	
+
 
 }

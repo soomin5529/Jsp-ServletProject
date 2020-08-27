@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import user.Util;
@@ -169,29 +170,51 @@ public class UserDAO {
 			return name; //�����ͺ��̽� ����
 		}
 		
+		//현재의 시간을 가져오는 함수
+		public Timestamp getDate() throws Exception { 
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String SQL = "SELECT sysdate from dual";
+			
+			try {
+				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
+				pstmt = con.prepareStatement(SQL);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					return rs.getTimestamp(1);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;  //데이터베이스 오류
+		}
+
 		//ȸ������
-		public int join(UserDTO user){
+		public int join(String id, String pwd, String name, String email, String agency, String tel, String birthdate, String gender, String zipcode, String address,
+				String userEmailHash, boolean userEmailChecked, int author){
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			
 			try {
 				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
-				String strQuery = "insert into MEMBER values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				String strQuery = "insert into MEMBER(id, pwd, name, email, agency, tel, birthdate, gender, zipcode, address, userEmailHash, userEmailChecked, author, regDate) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(strQuery);
 				
-				pstmt.setString(1, user.getId());
-				pstmt.setString(2, user.getPwd());
-				pstmt.setString(3, user.getName());
-				pstmt.setString(4, user.getEmail());
-				pstmt.setString(5, user.getAgency());
-				pstmt.setString(6, user.getTel());
-				pstmt.setString(7, user.getBirthdate());
-				pstmt.setString(8, user.getGender());
-				pstmt.setString(9, user.getZipcode());
-				pstmt.setString(10, user.getAddress());
-				pstmt.setString(11, user.getUserEmailHash());
-				pstmt.setBoolean(12, user.isUserEmailChecked());
-				pstmt.setInt(13, user.getAuthor());
+				pstmt.setString(1, id);
+				pstmt.setString(2, pwd);
+				pstmt.setString(3, name);
+				pstmt.setString(4, email);
+				pstmt.setString(5, agency);
+				pstmt.setString(6, tel);
+				pstmt.setString(7, birthdate);
+				pstmt.setString(8, gender);
+				pstmt.setString(9, zipcode);
+				pstmt.setString(10, address);
+				pstmt.setString(11, userEmailHash);
+				pstmt.setBoolean(12, userEmailChecked);
+				pstmt.setInt(13, author);
+				pstmt.setTimestamp(14, getDate());
 				
 				return pstmt.executeUpdate();
 			}
