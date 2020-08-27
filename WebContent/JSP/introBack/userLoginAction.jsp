@@ -8,7 +8,7 @@
 	 
 	String name = dao.findName(id,pwd);
 	int result = dao.loginUser(id, pwd);
-	int authorCheck = dao.checkAuthor(id, pwd);
+	int authorCheck = dao.checkAuthor(id);
 	boolean chk = dao.getUserEmailChecked(id);
 	
 	if(result == 1 && chk==true && authorCheck== 1){
@@ -43,7 +43,6 @@
 	}
 %>
 <script>
-
 	alert("<%=msg%>");
 	location.href="<%=url%>";
 </script>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<jsp:useBean id="userdao" class="user.UserDAO"></jsp:useBean>
 <%
 	String id = (String) session.getAttribute("id");
 	String name= (String) session.getAttribute("name");
@@ -17,6 +17,7 @@
 	String pageNum = (String)session.getAttribute("pageNum");
 	if(pageNum == null) pageNum = "1";
 	
+	int authorCheck = userdao.checkAuthor(id);
 %>
 <!DOCTYPE html>
 <html>
@@ -35,18 +36,19 @@
 			<b>BLUE</b><br />OCEAN
 		</div>
 		<ul class="gnb-list">
-			<!-- 사용자 권한 메뉴 -->
-			<li id="userMain"><a href="<%=request.getContextPath()%>/JSP/front/userMain.jsp">Home</a></li>
-			<li id="schedule"><a
-				href="<%=request.getContextPath()%>/JSP/front/userSchedule.jsp">Schedule</a></li>
-			<li id="mypage"><a href="<%=request.getContextPath()%>/JSP/front/userMypage.jsp">My page</a></li>
-			<!-- 관리자 권한 메뉴 -->
-			<li id="adminMain"><a href="<%=request.getContextPath()%>/JSP/front/adminMain.jsp">Home</a></li>
-			<li id="auctionList"><a
-				href="<%=request.getContextPath()%>/JSP/front/auctionList.jsp">Auction</a></li>
+			<%if(authorCheck == 0){%>
+				<!-- 사용자 권한 메뉴 -->
+				<li id="userMain"><a href="<%=request.getContextPath()%>/JSP/front/userMain.jsp">Home</a></li>
+				<li id="schedule"><a
+					href="<%=request.getContextPath()%>/JSP/front/userSchedule.jsp">Schedule</a></li>
+				<li id="mypage"><a href="<%=request.getContextPath()%>/JSP/front/userMypage.jsp">My page</a></li>
+			<%} else if(authorCheck == 1){ %>
+				<!-- 관리자 권한 메뉴 -->
+				<li id="adminMain"><a href="<%=request.getContextPath()%>/JSP/front/adminMain.jsp">Home</a></li>
+				<li id="auctionList"><a	href="<%=request.getContextPath()%>/JSP/front/auctionList.jsp">Auction</a></li>
+				<li id="memberList"><a href="<%=request.getContextPath()%>/JSP/front/memberList.jsp">Member</a></li>
+			<%} %>
 			<!-- 공통 권한 메뉴 -->
-			<li id="memberList"><a
-				href="<%=request.getContextPath()%>/JSP/front/memberList.jsp">Member</a></li>
 			<li id="qna"><a href="<%=request.getContextPath()%>/JSP/front/qna.jsp">Q&A</a></li>
 		</ul>
 		<div class="gnb-bottom"></div>
