@@ -6,6 +6,9 @@
 <%@ page import="user.UserDAO" %>
 <body>
 <%	
+	String msg=null;
+	String location=null;
+	
 	int pageNumber=1; //기본 페이지 넘버
 	//페이지 넘버값이 있을때
 	if(request.getParameter("pageNumber")!=null){
@@ -20,7 +23,7 @@
 	<div class="page-top cf">
 		<div class="page-name">Q&A</div>
 		
-		<% if(AuthorChk == 0){ %>
+		<% if(AuthorChk == 0 && id !=null){ %>
 		<button class="btn03" onclick="location.href='/jspProject/JSP/front/qnaReg.jsp'">질문등록</button>
 		<%
 		}
@@ -95,3 +98,5 @@
 </div>
 </div>
 </body>
+
+

@@ -1,6 +1,5 @@
 package user;
 
-import java.sql.Timestamp;
 
 public class UserDTO {
 	
@@ -18,6 +17,7 @@ public class UserDTO {
 	private boolean userEmailChecked;
 	private String regDate;
 	private int author;
+	
 	public String getId() {
 		return id;
 	}
