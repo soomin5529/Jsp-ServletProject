@@ -184,11 +184,7 @@ window.onload = function() {
    } else {
       mypage.classList.remove("on");
    }
-   if (url[url.length - 1] == "qna.jsp") {
-      qna.className += "on";
-   } else {
-      qna.classList.remove("on");
-   }
+   
    
    //관리자 권한 메뉴
    if (url[url.length - 1] == "adminMain.jsp") {
@@ -198,16 +194,22 @@ window.onload = function() {
    }
    
    if (url[url.length - 1] == "auctionList.jsp") {
-      auctionList.className += "on";
+      auctionList.className += "on"
    } else {
       auctionList.classList.remove("on");
    }
-   
-   //공통 메뉴
+
    if (url[url.length - 1] == "memberList.jsp") {
       memberList.className += "on";
    } else {
       memberList.classList.remove("on");
+   }
+   
+   //공통 메뉴
+   if (url[url.length - 1] == "qna.jsp") {
+	      qna.className += "on";
+   } else {
+      qna.classList.remove("on");
    }
    /*  gnb 메뉴 선택 end*/
    

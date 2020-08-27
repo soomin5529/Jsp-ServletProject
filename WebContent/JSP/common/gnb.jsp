@@ -4,6 +4,19 @@
 <%
 	String id = (String) session.getAttribute("id");
 	String name= (String) session.getAttribute("name");
+	
+	String board = "";
+	
+	if(request.getParameter("pageNum") != null){
+		session.setAttribute("pageNum", request.getParameter("pageNum"));
+	}
+	if(request.getParameter("boardid") != null){
+		session.setAttribute("boardid", request.getParameter("boardid"));
+		session.setAttribute("pageNum", "1");
+	}
+	String pageNum = (String)session.getAttribute("pageNum");
+	if(pageNum == null) pageNum = "1";
+	
 %>
 <!DOCTYPE html>
 <html>

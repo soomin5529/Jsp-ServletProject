@@ -280,40 +280,6 @@ public class UserDAO {
 			return false; //�̸��� ��� ���� ����
 		}
 		
-		//�������Ʈ ��ȸ
-		public ArrayList<UserDTO> memberList() {
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			String strQuery = null;
-			ArrayList<UserDTO> list = new ArrayList<UserDTO>();
-			try {
-				con=DriverManager.getConnection(JDBC_URL,USER,PASS);
-				strQuery = "select * from member";
-				pstmt = con.prepareStatement(strQuery);
-				rs = pstmt.executeQuery();
-				while(rs.next()) {
-					UserDTO bean = new UserDTO();
-					bean.setId(rs.getString("id"));
-					bean.setName(rs.getString("name"));
-					bean.setEmail(rs.getString("email"));
-					bean.setTel(rs.getString("tel"));
-					bean.setBirthdate(rs.getString("birthdate"));
-					bean.setGender(rs.getString("gender"));
-					bean.setZipcode(rs.getString("zipcode"));
-					bean.setAddress(rs.getString("address"));
-					bean.setUserEmailChecked(rs.getBoolean("userEmailChecked"));
-					
-					list.add(bean);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}finally {
-				Util.close(con, pstmt, rs);
-			}
-			return list;
-			
-		}
 		
 		public int checkAuthor(String id, String pwd) {
 			Connection con = null;

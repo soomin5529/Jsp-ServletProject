@@ -53,7 +53,7 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 /*page-num*/
 .page-num {font-size:1.4rem; margin-top : 20px;}
 .page-num a {color:#333; margin:0 2px;}
-.page-num a.on {color:#2f66ff}
+.page-num .on {color:#2f66ff}
 /* page-bottom */
 .page-bottom {margin-top : 20px;}
 .page-bottom .category {width:100px; margin-right:5px;}
