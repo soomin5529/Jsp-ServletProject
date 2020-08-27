@@ -146,6 +146,31 @@ public class QnaDAO {
 				}
 				return false;
 			}
+			//Q&A 내용 가져오기
+			public String getQna(int qnaCode) throws Exception{
+				Connection conn = getConnection();
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				String data=null;
+				String sql = null;
+				try {
+					sql = "select qnaCon from qna where qnaCode = ?";
+					pstmt = conn.prepareStatement(sql); 
+					pstmt.setInt(1, qnaCode);
+					rs = pstmt.executeQuery();	
+					
+					if(rs.next()) {
+						 data = rs.getString(1);
+					}
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
+				finally {
+					Util.close(conn, pstmt, rs);
+				}
+				return data; 	
+			}
 			
 			//관리자인지 아닌지
 			public int checkAuthor(String id) throws Exception {
@@ -176,6 +201,26 @@ public class QnaDAO {
 					Util.close(conn, pstmt, rs);
 				}
 				return -2;	
+			}
+			
+			
+		//관리자가 답변 다는 쿼리
+			public int qnaReply(String qnaReply, int qnaCode) throws Exception {
+				Connection conn = getConnection();
+				PreparedStatement pstmt = null;
+				String sql = "update qna set qnaReply=? , replyDate=? where qnaCode = ?  ";
+				try {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, qnaReply);
+					pstmt.setTimestamp(2, getDate());
+					pstmt.setInt(3, qnaCode);
+					return pstmt.executeUpdate();
+										
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
+				return -1;	//데이터베이스 오류
 			}
 			
 }

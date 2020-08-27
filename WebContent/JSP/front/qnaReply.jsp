@@ -1,31 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="qna.QnaDAO" %>
 <%
     request.setCharacterEncoding("UTF-8");
+	
+	int qnaCode = Integer.parseInt(request.getParameter("qnaCode"));
+	
+	QnaDAO qna = new QnaDAO();
+	String Context = qna.getQna(qnaCode);
 %>
 <body>
 <div class="content-wrap memberList">
 <div class="content">
 	<!-- 상단 페이지이름/버튼 영역 -->
 	<div class="page-top cf">
-	<form action="<%=request.getContextPath()%>/JSP/qnaBack/qnaRegAction.jsp"  method="post">
+	<form action="<%=request.getContextPath()%>/JSP/qnaBack/qnaReplyAction.jsp"  method="post">
 	
-		<div class="page-name">질문하기</div>
-		<button class="btn03" type="submit">등록하기</button>
-		</form>
-		<button class="btn04 margin-r" onclick="location.href='/jspProject/JSP/front/qna.jsp'">Q&A</button> 
+		<button class="btn03" type="submit">답변하기</button>
+	</form>
+	<button class="btn04 margin-r" onclick="location.href='/jspProject/JSP/front/qna.jsp'">Q&A</button>
+	
 	</div>
 	<!-- 테이블 영역 -->
 	
 		<table class="tbl tbl-reg">
 			<tr>
-				<th>제목</th>
+				<th>질문내용</th>
 				<td>
-					<input type="text" name="qnaTitle" placeholder="질문 제목을 입력하세요"/>
+					<%=Context%>
 				</td>
 			</tr>
 			<tr>
-				<th>질문하기</th>
+				<th>답변하기</th>
 				<td>
 					<textarea cols="30" name="qnaCon" rows="10"></textarea>
 				</td>
