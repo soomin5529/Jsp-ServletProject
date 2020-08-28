@@ -332,22 +332,23 @@ public class UserDAO {
 			}
 			return -2;	
 		}
-		/*
-		public String getID(String id) {
+		//경매에 당첨된 회원의 이메일을 가져오기 
+		public String getWinnerEmail(String id) {
 			Connection con = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			String loginID = null;
 			String sql = null;
+			
 			try {
 				con = DriverManager.getConnection(JDBC_URL,USER,PASS);
-				sql = "select id from MEMBER where id=?";
-				pstmt = con.prepareStatement(sql); 
-				pstmt.setString(1,id);
+				sql = "select email from MEMBER where= id?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();	
-				 while(rs.next()){
-					 loginID= rs.getString("id");
-					   }
+				
+				while(rs.next()) {
+					return rs.getString(1);	
+				}
 			}
 			catch(Exception e) {
 				e.printStackTrace();
@@ -355,7 +356,6 @@ public class UserDAO {
 			finally {
 				Util.close(con, pstmt, rs);
 			}
-			return loginID; 
+			return null; 
 		}
-		*/
 }

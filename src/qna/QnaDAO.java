@@ -231,7 +231,7 @@ public class QnaDAO {
 				String sql = "select qnaReply, replyDate from qna where qnaCode=?";
 				try {
 					pstmt = conn.prepareStatement(sql);
-					pstmt.setInt(1, qnaCode);
+					pstmt.setInt(1, qnaCode);	
 					rs = pstmt.executeQuery();
 					
 					while(rs.next()) {

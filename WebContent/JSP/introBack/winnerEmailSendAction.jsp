@@ -16,9 +16,13 @@
 	UserDAO userDAO = new UserDAO();
 	String id = null;
 	
-	if(session.getAttribute("id") != null){
+	//당첨자 아이디를 받아야 한다	
+	//String id = 당첨된 회원의 테이블에서 id를 가져오기 ex) winnerDAO.getWinnerId()~~ 수민이가 끝나면 추가
+
+
+ 	if(session.getAttribute("id") != null){
 		id = (String) session.getAttribute("id");
-	}
+	} 
 	
 	if(id == null){
 		PrintWriter script = response.getWriter();
@@ -30,17 +34,7 @@
 		return;	
 	}
 	
-	boolean emailChecked = userDAO.getUserEmailChecked(id);
-	if(emailChecked == true){
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('이미 인증 된 회원입니다');");
-		script.println("location.href = 'mainPage.jsp'");
-		script.println("</script>");
-		script.close();
-		return;	
-	}
-	
+
 	String host = "http://localhost:8089/jspProject/JSP/";
 	String from = "kyusung612@gmail.com";
 	String to = userDAO.getUserEmail(id);

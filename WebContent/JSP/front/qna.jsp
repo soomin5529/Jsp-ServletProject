@@ -7,10 +7,6 @@
 <%@ page import="user.UserDAO" %>
 <body>
 <%	
-	if(session.getAttribute("id") != null){
-	 	id = (String) session.getAttribute("id");
-	}
-	
 	if(id == null){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
@@ -66,15 +62,20 @@
 			boolean replyChk = dao.chkReply(list.get(i).getQnaCode());
 			if(replyChk != false){
 		%>
-		
+			
 			 	<div class="answer">
 					<div class="reply-back">
 						<span class="highlight01">관리자 </span>
 						<span class="regdate"><%=list.get(i).getReplyDate()%></span>
 						<div class="con"><%=list.get(i).getQnaReply()%></div>
 					</div>
+			
+				</div>
 				
-				<% if(AuthorChk == 1){ %>
+			<%
+			}
+		%>
+			<% if(AuthorChk == 1 && replyChk == false){ %>
 				<form action="<%=request.getContextPath()%>/JSP/front/qnaReply.jsp" method="post">
 				<div class="reply-input">
 						<button class="btn03" type="submit">답변하기</button>
@@ -84,10 +85,7 @@
 				<%
 				}
 				%>
-				</div> 
-			<%
-			}
-			%>
+			
 				
 			</div>
 		</div>
