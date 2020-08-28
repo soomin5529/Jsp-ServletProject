@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:useBean id="dao" class="user.MypageDAO"/>
-<jsp:useBean id="bean" class="user.UserDTO"/>
-<jsp:setProperty property="*" name="bean"/>
 
 <%
-	String id = (String)session.getAttribute("id");
+	request.setCharacterEncoding("UTF-8");
+	String id = request.getParameter("id");
 	String pwd = request.getParameter("oldpwd");
-	boolean result = dao.deleteMember(id,pwd);
+	String name = request.getParameter("name");
+	boolean result = dao.deleteMember(id, pwd, name);
 	String msg = "회원 탈퇴실패";
 	String location = "../front/userMypage.jsp";
 	if(result){

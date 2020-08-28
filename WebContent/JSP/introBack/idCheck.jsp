@@ -28,7 +28,7 @@
 
 <title>ID 중복체그</title>
 </head>
-<body bgcolor = "#FFFFCC">
+<body bgcolor = "lightblue">
 	<div align="center">
 		<br/><b><%=id %></b>
 		<%

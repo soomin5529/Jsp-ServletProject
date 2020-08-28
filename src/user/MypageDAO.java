@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 
 
 public class MypageDAO {
@@ -12,7 +13,16 @@ public class MypageDAO {
 	private final String USER = "jspProject";
 	private final String PASS = "1111";
 	
-	//mypage È¸¿ø Á¤º¸ °¡Á®¿À±â
+	public MypageDAO(){
+		try {
+			Class.forName(JDBC_Driver);
+		}
+		catch(Exception e) {
+			System.out.println("ERRPR : JDBC ERROR");
+		}
+	}
+	
+	//mypage È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public UserDTO select(String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -47,7 +57,7 @@ public class MypageDAO {
 		return bean;
 	}
 	
-	//mypage È¸¿øÁ¤º¸ ¾÷µ¥ÀÌÆ®
+	//mypage È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 	public boolean updateMember(UserDTO bean) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -78,26 +88,77 @@ public class MypageDAO {
 		return flag;
 	}
 	
-	//mypage È¸¿øÅ»Åğ
-	public boolean deleteMember(String id, String pwd) {
+	//mypage È¸ï¿½ï¿½Å»ï¿½ï¿½
+	@SuppressWarnings("resource")
+	public boolean deleteMember(String id, String pwd, String name) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
+		String sql2 = null;
+		int result = 0;
 		boolean flag = false;
-		UserDTO bean = new UserDTO();
 		try {
 			con=DriverManager.getConnection(JDBC_URL,USER,PASS);
-			sql = "delete from member where id = ? and pwd = ?";
+			sql = "insert into deleteMemberList(deleteMemberCode, deleteID, deleteName, deleteDate) values(?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1,id);
-			pstmt.setString(2,pwd);
-			if(pstmt.executeUpdate() > 0)
-				flag = true;
+			pstmt.setInt(1, getNext());
+			pstmt.setString(2, id);
+			pstmt.setString(3, name);
+			pstmt.setTimestamp(4, getDate());
+			result = pstmt.executeUpdate();
+			result=1;
+			if(result == 1) {
+				 sql2 = "delete from member where id = ? and pwd = ?";
+				pstmt = con.prepareStatement(sql2);	
+				pstmt.setString(1, id);
+				pstmt.setString(2, pwd);
+				if(pstmt.executeUpdate() > 0)
+					flag = true;
+			}
 		} catch (Exception e) {
 			System.out.println("Exception" + e);
 		} finally {
 			Util.close(con, pstmt);
 		}
 		return flag;
+	}
+
+	public int getNext() throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select deleteMemberCode from deleteMemberList order by deleteMemberCode ";
+		try {
+			con=DriverManager.getConnection(JDBC_URL,USER,PASS);
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1) + 1;
+			}
+			return 1; //ì²« ê²Œì‹œë¬¼ì¸ ê²½ìš°
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	//í˜„ì¬ì˜ ì‹œê°„ì„ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
+	public Timestamp getDate() throws Exception { 
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String SQL = "SELECT sysdate from dual";
+		
+		try {
+			con=DriverManager.getConnection(JDBC_URL,USER,PASS);
+			pstmt = con.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getTimestamp(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;  //ë°ì´í„°ë² ì´ìŠ¤ ì˜¤ë¥˜
 	}
 }

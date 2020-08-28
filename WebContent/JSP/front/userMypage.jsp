@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="user.UserDTO, user.MypageDAO"%>
 <%
+	request.setCharacterEncoding("UTF-8");
 	MypageDAO dao = new MypageDAO();
 	UserDTO mem = dao.select(id);
 	
