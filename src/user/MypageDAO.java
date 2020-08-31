@@ -12,7 +12,7 @@ public class MypageDAO {
 	private final String USER = "jspProject";
 	private final String PASS = "1111";
 	
-	//mypage È¸¿ø Á¤º¸ °¡Á®¿À±â
+	//mypage È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public UserDTO select(String id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -38,6 +38,8 @@ public class MypageDAO {
 				bean.setGender(rs.getString("gender"));
 				bean.setZipcode(rs.getString("zipcode"));
 				bean.setAddress(rs.getString("address"));
+				bean.setUserEmailChecked(rs.getBoolean("userEmailChecked"));
+				bean.setAuthor(rs.getInt("author"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -47,7 +49,7 @@ public class MypageDAO {
 		return bean;
 	}
 	
-	//mypage È¸¿øÁ¤º¸ ¾÷µ¥ÀÌÆ®
+	//mypage È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 	public boolean updateMember(UserDTO bean) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -56,7 +58,7 @@ public class MypageDAO {
 		
 		try {
 			con=DriverManager.getConnection(JDBC_URL,USER,PASS);
-			sql = "update member set pwd=?, name=?, email=?, agency=?, tel=?, birthdate=?, gender=?, zipcode=?,address=? where id=?";
+			sql = "update member set pwd=?, name=?, email=?, agency=?, tel=?, birthdate=?, gender=?, zipcode=?,address=?, author=? where id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getPwd());
 			pstmt.setString(2, bean.getName());
@@ -67,7 +69,8 @@ public class MypageDAO {
 			pstmt.setString(7, bean.getGender());
 			pstmt.setString(8, bean.getZipcode());
 			pstmt.setString(9, bean.getAddress());
-			pstmt.setString(10, bean.getId());
+			pstmt.setInt(10, bean.getAuthor());
+			pstmt.setString(11, bean.getId());
 			if(pstmt.executeUpdate() == 1)
 				flag = true;
 		} catch (Exception e) {
@@ -78,7 +81,7 @@ public class MypageDAO {
 		return flag;
 	}
 	
-	//mypage È¸¿øÅ»Åð
+	//mypage È¸ï¿½ï¿½Å»ï¿½ï¿½
 	public boolean deleteMember(String id, String pwd) {
 		Connection con = null;
 		PreparedStatement pstmt = null;

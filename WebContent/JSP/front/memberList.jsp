@@ -62,10 +62,10 @@
 						String gender = bean.getGender();
 						String zipcode = bean.getZipcode();
 						String address = bean.getAddress();
-						boolean emailcheck = bean.isUserEmailChecked();
+						boolean userEmailChecked = bean.isUserEmailChecked();
 						int author = bean.getAuthor();
 				%>
-				<tr>
+				<tr onclick="location.href='<%=request.getContextPath()%>/JSP/front/memberListDetail.jsp?memid=<%=memid%>'">
 					<td><%=number--%></td>
 					<td><%=memid%></td>
 					<td><%=memname%></td>
@@ -75,7 +75,7 @@
 					<td><%=gender%></td>
 					<td><%=zipcode%></td>
 					<td><%=address%></td>
-					<td><%=emailcheck == true ? "완료" : "미완료"%></td>
+					<td><%=userEmailChecked == true ? "완료" : "미완료"%></td>
 					<td><%=author == 0 ? "일반유저" : "관리자"%></td>
 				</tr>
 				<%

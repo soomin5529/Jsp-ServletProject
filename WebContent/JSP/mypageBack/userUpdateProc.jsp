@@ -9,12 +9,11 @@
 <%
 	boolean result = dao.updateMember(bean);
 	String msg = "회원수정에 실패하였습니다.";
-	String location = "../front/userMypage.jsp";
 	if(result){
 		msg="회원수정을 하였습니다.";
 	}
 %>
 <script>
 	alert("<%=msg%>");
-	location.href="<%=location%>";
+	window.history.back(-1);
 </script>
