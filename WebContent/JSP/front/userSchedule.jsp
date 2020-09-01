@@ -25,7 +25,9 @@
 	<!-- 상단 페이지이름/버튼 영역 -->
 	<div class="page-top cf">
 		<div class="page-name">경매일정</div>
+		<%@ include file="/JSP/front/calender.jsp" %>
 	</div>
+	
 	
 	
 </div>

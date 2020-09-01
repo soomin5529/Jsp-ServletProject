@@ -171,46 +171,28 @@ window.onload = function() {
    //사용자권한 메뉴
    if (url[url.length - 1] == "userMain.jsp") {
       userMain.className += "on";
-   } else {
-      userMain.classList.remove("on");
-   }
+   } 
    if (url[url.length - 1] == "userSchedule.jsp") {
       schedule.className += "on";
-   } else {
-      schedule.classList.remove("on");
-   }
+   } 
    if (url[url.length - 1] == "userMypage.jsp") {
       mypage.className += "on";
-   } else {
-      mypage.classList.remove("on");
-   }
-   
+   } 
    
    //관리자 권한 메뉴
    if (url[url.length - 1] == "adminMain.jsp") {
       adminMain.className += "on";
-   } else {
-      adminMain.classList.remove("on");
-   }
-   
+   } 
    if (url[url.length - 1] == "auctionList.jsp") {
       auctionList.className += "on"
-   } else {
-      auctionList.classList.remove("on");
-   }
-
+   } 
    if (url[url.length - 1] == "memberList.jsp") {
       memberList.className += "on";
-   } else {
-      memberList.classList.remove("on");
-   }
-   
+   } 
    //공통 메뉴
    if (url[url.length - 1] == "qna.jsp") {
 	      qna.className += "on";
-   } else {
-      qna.classList.remove("on");
-   }
+   } 
    /*  gnb 메뉴 선택 end*/
    
 }

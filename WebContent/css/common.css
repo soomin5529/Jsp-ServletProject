@@ -1,5 +1,5 @@
-/* 怨듯넻 �뿕由щ㉫�듃  */
-input[type="button"], input[type="submit"], button {padding : 0 15px; border-radius: 15px;  font-size: 1.5rem; line-height: 30px; font-weight: 500;}
+/* common elements */
+input[type="button"], input[type="submit"], button {padding : 0 15px; border-radius: 15px;  font-size: 1.5rem; line-height: 30px; font-weight: 500; transition: 0.5s;}
 .btn01 {background-color:transparent; border:1px solid #fff; color: white; }
 .btn01:hover {background-color:#fff; color: #ff267e;}
 .btn02 {background-color:transparent; border:1px solid #ff267e; color: #ff267e; }
@@ -13,37 +13,53 @@ input[type="button"], input[type="submit"], button {padding : 0 15px; border-rad
 .highlight02 {color:#00ec8a; font-weight:500;}
 .highlight03 {color:#ff267e; font-weight:500;}
 .highlight04 {color:#999; font-weight:500;}
-.pointer {cursor:pointer;}
-.margin-l {margin-left:10px;}
-.margin-r {margin-right:10px;}
 .cf:after {content:''; display: block; clear:both;}
-input[type="text"],input[type="password"], input[type="email"],select {width:100%; height:32px; font-size:1.4rem; line-height:2rem; padding:5px 10px;}
+input[type="text"],input[type="password"], input[type="email"],input[type="date"], input[type="file"], select {width:100%; height:32px; font-size:1.4rem; line-height:2rem; padding:5px 10px;  transition: 0.5s;}
 textarea {width:100%;  font-size:1.4rem; line-height:2rem; padding:5px 10px;}
 input:focus, select:focus {border:1px solid #2f66ff; color:#2f66ff;}
 select {background-image:url(/jspProject/images/ic_arrow.png); background-repeat:no-repeat; background-size:16px; background-position: right 5px center;}
+/* table */
 table.tbl, .tbl tr, .tbl td, .tbl th {   border-collapse : collapse; font-size:1.4rem;}
 table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .tbl th {padding:10px; color : #2f66ff; background-color:#f1f4ff; vertical-align:middle;}
-.tbl tr {background-color:white; border-bottom:1px solid #d2d2d2; vertical-align:middle; text-align:center;}
+.tbl tr {background-color:white; border-bottom:1px solid #d2d2d2; vertical-align:middle; text-align:center; transition: 0.3s;}
 .tbl tr:hover {background-color:#f1f4ff; cursor:pointer;}
-.tbl td {padding:10px;}
+.tbl td {padding:10px; vertical-align:middle;}
+/* register table */
+.tbl-reg th {width:200px;}
+.tbl-reg td {text-align:left;}
+.tbl-reg tr:hover {background-color:#fff; cursor:auto;}
+.tbl-reg input {max-width:500px;}
+.tbl-reg textarea {max-width:500px;}
+.tbl-reg select{max-width:500px;}
+.tbl-tit {font-size:1.8rem; font-weight:500; color:#2f66ff; margin-bottom:10px;}
+/* etc */
 .float-r {float: right;}
 .float-l {float:left;}
+.fl {float:left; color:#808080; padding-left:10px;}
+.fr {float:right; color:#808080; padding-right:10px;}
+.pointer {cursor:pointer;}
+.margin-r {margin-right:10px;}
+.margin-l {margin-left:10px;}
+.hidden {display:none;}
 
-/*怨듯넻 �쁺�뿭 */
+
+/*common section */
 /*gnb*/
 .gnb {position:fixed; top:0; left:0; padding:20px; width:300px; height:100%; background-color:#fff;}
 .gnb .logo {margin-bottom:30px; padding:10px; width:100px; height:100px; font-size:2rem; background-color:#2f66ff; color:#fff; }
 .gnb .gnb-list {font-size: 2rem; font-weight:600;}
-.gnb .gnb-list li {margin:20px 0; cursor:pointer; }
-.gnb .gnb-list li a {color:#333;}
+.gnb .gnb-list li {margin:20px 0; cursor:pointer;}
+.gnb .gnb-list li a {color:#333; transition: 0.2s;}
+.gnb .gnb-list li a:hover {color:#2f66ff;}
 .gnb .gnb-list li.on a {color:#2f66ff; border-bottom: 4px solid #2f66ff;}
 .gnb .gnb-bottom {position:absolute; bottom:20px; left:20px; }
 /*header*/
-.header {position:fixed; top:0; left: 300px; padding:10px 20px; width:calc(100% - 300px); height:50px;}
+.header {position:fixed; top:0; left: 300px; padding:10px 20px; width:calc(100% - 300px); min-height:50px; z-index:999; transition: 0.2s; } 
 .header .info {float:left; line-height:3rem; font-size:1.4rem;}
 .header .right {float:right; line-height:3rem;}
 .header .right a {color: #aaa; font-size:1.2rem;}
+.header.scroll {background-color: rgba(245,245,245,0.9); padding: 15px 30px;}
 /*content-wrap*/
 .content-wrap {width:calc(100% - 300px); height:100%; margin-left: 300px; overflow:auto; background-color:#f9f9f9;}
 .content-wrap .content { margin:50px auto 0; padding: 50px;}
@@ -59,22 +75,18 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .page-bottom {margin-top : 20px;}
 .page-bottom .category {width:100px; margin-right:5px;}
 .page-bottom .sentence {width:200px; margin-right:5px;}
-/* �벑濡앺뀒�씠釉�,�젙�쓽�뀒�씠釉� */
-.tbl-reg th {width:200px;}
-.tbl-reg td {text-align:left;}
-.tbl-reg tr:hover {background-color:#fff; cursor:auto;}
-.tbl-reg input {max-width:500px;}
-.tbl-reg textarea {max-width:500px;}
-.tbl-reg select{max-width:500px;}
 
-/* �솕硫대퀎 - intro */
+
+
+/* screen */
+/* intro */
 .intro .jb-box { width: 100%; height:100%; overflow: hidden;margin: 0px auto; position: relative; }
-.intro .jb-text {position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center }
+.intro .jb-text {position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center; transition: 0.5s; }
 .intro .jb-text span {display: inline-block; vertical-align: middle; text-align: center; font-size: 48px; color: #ffffff; font-weight: 900;}
 .intro .jb-text:before { content: ''; display: inline-block; width: 0; height: 100%; vertical-align: middle;}
-.intro .btn-box {position: absolute; top:55%; left:50%; transform: translate(-50%,0)}
+.intro .btn-box {position: absolute; top:55%; left:50%; transform: translate(-50%,0); transition: 0.5s; }
 
-/* �솕硫대퀎 - intro login */
+/* intro login */
 .intro #logbar {height: 100%;   width: 100%; display: none;   position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
 .intro .closeb {position: absolute; top:20px; right: 45px;   font-size: 50px; cursor: pointer; color: white;}
 .intro .closeb:hover {color: #ccc;}
@@ -84,7 +96,7 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .intro .form input {width:100%; border: none; border-bottom: 1px solid #ccc; background: transparent; height: 40px; color: #666; font-size: 16px; margin-bottom:10px;}
 .intro .form input[type="button"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
 
-/* �솕硫대퀎 - intro register */
+/* intro register */
 .intro #regbar {height: 100%;   width: 100%; display: none;   position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
 .intro .registerClose {position: absolute; top:20px; right: 45px;   font-size: 50px; cursor: pointer; color: white;}
 .intro .registerClose:hover {color: #ccc;}
@@ -98,7 +110,7 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .intro .regform input[type="submit"]{border: none; height: 40px; width: 100%; color: #fff; font-size: 16px; background: #2f66ff; cursor: pointer; border-radius: 20px;}
 .intro .regform input[type="radio"]{width:20px; height:20px; float:left;}
 
-/*�솕硫대퀎 - �쑀��硫붿씤 userMain*/
+/* userMain */
 .userMain.content-wrap .content {max-width: 1000px;}
 .userMain.content-wrap .content .p-thumb {float:left; margin-right:40px; width:500px; height:500px; background-size:cover; background-position:center; background-repeat:no-repeat; background-color: #efefef;}
 .userMain.content-wrap .content .p-text {position:relative; float:right; width:calc(100% - 540px);  height:500px;}
@@ -112,6 +124,11 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .userMain.content-wrap .content .p-text .input-wrap button {width:100%; padding:5px; margin-bottom:20px;}
 .userMain.content-wrap .content .p-text .input-wrap .mem {font-size:1.6rem;}
 .userMain.content-wrap .content .chat-wrap {float:left; margin-top:50px; width:100%; height:300px; background-color: #fff; border: 1px solid #ddd;}
+.userMain.content-wrap .content .chat-wrap .message-ball { width: 100%; height: 300px; position:relative; overflow: auto;}
+.userMain.content-wrap .content .chat-wrap .bubble-wrap {width:100%; padding:0 10px;}
+.userMain.content-wrap .content .chat-wrap .bubble { min-width: 100px; max-width: 400px; padding:10px; border-radius:5px; word-break:break-all;}
+.userMain.content-wrap .content .chat-wrap .me {float:right; background-color:#fff295;}
+.userMain.content-wrap .content .chat-wrap .you{float:left; background-color:#d2e6f1;}
 
 
 /* qna */
@@ -126,3 +143,19 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .qna.content-wrap .content .card-wrap .card-box .card-body .question .con {font-size:1.4rem;}
 .qna.content-wrap .content .card-wrap .card-box .card-body .answer {background-color:#f5f5f5; padding:10px 15px; font-size: 1.4rem; border-radius: 0 0 10px 10px;}
 .qna.content-wrap .content .pagination {font-size:1.5rem; color:#999;}
+
+/* userOrder */
+.userOrder .tbl-reg {margin-bottom:40px;}
+.userOrder .tbl-reg .payinfo {width:100px; border:1px solid #ccc; float:left; margin-right:10px; text-align:center; padding:10px; cursor:pointer;}
+.userOrder .tbl-reg .payinfo.on {background-color: #f1f4ff;}
+.userOrder .tbl-reg .bg-white {background-color:#fff;}
+.userOrder .tbl-reg .tit {font-size:2rem; font-weight:500;}
+.userOrder .tbl-reg .desc {font-size:1.6rem; color:#999; margin-bottom:10px;}
+.userOrder .tbl-reg .highlight01 {font-size:1.6rem;}
+.userOrder .p-thumb-s {width:200px; height:150px; background-size:cover; background-position:center; background-repeat:no-repeat; background-color: #efefef;}
+.userOrder .btn03-reverse {width:300px; padding:5px; margin:0 calc(50% - 150px);}
+
+/* interactive style */
+.fadeinslide{margin-top:-100px;max-width:100%; opacity:0;}
+.fadein {opacity: 0;}
+.hide {display: none;}

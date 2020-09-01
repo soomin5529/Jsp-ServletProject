@@ -103,6 +103,7 @@
 				<td><input type="text" name="address" id="sample4_roadAddress" value="<%=mem.getAddress()%>"/></td>
 			</tr>
 		</table>
+		<input type="hidden" name="author" value="<%=mem.getAuthor()%>" />
 	</form>
 </div>
 </div>

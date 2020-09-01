@@ -48,6 +48,8 @@ public class MypageDAO {
 				bean.setGender(rs.getString("gender"));
 				bean.setZipcode(rs.getString("zipcode"));
 				bean.setAddress(rs.getString("address"));
+				bean.setUserEmailChecked(rs.getBoolean("userEmailChecked"));
+				bean.setAuthor(rs.getInt("author"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -127,7 +129,7 @@ public class MypageDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select deleteMemberCode from deleteMemberList order by deleteMemberCode ";
+		String sql = "select deleteMemberCode from deleteMemberList order by deleteMemberCode desc";
 		try {
 			con=DriverManager.getConnection(JDBC_URL,USER,PASS);
 			pstmt = con.prepareStatement(sql);

@@ -16,6 +16,7 @@
 	int endRow = currentPage * pageSize;
 	int count = 0;
 	int number = 0;
+	int num=1;
 	List articleList = null;
 	listDAO dbPro = listDAO.getInstance();
 	count = listDao.getArticleCount(boardid, category, sentence);
@@ -62,11 +63,12 @@
 						String gender = bean.getGender();
 						String zipcode = bean.getZipcode();
 						String address = bean.getAddress();
-						boolean emailcheck = bean.isUserEmailChecked();
+						boolean userEmailChecked = bean.isUserEmailChecked();
 						int author = bean.getAuthor();
+						
 				%>
-				<tr>
-					<td><%=number--%></td>
+				<tr onclick="location.href='<%=request.getContextPath()%>/JSP/front/memberListDetail.jsp?memid=<%=memid%>'">
+					<td><%=num++%></td>
 					<td><%=memid%></td>
 					<td><%=memname%></td>
 					<td><%=email%></td>
@@ -75,7 +77,7 @@
 					<td><%=gender%></td>
 					<td><%=zipcode%></td>
 					<td><%=address%></td>
-					<td><%=emailcheck == true ? "완료" : "미완료"%></td>
+					<td><%=userEmailChecked == true ? "완료" : "미완료"%></td>
 					<td><%=author == 0 ? "일반유저" : "관리자"%></td>
 				</tr>
 				<%

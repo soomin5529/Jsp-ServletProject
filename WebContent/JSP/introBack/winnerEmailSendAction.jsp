@@ -18,7 +18,7 @@
 	
 	//당첨자 아이디를 받아야 한다	
 	//String id = 당첨된 회원의 테이블에서 id를 가져오기 ex) winnerDAO.getWinnerId()~~ 수민이가 끝나면 추가
-
+	//session에서 id를 가져오면 안된다 왜냐 시간이 지나 id가 저장되어 있지 않기 때문에 테이블에서 id가져와야 한다
 
  	if(session.getAttribute("id") != null){
 		id = (String) session.getAttribute("id");
@@ -40,7 +40,7 @@
 	String to = userDAO.getUserEmail(id);
 	String subject = "BLUEOCEAN에서 당첨된 결과 이메일입니다.";
 	String content = "축하드립니다 경매에 당첨 되셨습니다. 다음 링크에 접속하여  주소와 결제정보를 입력해주세요." + 
-			"<a href='" + host + "winnerAdressPayInfo.jsp?code=" + "'>링크</a>";
+			"<a href='" + host + "front/userOrder.jsp?code=" + "'>링크</a>";
 	
 	//메일 환경 변수 설정
 	Properties p  = new Properties();
@@ -101,7 +101,7 @@
 	<div class="jb-box">
 		<section class="container mt-3" style="max-width:560px;">
 			<div class="alert alert-sucess mt-4" role="alert">
-			이메일 주소 인증 메일이 전송되었습니다. 회원가입시 입력했던 이메일에 들어가셔서 인증해주세요
+			당첨자한테 이메일을 보냈습니다. 결제정보를 받아 처리하세요
 		</div>
 		</section>
 	</div>

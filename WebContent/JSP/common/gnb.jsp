@@ -27,12 +27,18 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/201901_reset.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 <script src = "http://code.jquery.com/jquery-1.7.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jcommon.js" charset="utf-8"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js" charset="utf-8"></script>
 </head>
 <body>
 	<!-- 왼쪽 메뉴 영역 -->
 	<div class="gnb">
+	<%if(authorCheck == 0) { %>
 		<div class="logo pointer" onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMain.jsp'">
+		<%}
+	else{%>
+	<div class="logo pointer" onclick="location.href='<%=request.getContextPath()%>/JSP/front/adminMain.jsp'">
+	<%} %>
 			<b>BLUE</b><br />OCEAN
 		</div>
 		<ul class="gnb-list">
@@ -53,11 +59,16 @@
 		</ul>
 		<div class="gnb-bottom"></div>
 	</div>
+	</div>
 	
 	<!-- 상단 헤더 영역-->
 	<div class="header">
 		<div class="info">
+		<%if(authorCheck == 1){ %>
+			<span class="highlight01 pointer" onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMypage.jsp'"><b>관리자</b></span>님 반갑습니다
+			<%} else{ %>
 			<span class="highlight01 pointer" onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMypage.jsp'"><%=name%></span>님 반갑습니다
+			<%} %>
 		</div>
 		<div class="right">
 			<a href="<%=request.getContextPath()%>/JSP/introBack/userLogOut.jsp">logout</a>
