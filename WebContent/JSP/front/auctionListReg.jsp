@@ -1,79 +1,72 @@
-<%@page import="java.io.PrintWriter"%>
+<%@page import="org.apache.tomcat.util.http.fileupload.RequestContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-if(session.getAttribute("id") != null){
-	 id = (String) session.getAttribute("id");
-}
-
-if(id == null){
-	PrintWriter script = response.getWriter();
-	script.println("<script>");
-	script.println("alert('로그인을 해주세요');");
-	script.println("location.href = '/jspProject/JSP/introPage.jsp'");
-	script.println("</script>");
-	script.close();
-	return;	
-}
-%>
 <body>
 <div class="content-wrap memberList">
 <div class="content">
 	<!-- 상단 페이지이름/버튼 영역 -->
 	<div class="page-top cf">
 		<div class="page-name">경매등록</div>
-		<button class="btn03">등록하기</button>
+		
 		<button class="btn04 margin-r" onclick="location.href='/jspProject/JSP/front/auctionList.jsp'">목록으로</button> 
+		<button class= "btn03 margin-r" type="reset">다시작성</button>
+		
 	</div>
 	
 	<!-- 테이블 영역 -->
-	<form action="">
+	<form method="post" action="<%=request.getContextPath()%>/JSP/auctionBack/auctionUploadPro.jsp" enctype="multipart/form-data">
 		<table class="tbl tbl-reg">
 			<tr>
 				<th>상품명</th>
 				<td>
-					<input type="text" placeholder="상품명을 입력하세요"/>
+					<input type="text" name="product" placeholder="상품명을 입력하세요"/>
 				</td>
 			</tr>
 			<tr>
 				<th>상세설명</th>
 				<td>
-					<textarea cols="30" rows="10"></textarea>
+					<textarea cols="30" name="detail" rows="10"></textarea>
 				</td>
 			</tr>
 			<tr>
 				<th>사진첨부</th>
 				<td>
-					<input type="file"  />
+					<input type="file" name="uploadfile" />
 				</td>
 			<tr>
 				<th>최소금액</th>
 				<td>
-					<input type="text" placeholder="최소 입찰 금액을 입력하세요"/>
+					<input type="text" name="minPrice" placeholder="최소 입찰 금액을 입력하세요"/>
 				</td>
 			</tr>
 			<tr>
 				<th>카테고리</th>
 				<td>
-					<select name="category" id="">
-						<option value="전자기기">전자기기</option>
+					<select name="category" >
+						<option value="전자제품">전자제품</option>
+						<option value="화장품">화장품</option>
+						<option value="휴대용품">휴대용품</option>
+						<option value="자동차">자동차</option>
 						<option value="기타">기타</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<th>오픈일</th>
+				<th>시작일</th>
 				<td>
-					<input type="date" placeholder="몰랑"/>
+					<input type="datetime-local" name="openDate" placeholder="시작일을 입력해주세요"/>
 				</td>
 			</tr>
 			<tr>
 				<th>마감일</th>
 				<td>
-					<input type="date" placeholder="몰랑"/>
+					<input  type="datetime-local" name="closeDate" placeholder="마감일을 입력해주세요"/>
 				</td>
 			</tr>
+			
 		</table>
+		<button class="btn03" type="submit" >등록하기</button>
+		
 	</form>
 </div>
 </div>
