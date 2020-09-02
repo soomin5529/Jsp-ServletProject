@@ -9,10 +9,13 @@
 	String deleteDate = request.getParameter("deleteDate");
 	String[] countdelete = dao.countDelete();
 %>
-<%
-	String betCode = request.getParameter("betCode");
-	String betPrice = request.getParameter("betPrice");
-	String[] countproduct = dao.countProduct();
+<%  String betcode = request.getParameter("betCode");
+	int betCode = Integer.parseInt(betcode);
+	
+	String betprice = request.getParameter("betPrice");
+	int betPrice = Integer.parseInt(betprice);
+	
+	int[] countproduct = dao.countProduct();
 %>
 <%
 	String betDate = request.getParameter("betDate");

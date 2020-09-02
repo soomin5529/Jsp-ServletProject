@@ -29,6 +29,7 @@ public class auctionDetailDAO {
 		}
 
 		public boolean insertArticle(auctionDetailDTO article) throws Exception {
+			
 			Connection conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
 			PreparedStatement pstmt = null;
 			String sql = "";
@@ -44,7 +45,7 @@ public class auctionDetailDAO {
 				} else {
 					number = 1;
 				}
-				sql = "insert into auctionDetail(betCode,auctionCode,id,betdate,betprice)";
+				sql = "insert into auctionDetail(BETCODE,auctioncode,id,betdate,betprice)";
 				sql += " values(?, ?, ?, sysdate , ?)";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, number);

@@ -12,9 +12,9 @@ font {
 }
 </style>
 <%
-	String auctioncode1 = request.getParameter("auctioncode");
-	int auctioncode = Integer.parseInt(auctioncode1);
-    /* int auctioncode = 2; */
+	//String auctioncode1 = request.getParameter("auctioncode");
+	//int auctioncode = Integer.parseInt(auctioncode1);
+     int auctioncode = 47; 
     ArrayList<auctionDTO> articleList = null;
 
    articleList = dao.getAllArticles(auctioncode);
@@ -61,23 +61,26 @@ font {
 				<div class="min-price">
 					<span>최저 입찰가</span> <span class="highlight01"><%=article.getMinPrice()%></span>
 				</div>
-				<form name="auctionPrice" method="post" action="auctionDetailProc.jsp">
-				<input type="hidden" name="auctioncode" value="<%=article.getAuctionCode()%>"/>
-				<input type="hidden" name="betCnt" value="0" />
+				<form id="auctionPrice" name="auctionPrice" method="post" action="<%=request.getContextPath() %>/JSP/auctionBack/auctionDetailProc.jsp">
+				<input type="hidden" name="auctioncode" value="<%=auctioncode%>"/>
+				 <input type="hidden" name="betCnt" value=<%=betCnt %> /> 
 				<input type="hidden" name="id" value="<%=name1%>"/>
+				
+				<%  if(betCnt <= 3) { %>
 					<input type="text" name="price" id="price" placeholder="경매가를 입력하세요" />
 					<button type="button" class="btn03-reverse" id="plus"
 						onclick="priceSend(); " >참여하기</button>
 					<div class="mem">
-						<span>현재 경매 참여자 수</span> <span class="highlight01">
+						<span>현재 경매 참여자 수</span> :   <span class="highlight01"><%=article.getBetCnt()%>
 							<div id="betCnt" value="<%=article.getBetCnt()%>" ></div>
+				
 						</span>
 					</div>
 				</form>
 			</div>
 		</div>
 		<%
-			}
+			} }
 		%>
 		<!-- 채팅영역 -->
 		<div class="chat-wrap">
@@ -96,30 +99,28 @@ font {
 	    var bct = document.getElementById("betCnt");
 	    var betCnt = document.getElementById("betCnt").getAttribute("value");
 	    
-		function priceSend() {
-			
-			var price= document.getElementById("price").value;	
-		  	// var URL = "<%=request.getContextPath()%>/JSP/front/auctionDetailProc.jsp?betCnt="+betCnt+"price?="+price;
-			// document.auctionPrice.submit();
-			betCnt++;
-			
-			count++;
-			if(count > 3){
-				alert("그만해 새끼야 모든 참여횟수를 사용하셨습니다.");
-			}else {
-				alert(price+ "원 입찰 완료되었습니다");
-				bct.innerHTML = betCnt ;
-				document.auctionPrice.betCnt.value = betCnt;
+	    function priceSend() {
 				
-			}
-		
-	     
+				var price= document.getElementById("price").value;	
+				
+			  	betCnt++;
+				count++;
+				
+				if(count > 3){
+					alert("그만해 새끼야 모든 참여횟수를 사용하셨습니다.");
+				}else {
+					alert(price+ "원 입찰 완료되었습니다");
+					bct.innerHTML = betCnt ;
+					document.auctionPrice.betCnt.value = betCnt;
+					document.getElementById("auctionPrice").submit();
+					
+					
+				}
+			
+		     
 
-		};
-		
-		
-		
-		
+			};
+	
    var textarea = document.getElementById("messageWindow");
    
    var webSocket = new WebSocket('ws://192.168.0.24:8089<%=request.getContextPath()%>/weball');

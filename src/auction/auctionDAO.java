@@ -241,5 +241,40 @@ public class auctionDAO {
 
 		return articleList;
 	}
+	
+	public ArrayList<auctionDTO> getAllArticles() throws Exception {
+	      Connection conn = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      String query = "";
+	      ArrayList<auctionDTO> articleList = new ArrayList<auctionDTO>();
+	      try {
+	         conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
+	         pstmt = conn.prepareStatement("select * from auction");
+	         rs = pstmt.executeQuery();
+
+	         while (rs.next()) {
+
+	            auctionDTO article = new auctionDTO();
+	            article.setAuctionCode(rs.getInt("auctioncode"));
+	            article.setProduct(rs.getString("product"));
+	            article.setDetail(rs.getString("detail"));
+	            article.setFilename(rs.getString("fileName"));
+	            article.setMinPrice(rs.getInt("minprice"));
+	            article.setCategory(rs.getString("category"));
+	            article.setOpenDate(rs.getString("opendate"));
+	            article.setCloseDate(rs.getString("closedate"));
+	            article.setBetCnt(rs.getInt("betcnt"));
+	            articleList.add(article);
+	         }
+
+	      } catch (Exception ex) {
+	         ex.printStackTrace();
+	      } finally {
+	         Util.close(conn, pstmt, rs);
+
+	      }
+	      return articleList;
+	   }
 
 }

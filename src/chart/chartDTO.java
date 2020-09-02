@@ -23,25 +23,27 @@ public class chartDTO {
 	}
 
 	//===================================================2
-	private String betCode;
-	private String betPrice;
+	private int betCode;
+	private int betPrice;
 	
-	public String getBetCode() {
+
+public int getBetCode() {
 		return betCode;
 	}
 
-	public void setBetCode(String betCode) {
+	public void setBetCode(int betCode) {
 		this.betCode = betCode;
 	}
 
-	public String getBetPrice() {
+	public int getBetPrice() {
 		return betPrice;
 	}
 
-	public void setBetPrice(String betPrice) {
+	public void setBetPrice(int betPrice) {
 		this.betPrice = betPrice;
 	}
-//===================================================3	
+
+	//===================================================3	
 	private String openDate;
 	private String betcnt;
 

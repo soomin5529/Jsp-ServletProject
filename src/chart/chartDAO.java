@@ -40,7 +40,7 @@ public class chartDAO {
 					"count(decode(substr(regdate,4,2),11,1)), " + 
 					"count(decode(substr(regdate,4,2),12,1))  " + 
 					"from member";
-			  System.out.println("ddddd");
+		
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 	          if(rs.next()) {
@@ -90,7 +90,7 @@ public class chartDAO {
 						"count(decode(substr(deletedate,4,2),11,1)), " + 
 						"count(decode(substr(deletedate,4,2),12,1))  " + 
 						"from deletememberlist";
-				  System.out.println("ddddd");
+				
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 		          if(rs.next()) {
@@ -117,12 +117,12 @@ public class chartDAO {
 			return deletedate;
 		}
 	//2
-	public String[] countProduct() {
+	public int[] countProduct() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
-		String[] betprice = new String[10];
+		int[] betprice = new int[10];
 		try {
 			conn=DriverManager.getConnection(JDBC_URL, USER, PASS);
 			sql = "select " + 
@@ -137,21 +137,21 @@ public class chartDAO {
 					  "max(decode(betcode,9,max(betprice))), " +
 					  "max(decode(betcode,10,max(betprice))) " +
 					  "from auctiondetail group by betcode";
-			  System.out.println("ddddd");
+			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 	          if(rs.next()) {
 	        	  System.out.println(betprice);
-	        	  betprice[0] = rs.getString(1);
-	        	  betprice[1] = rs.getString(2);
-	        	  betprice[2] = rs.getString(3);
-	        	  betprice[3] = rs.getString(4);
-	        	  betprice[4] = rs.getString(5);
-	        	  betprice[5] = rs.getString(6);
-	        	  betprice[6] = rs.getString(7);
-	        	  betprice[7] = rs.getString(8);
-	        	  betprice[8] = rs.getString(9);
-	        	  betprice[9] = rs.getString(10);       	 
+	        	  betprice[0] = rs.getInt(1);
+	        	  betprice[1] = rs.getInt(2);
+	        	  betprice[2] = rs.getInt(3);
+	        	  betprice[3] = rs.getInt(4);
+	        	  betprice[4] = rs.getInt(5);
+	        	  betprice[5] = rs.getInt(6);
+	        	  betprice[6] = rs.getInt(7);
+	        	  betprice[7] = rs.getInt(8);
+	        	  betprice[8] = rs.getInt(9);
+	        	  betprice[9] = rs.getInt(10);       	 
 	          }
 
 		}catch(Exception e) {
@@ -185,7 +185,7 @@ public class chartDAO {
 					  "Max(decode(substr(opendate,6,2),11,sum(betcnt))), " +
 					  "Max(decode(substr(opendate,6,2),12,sum(betcnt)))" +
 					  "from auction group by substr(opendate,6,2)";
-			  System.out.println("ddddd");
+			 
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 	          if(rs.next()) {
@@ -229,7 +229,7 @@ public class chartDAO {
 					  "count(decode(category,'화장품',1)), " +
 					  "count(decode(category,'기타',1)) " +
 					  "from auction ";
-			  System.out.println("ddddd");
+			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 	          if(rs.next()) {
