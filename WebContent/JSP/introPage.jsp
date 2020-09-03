@@ -41,7 +41,13 @@
 					<label for="id">아이디</label><br> <input TYPE="text" name="id" placeholder="아이디를 입력해주세요"><br> 
 					<label for="pwd">패스워드</label><br>
 					<input TYPE="password" name="pwd" placeholder="비밀번호를  입력해주세요">
-					<a href="<%=request.getContextPath()%>/JSP/introBack/userFindId.jsp"><b>아이디 찾기</b></a>&nbsp;<a href="<%=request.getContextPath()%>/JSP/introBack/userFindPwd.jsp"><b>비밀번호 찾기</b></a>
+					<a href="URL" onclick="window.open('<%=request.getContextPath()%>/JSP/introBack/userFindId.jsp', '_blank', 'top=120px,left=500px,width=500px,height=500px,toolbars=no,scrollbars=no,toolbars=no,status=no'); return false;">
+					<b>아이디 찾기</b>
+					</a>
+					&nbsp;
+					<a href="URL" onclick="window.open('<%=request.getContextPath()%>/JSP/introBack/userFindPwd.jsp', '_blank', 'top=120px,left=500px,width=500px,height=500px,toolbars=no,scrollbars=no,toolbars=no,status=no'); return false;">
+					<b>비밀번호 찾기</b>
+					</a>
 					<br><br> <input TYPE="button" value="로그인" onClick="loginCheck();"> <br>
 				</fieldset>
 			</form>

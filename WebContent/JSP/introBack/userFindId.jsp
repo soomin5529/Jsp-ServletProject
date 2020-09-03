@@ -28,37 +28,42 @@
 	}
 </script>
 </head>
-
+<body>
+<center>
 		<form name="findidFrm" method="post" action="<%=request.getContextPath()%>/JSP/introBack/userFindIdAction.jsp">
-	
-			<table align="center" >
+			<table frame="void" align="center" style="margin-top:20%; border-bottom: 1px solid #C7C9D2; border-collapse: collapse; background-color: white;">
 				<tr>
-					<td align="center" colspan="2"><h4>아이디 찾기</h4></td>
+					<td align="left" colspan="2">
+					<h2 style="color: #C7C9D2">아이디 찾기</h2>
+					</td>
 				</tr>
-				<tr>
+				<tr style="border-top: 1px solid #C7C9D2; border-collapse: collapse; height:60px;">
 					<td>이  름</td>
 					<td><input name="name"></td>
 				</tr>
 
-				<tr>
+				<tr style="height:60px;">
 					<td>이메일</td>
 					<td><input  name="email"></td>
 				</tr>
-					<tr>
+				<tr style="height:60px;">
 					<td>휴대폰번호</td>
 					<td><input  name="tel"></td>
 				</tr>
-				<tr>
-					<td colspan="2">
+				<tr style="border-top: 1px solid #C7C9D2; border-collapse: collapse; height:60px;">
+					<td>
+						<div align="left">
+							<button style="background-color:transparent; border:1px solid #2f66ff; color: #2f66ff; " onclick="inputCheck()">입력</button>
+						</div>
+					</td>
+					<td>
 						<div align="right">
-							<button class="btn03" onclick="inputCheck()">입력</button>&nbsp;
-							<input type="reset" value="다시쓰기"> 
+							<button type="reset" style="background-color:transparent; border:1px solid #2f66ff; color: #2f66ff; ">다시쓰기</button> 
 						</div>
 					</td>
 				</tr>
 			</table>
 		</form>
-
-
+</center>
 </body>
 </html>
