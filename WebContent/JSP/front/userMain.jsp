@@ -1,8 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.*"%>
 <%@page import="auction.auctionDAO"%>
 <%@page import="auction.auctionDTO"%>
+<%@page import="auction.auctionDetailDAO"%>
+<%@page import="auction.auctionDetailDTO"%>
 <jsp:useBean id="dao" class="auction.auctionDAO" />
 
 <style type="text/css">
@@ -12,25 +15,30 @@ font {
 }
 </style>
 <%
-	//String auctioncode1 = request.getParameter("auctioncode");
-	//int auctioncode = Integer.parseInt(auctioncode1);
-     int auctioncode = 47; 
-    ArrayList<auctionDTO> articleList = null;
+String auctioncode1 = request.getParameter("auctioncode");
+int auctioncode = Integer.parseInt(auctioncode1);
+ArrayList<auctionDTO> articleList = null;
 
-   articleList = dao.getAllArticles(auctioncode);
+articleList = dao.getAllArticles(auctioncode);
 
-   auctionDAO auctiontDao = new auctionDAO();
+auctionDAO auctiontDao = new auctionDAO();
 
-   auctionDAO db = auctionDAO.getInstance();
+auctionDAO db = auctionDAO.getInstance();
 %>
 
 <%
 	String name1 = (String) session.getAttribute("id");
-    Date date = new Date();
-    SimpleDateFormat time2 = new SimpleDateFormat("hh:mm:ss a");
-    String today = time2.format(date);
-    String timeout = null;
-    int betCnt = 0;
+Date date = new Date();
+SimpleDateFormat time2 = new SimpleDateFormat("hh:mm:ss a");
+String today = time2.format(date);
+String timeout = null;
+int betCnt = 0; //auction table 의 betCnt
+%>
+<%
+	auctionDetailDTO detailDTO = new auctionDetailDTO();
+auctionDetailDAO detailDAO = auctionDetailDAO.getInstance();
+int betcount = detailDAO.getbetCnt(auctioncode, name1);
+//회원 개개인의 betcount 값
 %>
 <title>userMain</title>
 </head>
@@ -52,35 +60,29 @@ font {
 		<div class="p-thumb"
 			style="background-image: url(<%=request.getContextPath()%>/uploadFile/<%=article.getFilename()%>)"></div>
 		<div class="p-text">
-
-			<h1 style="font-size: 300%; color: lightblue;">TIMEOUT:</h1>
-			<h1 style="font-size: 300%; color: lightblue;" id="start"></h1>
+			<h1 class="timer" id="start"></h1>
 			<div class="tit"><%=article.getProduct()%></div>
 			<div class="desc"><%=article.getDetail()%></div>
 			<div class="input-wrap">
 				<div class="min-price">
 					<span>최저 입찰가</span> <span class="highlight01"><%=article.getMinPrice()%></span>
 				</div>
-				<form id="auctionPrice" name="auctionPrice" method="post" action="<%=request.getContextPath() %>/JSP/auctionBack/auctionDetailProc.jsp">
-				<input type="hidden" name="auctioncode" value="<%=auctioncode%>"/>
-				 <input type="hidden" name="betCnt" value=<%=betCnt %> /> 
-				<input type="hidden" name="id" value="<%=name1%>"/>
-				
-				<%  if(betCnt <= 3) { %>
-					<input type="text" name="price" id="price" placeholder="경매가를 입력하세요" />
-					<button type="button" class="btn03-reverse" id="plus"
+				<form id="auctionPrice"  method="post" action="<%=request.getContextPath()%>/JSP/auctionBack/auctionDetailProc.jsp">
+					<input type="hidden" name="auctioncode" value="<%=auctioncode%>" />
+					<input type="hidden" name="betCnt" id="betCnt" value=<%=betCnt%> />
+					<input type="hidden" name="id" value="<%=name1%>" /> <input
+						type="text" name="price" id="price" placeholder="경매가를 입력하세요" />
+				<button type="button" class="btn03-reverse" id="plus"
 						onclick="priceSend(); " >참여하기</button>
 					<div class="mem">
-						<span>현재 경매 참여자 수</span> :   <span class="highlight01"><%=article.getBetCnt()%>
-							<div id="betCnt" value="<%=article.getBetCnt()%>" ></div>
-				
+						<span>현재 경매 참여자 수</span> : <span class="highlight01"><%=betCnt%>
 						</span>
 					</div>
 				</form>
 			</div>
 		</div>
 		<%
-			} }
+			}
 		%>
 		<!-- 채팅영역 -->
 		<div class="chat-wrap">
@@ -92,34 +94,16 @@ font {
 					onclick="send()" />
 			</fieldset>
 		</div>
-		<script>
-		
-
-	    var count = 0; 
-	    var bct = document.getElementById("betCnt");
-	    var betCnt = document.getElementById("betCnt").getAttribute("value");
-	    
+<script>
+		if(<%=betcount%> >  3) {
+			  alert("더이상 참여하실 수 없습니다.");
+		}
 	    function priceSend() {
-				
-				var price= document.getElementById("price").value;	
-				
-			  	betCnt++;
-				count++;
-				
-				if(count > 3){
-					alert("그만해 새끼야 모든 참여횟수를 사용하셨습니다.");
-				}else {
-					alert(price+ "원 입찰 완료되었습니다");
-					bct.innerHTML = betCnt ;
-					document.auctionPrice.betCnt.value = betCnt;
-					document.getElementById("auctionPrice").submit();
-					
-					
-				}
-			
-		     
-
-			};
+	    	
+			var price= document.getElementById("price").value;	
+			alert(price+ "원 입찰 완료되었습니다");
+			document.getElementById("auctionPrice").submit();	
+		};
 	
    var textarea = document.getElementById("messageWindow");
    
@@ -195,6 +179,7 @@ function onMessage(event) {
 		   if (distDt < 0) {
 					clearInterval(timer);
 					document.getElementById(id).textContent = '해당 이벤트가 종료 되었습니다!';
+					 url = "/jspProject/JSP/userOrderBack/endEvent.jsp";
 					return;
 				}
 				var days = Math.floor(distDt / _day);

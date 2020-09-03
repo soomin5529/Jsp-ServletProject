@@ -169,7 +169,7 @@ window.onload = function() {
    var url = document.location.href.split("/");
    
    //사용자권한 메뉴
-   if (url[url.length - 1] == "userMain.jsp") {
+   if (url[url.length - 1] == "userMainList.jsp") {
       userMain.className += "on";
    } 
    if (url[url.length - 1] == "userSchedule.jsp") {
@@ -197,6 +197,8 @@ window.onload = function() {
    
 }
 
-
+function closePop() {
+		document.getElementById("popup").style.display = "none";
+	}
 
 

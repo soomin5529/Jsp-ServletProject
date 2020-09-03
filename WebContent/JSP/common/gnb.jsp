@@ -23,7 +23,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>BLUE OCEAN</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/201901_reset.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
 <script src = "http://code.jquery.com/jquery-1.7.js"></script>
@@ -34,7 +34,7 @@
 	<!-- 왼쪽 메뉴 영역 -->
 	<div class="gnb">
 	<%if(authorCheck == 0) { %>
-		<div class="logo pointer" onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMain.jsp'">
+		<div class="logo pointer" onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMainList.jsp'">
 		<%}
 	else{%>
 	<div class="logo pointer" onclick="location.href='<%=request.getContextPath()%>/JSP/front/adminMain.jsp'">
@@ -44,7 +44,7 @@
 		<ul class="gnb-list">
 			<%if(authorCheck == 0){%>
 				<!-- 사용자 권한 메뉴 -->
-				<li id="userMain"><a href="<%=request.getContextPath()%>/JSP/front/userMain.jsp">Home</a></li>
+				<li id="userMain"><a href="<%=request.getContextPath()%>/JSP/front/userMainList.jsp">Home</a></li>
 				<li id="schedule"><a
 					href="<%=request.getContextPath()%>/JSP/front/userSchedule.jsp">Schedule</a></li>
 				<li id="mypage"><a href="<%=request.getContextPath()%>/JSP/front/userMypage.jsp">My page</a></li>

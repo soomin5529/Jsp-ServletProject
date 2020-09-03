@@ -8,40 +8,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-    int betCnt = Integer.parseInt(request.getParameter("betCnt"));
-    int auctionCode = Integer.parseInt(request.getParameter("auctioncode"));
-    int betprice = Integer.parseInt(request.getParameter("price"));
-    String id2 = request.getParameter("id");
-   // response.getWriter().write("bet");
- 
-    auctionDetailDTO article = new auctionDetailDTO();
-    auctionDetailDAO dao = auctionDetailDAO.getInstance();
-    article.setAuctionCode(auctionCode);
-    article.setBetPrice(betprice);
-    article.setId(id2);
-  
-    dao.insertArticle(article);
-    
+	int betCnt = Integer.parseInt(request.getParameter("betCnt"));
+int auctionCode = Integer.parseInt(request.getParameter("auctioncode"));
+
+String betPrice = request.getParameter("price");
+int betprice = Integer.parseInt(betPrice);
+String id2 = request.getParameter("id");
+
+// auction 테이블 betCnt 증가 , auctiondetail 테이블 insert
+
+auctionDetailDTO article = new auctionDetailDTO();
+auctionDetailDAO dao = auctionDetailDAO.getInstance();
+article.setAuctionCode(auctionCode);
+article.setBetPrice(betprice);
+article.setId(id2);
+
+int count = dao.getbetCnt(auctionCode, id2);
+
+if (count < 3) {
 	
-	  auctionDTO article1 = new auctionDTO();
-	  auctionDAO dao1 = auctionDAO.getInstance();
-	 
-	  dao1.getBetCnt(auctionCode, betCnt);
-	
+	dao.insertArticle(article);
+}
+
+auctionDTO article1 = new auctionDTO();
+auctionDAO dao1 = auctionDAO.getInstance();
+
+if( count < 3 )  {
+	dao1.getBetCnt(auctionCode, betCnt);
+}
+
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<meta http-equiv="Refresh" content="0; url=<%=request.getContextPath()%>/JSP/front/userMain.jsp">
+<meta http-equiv="Refresh"
+	content="0; url=<%=request.getContextPath()%>/JSP/front/userMain.jsp">
 </head>
 <body>
-<script>
-  var betCnt = <%=betCnt%>
-
-
-</script>
+	<script>
+		var betCnt = <%=betCnt%>
+		
+	</script>
 
 </body>
 </html>

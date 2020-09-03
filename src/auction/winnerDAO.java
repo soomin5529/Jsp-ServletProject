@@ -47,17 +47,13 @@ public class winnerDAO {
 			} else {
 				number = 1;
 			}
-			sql = "insert into winner(winnercode,auctioncode,id,betprice,zipcode,address,payinfo,paystate)";
-			sql += " values(?, ?, ?, ? , ? , ? , ? , ?)";
+			sql = "insert into winner(winnercode,auctioncode,id,betprice)";
+			sql += " values(?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, number);
 			pstmt.setInt(2, article.getAuctionCode());
 			pstmt.setString(3, article.getId());
 			pstmt.setInt(4, article.getBetPrice());
-			pstmt.setString(5, article.getZipCode());
-			pstmt.setString(6, article.getAddress());
-			pstmt.setInt(7, article.getPayInfo());
-			pstmt.setInt(8, article.getPayState());
 			
 			pstmt.executeUpdate();
 			if (pstmt.executeUpdate() == 1) {

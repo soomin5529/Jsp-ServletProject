@@ -5,10 +5,46 @@ public class winnerDTO {
 	private int auctionCode;
 	private String id;
 	private int betPrice;
+	private String name;
+	private String tel;
 	private String zipCode;
 	private String address;
+	private String ordermeno;
 	private int payInfo;
+	private String bank;
 	private int payState;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getOrdermeno() {
+		return ordermeno;
+	}
+
+	public void setOrdermeno(String ordermeno) {
+		this.ordermeno = ordermeno;
+	}
+
+	public String getBank() {
+		return bank;
+	}
+
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
 
 	public int getWinnerCode() {
 		return winnerCode;
