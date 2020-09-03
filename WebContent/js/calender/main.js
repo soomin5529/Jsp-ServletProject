@@ -16,27 +16,7 @@ function getDisplayEventDate(event) {
   return displayEventDate;
 }
 
-function filtering(event) {
-  var show_username = true;
-  var show_type = true;
 
-  var username = $('input:checkbox.filter:checked').map(function () {
-    return $(this).val();
-  }).get();
-  var types = $('#type_filter').val();
-
-  show_username = username.indexOf(event.username) >= 0;
-
-  if (types && types.length > 0) {
-    if (types[0] == "all") {
-      show_type = true;
-    } else {
-      show_type = types.indexOf(event.type) >= 0;
-    }
-  }
-
-  return show_username && show_type;
-}
 
 function calDateWhenResize(event) {
 
@@ -166,9 +146,11 @@ var calendar = $('#calendar').fullCalendar({
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "get",
-      url: "./data.json",
+      url: "/jspProject/JSP/calenderData.jsp",
+      dataType: "json",
       data: {
         // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
+    	
       },
       success: function (response) {
         var fixedDate = response.map(function (array) {
@@ -302,10 +284,6 @@ var calendar = $('#calendar').fullCalendar({
 
   },
 
-  //이벤트 클릭시 수정이벤트
-  eventClick: function (event, jsEvent, view) {
-    editEvent(event);
-  },
 
   locale: 'ko',
   timezone: "local",

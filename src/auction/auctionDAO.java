@@ -276,5 +276,35 @@ public class auctionDAO {
 	      }
 	      return articleList;
 	   }
+	
+	public auctionDTO getData() throws Exception {
+		
+		auctionDTO auctionData = new auctionDTO();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+	
+		try {
+			conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
+			pstmt = conn.prepareStatement("select product, opendate, closedate from auction where closedate <  "
+					+ "(select to_char(sysdate, 'YYYY/MM/DD HH24:MI:SS') from dual)");
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				auctionData.setProduct(rs.getString("product"));
+				auctionData.setOpenDate(rs.getString("opendate"));
+				auctionData.setCloseDate(rs.getString("closedate"));
+			}	
+			System.out.println(auctionData.getProduct());
+			System.out.println(auctionData.getOpenDate());
+			System.out.println(auctionData.getCloseDate());
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			Util.close(conn, pstmt, rs);
+		}
+		return auctionData;
+	}
 
 }
