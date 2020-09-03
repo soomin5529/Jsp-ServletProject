@@ -77,7 +77,7 @@
 		%>
 			<% if(AuthorChk == 1 && replyChk == false){ %>
 				<form action="<%=request.getContextPath()%>/JSP/front/qnaReply.jsp" method="post">
-				<div class="reply-input">
+				<div class="answer">
 						<button class="btn03" type="submit">답변하기</button>
 						<input type="hidden" name="qnaCode" value="<%=list.get(i).getQnaCode()%>">
 					</div>
@@ -85,8 +85,6 @@
 				<%
 				}
 				%>
-			
-				
 			</div>
 		</div>
 	</div>

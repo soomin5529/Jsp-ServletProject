@@ -3,27 +3,11 @@
 <jsp:useBean id="dao" class="chart.chartDAO"/>
 <%request.setCharacterEncoding("UTF-8"); %>
 <% 
-	String regDate = request.getParameter("regDate");
-	String[] countnew = dao.countNew();	
-	
-	String deleteDate = request.getParameter("deleteDate");
-	String[] countdelete = dao.countDelete();
-%>
-<%  String betcode = request.getParameter("betCode");
-	int betCode = Integer.parseInt(betcode);
-	
-	String betprice = request.getParameter("betPrice");
-	int betPrice = Integer.parseInt(betprice);
-	
-	int[] countproduct = dao.countProduct();
-%>
-<%
-	String betDate = request.getParameter("betDate");
-	String[] countmonthplayer = dao.countMonthPlayer();
-%>
-<%
-	String category = request.getParameter("category");
-	String[] countcategory = dao.countCategory();
+   String[] countnew = dao.countNew();   
+   String[] countdelete = dao.countDelete();
+   int[] countproduct = dao.countProduct();
+   String[] countmonthplayer = dao.countMonthPlayer();
+   String[] countcategory = dao.countCategory();
 %>
 <!DOCTYPE html>
 <html lang="en">
