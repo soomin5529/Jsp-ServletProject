@@ -22,7 +22,7 @@
 		session.setAttribute("id", id);
 		session.setAttribute("name", name);
 		msg = "~~!!환영합니다 회원님~~!!";
-		url = "/jspProject/JSP/front/userMain.jsp";
+		url = "/jspProject/JSP/front/userMainList.jsp";
 	}
 	
 	else if(result == 1 && chk==false){
