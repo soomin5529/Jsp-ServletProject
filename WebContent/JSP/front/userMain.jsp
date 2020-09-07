@@ -6,6 +6,8 @@
 <%@page import="auction.auctionDTO"%>
 <%@page import="auction.auctionDetailDAO"%>
 <%@page import="auction.auctionDetailDTO"%>
+<%@page import="auction.winnerDAO"%>
+<%@page import="auction.winnerDTO"%>
 <jsp:useBean id="dao" class="auction.auctionDAO" />
 
 <style type="text/css">
@@ -15,8 +17,8 @@ font {
 }
 </style>
 <%
-String auctioncode1 = request.getParameter("auctioncode");
-int auctioncode = Integer.parseInt(auctioncode1);
+
+int auctioncode = Integer.parseInt(request.getParameter("auctioncode"));
 ArrayList<auctionDTO> articleList = null;
 
 articleList = dao.getAllArticles(auctioncode);
@@ -28,16 +30,16 @@ auctionDAO db = auctionDAO.getInstance();
 
 <%
 	String name1 = (String) session.getAttribute("id");
-Date date = new Date();
-SimpleDateFormat time2 = new SimpleDateFormat("hh:mm:ss a");
-String today = time2.format(date);
-String timeout = null;
-int betCnt = 0; //auction table 의 betCnt
+    Date date = new Date();
+    SimpleDateFormat time2 = new SimpleDateFormat("hh:mm:ss a");
+    String today = time2.format(date);
+    String timeout = null;
+    int betCnt = 0; //auction table 의 betCnt
 %>
 <%
 	auctionDetailDTO detailDTO = new auctionDetailDTO();
-auctionDetailDAO detailDAO = auctionDetailDAO.getInstance();
-int betcount = detailDAO.getbetCnt(auctioncode, name1);
+    auctionDetailDAO detailDAO = auctionDetailDAO.getInstance();
+    int betcount = detailDAO.getbetCnt(auctioncode, name1);
 //회원 개개인의 betcount 값
 %>
 <title>userMain</title>
@@ -167,6 +169,7 @@ function onMessage(event) {
 			var _hour = _minute * 60;
 			var _day = _hour * 24;
 			var timer;
+			var buttonArea = document.getElementById(id);
 			
 			function showRemaining() {
 				var now = new Date();
@@ -177,11 +180,23 @@ function onMessage(event) {
 				
 		}
 		   if (distDt < 0) {
+			   <% 
+			   String winnerId = detailDAO.getWinnerId(auctioncode); 
+			   //배송정보 입력하기 버튼은 당첨자 id로 로그인 한사람만 볼수 있게 해주세요
+			   %>
 					clearInterval(timer);
 					document.getElementById(id).textContent = '해당 이벤트가 종료 되었습니다!';
-					 url = "/jspProject/JSP/userOrderBack/endEvent.jsp";
+					buttonArea.innerHTML +="<br><input type='button' class='btn03-reverse' onclick='location.href =\"/jspProject/JSP/userOrderBack/endEvent.jsp?auctioncode=<%=auctioncode%>\"' value='당첨자 등록하기'></input> ";
+				 	buttonArea.innerHTML +="<div class='pop-wrap winner' id='popup'>" +"<div class='pop-bg' onclick='closePop()'></div>"
+					+"<span class='closeb' onclick='closePop()'>×</span><div class='pop-box' style='width:500px; height:570px;'>"
+						+"<div class='tit'></div><div class='con'><div class='winner-img'></div><div class='input-box' align='center'>"
+								+"<div class='highlight01'>당첨상품</div><div>에어팟 프로</div><br /><div class='highlight01'>당첨자</div>"
+								+"<div>" + "<%=winnerId%>" + "님 축하드립니다.</div><br /><button type='button' class='btn03-reverse' onclick='location.href =\"/jspProject/JSP/front/userOrder.jsp\"'>배송정보 입력하기</button>"
+							+"</div></div></div></div>"; 
+					 url = "/jspProject/JSP/userOrderBack/endEvent.jsp?auctioncode=<%=auctioncode%>";
 					return;
 				}
+		  
 				var days = Math.floor(distDt / _day);
 				var hours = Math.floor((distDt % _day) / _hour);
 				var minutes = Math.floor((distDt % _hour) / _minute);

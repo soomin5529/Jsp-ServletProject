@@ -33,19 +33,20 @@ if (count < 3) {
 auctionDTO article1 = new auctionDTO();
 auctionDAO dao1 = auctionDAO.getInstance();
 
-if( count < 3 )  {
+
 	dao1.getBetCnt(auctionCode, betCnt);
-}
+
 
 
 %>
+<meta http-equiv="Refresh"
+	content="0; url=<%=request.getContextPath()%>/JSP/front/userMain.jsp?auctioncode=<%=article.getAuctionCode()%>">
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<meta http-equiv="Refresh"
-	content="0; url=<%=request.getContextPath()%>/JSP/front/userMain.jsp">
+
 </head>
 <body>
 	<script>

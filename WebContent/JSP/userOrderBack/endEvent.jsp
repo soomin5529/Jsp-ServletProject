@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    
+   
     int auctionCode = Integer.parseInt(request.getParameter("auctioncode"));
     
    
@@ -18,8 +18,10 @@
     		
    
     String winnerId = detailDao.getWinnerId(auctionCode); 
+    System.out.println(winnerId);
     
    int winnerBetprice = detailDao.getBetPrice(auctionCode);
+   System.out.println(winnerBetprice);
     
     winnerDTO winnerDto = new winnerDTO();
     winnerDAO winnerDao = winnerDAO.getInstance();
@@ -35,6 +37,9 @@
     		
     
     %>
+    
+    <meta http-equiv="Refresh"
+	content="0; url=<%=request.getContextPath()%>/JSP/front/userWinner.jsp?">
 <!DOCTYPE html>
 <html>
 <head>

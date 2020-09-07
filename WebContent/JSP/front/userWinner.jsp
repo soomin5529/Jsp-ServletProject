@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="auction.winnerDAO"%>
+<%@page import="auction.winnerDTO"%>   
+    
 <div class="pop-wrap winner" id="popup">
 	<div class="pop-bg" onclick="closePop()"></div>
 	<span class="closeb" onclick="closePop()">×</span>

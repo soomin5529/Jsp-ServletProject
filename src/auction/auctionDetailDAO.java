@@ -31,7 +31,7 @@ public class auctionDetailDAO {
 	}
 
 	public boolean insertArticle(auctionDetailDTO article) throws Exception {
-		System.out.println("실행두번되냐?");
+		
 		Connection conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
 		PreparedStatement pstmt = null;
 		String sql = "";
@@ -107,7 +107,7 @@ public class auctionDetailDAO {
 		conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
 		try {
 			pstmt = conn.prepareStatement(
-					"select min(betcode) from auctiondetail where betprice = (select max(betprice) from auctiondetail where auctioncdoe = ? )");
+					"select min(betcode) from auctiondetail where betprice = (select max(betprice) from auctiondetail where auctioncode = ? )");
 			pstmt.setInt(1, auctioncode);
 			rs = pstmt.executeQuery();
 
@@ -131,6 +131,7 @@ public class auctionDetailDAO {
 	}
 
 	public int getBetPrice(int auctioncode) throws Exception {
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -156,6 +157,7 @@ public class auctionDetailDAO {
 	}
 
 	public String getWinnerId(int auctioncode) throws Exception {
+		System.out.println("위너 나왓니");
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
