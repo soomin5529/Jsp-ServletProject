@@ -11,6 +11,9 @@ public class auctionDTO {
 	private String openDate;
 	private String closeDate;
 	private int betCnt;
+	private String realProduct;
+
+	
 
 	public int getAuctionCode() {
 		return auctionCode;
@@ -83,12 +86,21 @@ public class auctionDTO {
 	public void setBetCnt(int betCnt) {
 		this.betCnt = betCnt;
 	}
+	public String getRealProduct() {
+		return realProduct;
+	}
+
+	public void setRealProduct(String realProduct) {
+		this.realProduct = realProduct;
+	}
 
 	@Override
 	public String toString() {
 		return "auctionDTO [auctionCode=" + auctionCode + ", product=" + product + ", detail=" + detail + ", filename="
 				+ filename + ", minPrice=" + minPrice + ", category=" + category + ", openDate=" + openDate
-				+ ", closeDate=" + closeDate + ", betCnt=" + betCnt + "]";
+				+ ", closeDate=" + closeDate + ", betCnt=" + betCnt + ", realProduct=" + realProduct + "]";
 	}
+
+	
 
 }

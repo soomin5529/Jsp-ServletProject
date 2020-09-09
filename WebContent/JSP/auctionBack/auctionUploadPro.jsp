@@ -52,6 +52,7 @@ try {
    
 	
 	article.setProduct(multi.getParameter("product"));
+	article.setRealProduct(multi.getParameter("realProduct"));
 	article.setDetail(multi.getParameter("detail"));
 	article.setMinPrice(Integer.parseInt(multi.getParameter("minPrice")));
 	article.setCategory(multi.getParameter("category"));

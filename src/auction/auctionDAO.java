@@ -46,8 +46,8 @@ public class auctionDAO {
 			} else {
 				number = 1;
 			}
-			sql = "insert into auction(auctionCode,product,detail,filename,minPrice,category,openDate,closeDate)";
-			sql += " values(?, ?, ?, ?, ?, ?, ?, ?)";
+			sql = "insert into auction(auctionCode,product,detail,filename,minPrice,category,openDate,closeDate, realProduct)";
+			sql += " values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, number);
 			pstmt.setString(2, article.getProduct());
@@ -57,6 +57,7 @@ public class auctionDAO {
 			pstmt.setString(6, article.getCategory());
 			pstmt.setString(7, article.getOpenDate());
 			pstmt.setString(8, article.getCloseDate());
+			pstmt.setString(9, article.getRealProduct());
 			pstmt.executeUpdate();
 			if (pstmt.executeUpdate() == 1) {
 				flag = true;
@@ -126,6 +127,7 @@ public class auctionDAO {
 				article.setOpenDate(rs.getString("opendate"));
 				article.setCloseDate(rs.getString("closedate"));
 				article.setBetCnt(rs.getInt("betcnt"));
+				article.setRealProduct(rs.getString("realProduct"));
 				articleList.add(article);
 			}
 

@@ -35,6 +35,7 @@ auctionDAO db = auctionDAO.getInstance();
     String today = time2.format(date);
     String timeout = null;
     int betCnt = 0; //auction table 의 betCnt
+    String realProduct = null;
 %>
 <%
 	auctionDetailDTO detailDTO = new auctionDetailDTO();
@@ -53,11 +54,13 @@ auctionDAO db = auctionDAO.getInstance();
 			for (int i = 0; i < articleList.size(); i++) {
 
 			auctionDTO article = (auctionDTO) articleList.get(i);
+			realProduct = article.getRealProduct();
 			String closeDate = article.getCloseDate();
 			betCnt = article.getBetCnt();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			Date retime = sdf.parse(closeDate + "closeDate");
 			timeout = sdf.format(retime);
+			
 		%>
 		<div class="p-thumb"
 			style="background-image: url(<%=request.getContextPath()%>/uploadFile/<%=article.getFilename()%>)"></div>
@@ -190,7 +193,7 @@ function onMessage(event) {
 				 	buttonArea.innerHTML +="<div class='pop-wrap winner' id='popup'>" +"<div class='pop-bg' onclick='closePop()'></div>"
 					+"<span class='closeb' onclick='closePop()'>×</span><div class='pop-box' style='width:500px; height:570px;'>"
 						+"<div class='tit'></div><div class='con'><div class='winner-img'></div><div class='input-box' align='center'>"
-								+"<div class='highlight01'>당첨상품</div><div>에어팟 프로</div><br /><div class='highlight01'>당첨자</div>"
+								+"<div class='highlight01'>당첨상품</div><div>" + "<%=realProduct%>" + "</div><br /><div class='highlight01'>당첨자</div>"
 								+"<div>" + "<%=winnerId%>" + "님 축하드립니다.</div><br /><button type='button' class='btn03-reverse' onclick='location.href =\"/jspProject/JSP/front/userOrder.jsp\"'>배송정보 입력하기</button>"
 							+"</div></div></div></div>"; 
 					 url = "/jspProject/JSP/userOrderBack/endEvent.jsp?auctioncode=<%=auctioncode%>";

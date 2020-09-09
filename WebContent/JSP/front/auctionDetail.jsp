@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@page import="auction.auctionDAO"%>
 <%@page import="auction.auctionDTO"%>
+<%@page import="auction.auctionDetailDAO"%>
+<%@page import="auction.auctionDetailDTO"%>
+<%@page import="auction.winnerDAO"%>
+<%@page import="auction.winnerDTO"%>
 <%@page import="java.util.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <jsp:useBean id="dao" class="auction.auctionDAO" />
@@ -17,20 +21,27 @@ img {
 	String auctioncode1 = request.getParameter("auctioncode");
     int auctioncode = Integer.parseInt(auctioncode1);
     ArrayList<auctionDTO> articleList = null;
+    ArrayList<winnerDTO> articleList2 = null;
     Date date = new Date();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
     String today = sdf.format(date);
 
     Date toDay = sdf.parse(today);
 
-int auctionState = 1;
+    int auctionState = 1;
 
 articleList = dao.getAllArticles(auctioncode);
 %>
 <%
 	auctionDAO auctiontDao = new auctionDAO();
 
-auctionDAO db = auctionDAO.getInstance();
+    auctionDAO db = auctionDAO.getInstance();
+    
+    winnerDAO winnerDao = new winnerDAO();
+    winnerDAO db2 = winnerDAO.getInstance();
+    articleList2 = winnerDao.getAllArticles(auctioncode);
+    
+    
 %>
 <%
 	for (int i = 0; i < articleList.size(); i++) {
@@ -79,6 +90,10 @@ auctionDAO db = auctionDAO.getInstance();
 						<td><%=article.getProduct()%></td>
 					</tr>
 					<tr>
+						<th>실제 상품명</th>
+						<td><%=article.getRealProduct()%></td>
+					</tr>
+					<tr>
 						<th>상세설명</th>
 						<td><%=article.getDetail()%></td>
 					</tr>
@@ -111,16 +126,34 @@ auctionDAO db = auctionDAO.getInstance();
 						<th>참여자 수</th>
 						<td><%=article.getBetCnt()%></td>
 					</tr>
-
-				</table>
-
 				<%
 					} 
-                       if(auctionState ==2) {
+                       
+                        
+                        for (int i = 0; i < articleList2.size(); i++) {
+
+	                     winnerDTO article2 = (winnerDTO) articleList2.get(i);
+                       
 				%>
-				<br>
-				<button class="btn03" type="submit"	onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMain.jsp?auctioncode=<%=auctioncode%>'">경매 등록하기</button>
-					<% } %>
+				
+					<tr>
+						<th>당첨자 코드</th>
+						<td><%=article2.getWinnerCode()%></td>
+					</tr>
+					<tr>
+						<th>당첨자 ID</th>
+						<td><%=article2.getId()%></td>
+					</tr>
+					<tr>
+						<th>당첨자 입찰액</th>
+						<td><%=article2.getBetPrice()%></td>
+					</tr>
+					
+				</table>
+
+				<%  }  %>
+				
+					
 			</form>
 		</div>
 	</div>

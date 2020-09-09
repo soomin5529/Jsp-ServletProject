@@ -23,6 +23,12 @@
 				</td>
 			</tr>
 			<tr>
+				<th>실제상품명</th>
+				<td>
+					<input type="text" name="realProduct" placeholder="실제 상품명을 입력하세요"/>
+				</td>
+			</tr>
+			<tr>
 				<th>상세설명</th>
 				<td>
 					<textarea cols="30" name="detail" rows="10"></textarea>

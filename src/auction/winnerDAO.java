@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import user.Util;
 
@@ -65,6 +66,37 @@ public class winnerDAO {
 			Util.close(conn, pstmt, rs);
 		}
 		return flag;
+	}
+	
+	public ArrayList<winnerDTO> getAllArticles(int auctioncode) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "";
+		ArrayList<winnerDTO> articleList = new ArrayList<winnerDTO>();
+		try {
+			conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
+			pstmt = conn.prepareStatement("select * from winner where auctioncode = ?");
+			pstmt.setInt(1, auctioncode);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				winnerDTO article = new winnerDTO();
+				article.setAuctionCode(rs.getInt("auctioncode"));
+				article.setWinnerCode(rs.getInt("winnercode"));
+				article.setId(rs.getString("id"));
+				article.setBetPrice(rs.getInt("betprice"));
+				articleList.add(article);
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			Util.close(conn, pstmt, rs);
+
+		}
+		return articleList;
 	}
 	
 	
