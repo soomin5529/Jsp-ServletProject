@@ -99,6 +99,28 @@ public class winnerDAO {
 		return articleList;
 	}
 	
+	public String getWinnerID(int auctioncode) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String id=null;
+		try {
+			conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
+			pstmt = conn.prepareStatement("select distinct id from winner where auctioncode = ?");
+			pstmt.setInt(1, auctioncode);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				id = rs.getString(1);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			Util.close(conn, pstmt, rs);
+
+		}
+		return id;
+	}
+	
 	
 
 	public static void main(String[] args) {

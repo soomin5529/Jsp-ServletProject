@@ -308,5 +308,67 @@ public class auctionDAO {
 		}
 		return auctionData;
 	}
+	
+	public int getMinPrice(int auctioncode) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int price = 0;
+		try {
+			conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
+			pstmt = conn.prepareStatement("select minprice from auction where auctioncode = ?");
+			pstmt.setInt(1, auctioncode);
+			rs = pstmt.executeQuery();
 
+			while (rs.next()) {
+				price = rs.getInt(1);
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			Util.close(conn, pstmt, rs);
+		}
+		return price;
+	}
+	public int getState(int auctioncode) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int state=0;
+		try {
+			conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
+			pstmt = conn.prepareStatement("select state from auction where auctioncode = ?");
+			pstmt.setInt(1, auctioncode);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				state = rs.getInt(1);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			Util.close(conn, pstmt, rs);
+
+		}
+		return state;
+	}
+	public int changeState(int auctionCode) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int state=0;		
+		try {
+			conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
+			pstmt = conn.prepareStatement("update auction set state = 1 where auctioncode = ?");
+			pstmt.setInt(1, auctionCode);
+			rs = pstmt.executeQuery();
+			state=1;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			Util.close(conn, pstmt, rs);
+
+		}
+		return state;
+	}
 }

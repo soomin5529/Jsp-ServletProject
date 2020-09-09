@@ -4,7 +4,7 @@
 <%
 	MypageDAO dao = new MypageDAO();
 	UserDTO mem = dao.select(id);
-	//여기도 id를 session에서 받으면 안된다 테이블에서 받는걸로 바꾸기
+	
 	if(session.getAttribute("id") != null){
 		 id = (String) session.getAttribute("id");
 	}

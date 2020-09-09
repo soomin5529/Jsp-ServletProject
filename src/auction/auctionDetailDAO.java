@@ -171,6 +171,7 @@ public class auctionDetailDAO {
 
 			if (rs.next()) {
 				winnerId = rs.getString(1);
+			
 			}
 
 		} catch (Exception ex) {
@@ -180,6 +181,7 @@ public class auctionDetailDAO {
 
 		}
 		return winnerId;
+
 	}
 
 	public static void main(String[] args) {

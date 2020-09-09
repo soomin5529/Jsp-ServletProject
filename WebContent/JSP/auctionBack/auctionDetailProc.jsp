@@ -9,35 +9,31 @@
 	pageEncoding="UTF-8"%>
 <%
 	int betCnt = Integer.parseInt(request.getParameter("betCnt"));
-int auctionCode = Integer.parseInt(request.getParameter("auctioncode"));
+	int auctionCode = Integer.parseInt(request.getParameter("auctioncode"));
 
-String betPrice = request.getParameter("price");
-int betprice = Integer.parseInt(betPrice);
-String id2 = request.getParameter("id");
+	String betPrice = request.getParameter("price");
+	int betprice = Integer.parseInt(betPrice);
+	String id2 = request.getParameter("id");
 
-// auction 테이블 betCnt 증가 , auctiondetail 테이블 insert
+	// auction 테이블 betCnt 증가 , auctiondetail 테이블 insert
 
-auctionDetailDTO article = new auctionDetailDTO();
-auctionDetailDAO dao = auctionDetailDAO.getInstance();
-article.setAuctionCode(auctionCode);
-article.setBetPrice(betprice);
-article.setId(id2);
+	auctionDetailDTO article = new auctionDetailDTO();
+	auctionDetailDAO dao = auctionDetailDAO.getInstance();
+	article.setAuctionCode(auctionCode);
+	article.setBetPrice(betprice);
+	article.setId(id2);
 
-int count = dao.getbetCnt(auctionCode, id2);
+	int count = dao.getbetCnt(auctionCode, id2);
 
-if (count < 3) {
-	
-	dao.insertArticle(article);
-}
+	if (count < 3) {
 
-auctionDTO article1 = new auctionDTO();
-auctionDAO dao1 = auctionDAO.getInstance();
+		dao.insertArticle(article);
+	}
 
+	auctionDTO article1 = new auctionDTO();
+	auctionDAO dao1 = auctionDAO.getInstance();
 
 	dao1.getBetCnt(auctionCode, betCnt);
-
-
-
 %>
 <meta http-equiv="Refresh"
 	content="0; url=<%=request.getContextPath()%>/JSP/front/userMain.jsp?auctioncode=<%=article.getAuctionCode()%>">
