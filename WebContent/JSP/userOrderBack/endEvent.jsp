@@ -24,10 +24,10 @@
     		
    
     String winnerId = detailDao.getWinnerId(auctionCode); 
-    System.out.println(winnerId);
+   
     
    int winnerBetprice = detailDao.getBetPrice(auctionCode);
-   System.out.println(winnerBetprice);
+  
     
     winnerDTO winnerDto = new winnerDTO();
     winnerDAO winnerDao = winnerDAO.getInstance();

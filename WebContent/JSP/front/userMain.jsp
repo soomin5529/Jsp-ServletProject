@@ -152,6 +152,7 @@ auctionDAO db = auctionDAO.getInstance();
 
 			<fieldset>
 				<div class="message-ball" id="messageWindow"></div>
+				<div id="curr_time" style="display:none"></div>
 				<br> <input id="inputMessage" type="text"
 					onkeypress="enterKey(event)" /> <input type="submit" value="send"
 					onclick="send()" />
@@ -182,10 +183,26 @@ auctionDAO db = auctionDAO.getInstance();
 			   document.getElementById("popup").style.display = "none";
 			}
 		   
+			
+			var div = document.getElementById("curr_time"); 
+			function time() {
+			
+			  var d = new Date();
+			  var s = d.getSeconds();
+			  var m = d.getMinutes();
+			  var h = d.getHours();
+			  var tt = h + "시 " + m + "분 " + s +"초";
+			  if(div){
+				  div.value = tt;
+			  }
+			 
+			}
+
+			setInterval(time, 1000);
 	
    var textarea = document.getElementById("messageWindow");
    
-   var webSocket = new WebSocket('ws://192.168.0.24:8089<%=request.getContextPath()%>/weball');
+   var webSocket = new WebSocket('ws://192.168.35.149:8089<%=request.getContextPath()%>/weball');
    
    var inputMessage = document.getElementById("inputMessage");
 
@@ -199,7 +216,7 @@ auctionDAO db = auctionDAO.getInstance();
   
 function onMessage(event) {
       textarea.innerHTML += "<div class='bubble-wrap cf'><div id='you' class='bubble you'"
-      + "style='width:" + (event.data.length*12)+"px;'>" + event.data + "</div>" + "<span class='time fl'> "+ "<%=today%>" + "</span></div><br>";
+      + "style='width:" + (event.data.length*12)+"px;'>" + event.data + "</div>" + "<div id='curr_time'></div>"+"<span class='time fl' id='time1'> " + "</span></div><br>";
       textarea.scrollTop = textarea.scrollHeight;
    };
    
@@ -209,9 +226,10 @@ function onMessage(event) {
    };
    
    function send() {
+	   
       textarea.innerHTML += "<div class='bubble-wrap cf'><div id='me' class='bubble me'"
       + "style='width:" + (inputMessage.value.length*12)+"px;'>나: "
-      + inputMessage.value + "</div>" + "<span class='time fr'> "+ "<%=today%>" + "</span></div><br>";
+      + inputMessage.value + "</div>" +"<div class='time fr' id='curr_time'>"+ div.value +"</div> " + "<span class='time fr' id='time1'> " +  "</span></div><br>";
       textarea.scrollTop = textarea.scrollHeight;
       webSocket.send("<%=name1%>:" + inputMessage.value);
 				inputMessage.value = "";
@@ -225,6 +243,7 @@ function onMessage(event) {
 			};
 		</script>
 		<script>
+		
 	    
 		const countDownTimer = function(id, date) {
 			var cnt=0; 
