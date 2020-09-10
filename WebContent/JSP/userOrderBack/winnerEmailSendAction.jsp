@@ -11,36 +11,40 @@
 <%@ page import = "util.SHA256" %>
 <%@ page import = "util.Gmail" %>
 <%@ page import = "java.io.PrintWriter" %>
+<%@ page import = "auction.winnerDAO" %>
 
 <%
-	UserDAO userDAO = new UserDAO();
-	String id = null;
-	
-	//당첨자 아이디를 받아야 한다	
-	//String id = 당첨된 회원의 테이블에서 id를 가져오기 ex) winnerDAO.getWinnerId()~~ 수민이가 끝나면 추가
-	//session에서 id를 가져오면 안된다 왜냐 시간이 지나 id가 저장되어 있지 않기 때문에 테이블에서 id가져와야 한다
+	int auctionCode = Integer.parseInt(request.getParameter("auctioncode"));
 
- 	if(session.getAttribute("id") != null){
-		id = (String) session.getAttribute("id");
-	} 
+	UserDAO userDAO = new UserDAO();
+	winnerDAO winner = new winnerDAO(); 
+	String id = winner.getWinnerID(auctionCode); //winner테이블에서 해당 옥션코드에 있는 id를 가져오기
+	String winnerID = (String) session.getAttribute("id");
 	
-	if(id == null){
+	if(winnerID == null){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인을 해주세요');");
-		script.println("location.href = 'introPage.jsp'");
+		script.println("location.href = '/jspProject/JSP/introPage.jsp'");
 		script.println("</script>");
 		script.close();
 		return;	
 	}
-	
-
+	if(!id.equals(winnerID)){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('당첨된 아이디가 아닙니다');");
+		script.println("location.href = '/jspProject/JSP/front/userMainList.jsp'");
+		script.println("</script>");
+		script.close();
+		return;	
+	}
 	String host = "http://localhost:8089/jspProject/JSP/";
 	String from = "kyusung612@gmail.com";
 	String to = userDAO.getUserEmail(id);
 	String subject = "BLUEOCEAN에서 당첨된 결과 이메일입니다.";
 	String content = "축하드립니다 경매에 당첨 되셨습니다. 다음 링크에 접속하여  주소와 결제정보를 입력해주세요." + 
-			"<a href='" + host + "front/userOrder.jsp?code=" + "'>링크</a>";
+			"<a href='" + host + "front/userOrder.jsp?code=" + "'>~!~!다시한번 축하드려요~!~!</a>";
 	
 	//메일 환경 변수 설정
 	Properties p  = new Properties();
