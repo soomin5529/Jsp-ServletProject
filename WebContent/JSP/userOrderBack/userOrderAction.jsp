@@ -1,14 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+    
+<%@ page import="auction.winnerDAO" %>
+    
+    
+    
+<%
+	//주문하기를 누르면 각각 value값들을 변수에다 집어 넣고 그걸 winner테이블 업테이트를 위해 파라메타로 넣어준다
 
-
-
-</body>
-</html>
+	request.setCharacterEncoding("UTF-8"); 
+	int auctioncode = Integer.parseInt(request.getParameter("auctioncode"));
+	String name = request.getParameter("name");
+	String tel = request.getParameter("tel");
+	String zipcode = request.getParameter("zipcode");
+	String address = request.getParameter("address");
+	String memo = request.getParameter("memo");
+	String bank = request.getParameter("bank");
+	
+	int result = winnerDAO.getInstance().updateWinner(name, tel, zipcode, address, memo, bank, auctioncode);
+	
+	String location = null;
+	
+	if(result == 1){
+		location = "/jspProject/JSP/";
+	}
+%>
+	
+<script>
+	location.href = "<%=location%>";
+</script>

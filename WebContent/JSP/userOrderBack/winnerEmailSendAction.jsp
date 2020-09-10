@@ -14,12 +14,14 @@
 <%@ page import = "auction.winnerDAO" %>
 
 <%
+	//당첨된 회원이 당첨된 경매코드를 가져오기
 	int auctionCode = Integer.parseInt(request.getParameter("auctioncode"));
 
+	//쓸 DAO들을 선언하기
 	UserDAO userDAO = new UserDAO();
 	winnerDAO winner = new winnerDAO(); 
 	String id = winner.getWinnerID(auctionCode); //winner테이블에서 해당 옥션코드에 있는 id를 가져오기
-	String winnerID = (String) session.getAttribute("id");
+	String winnerID = (String) session.getAttribute("id");	//세션에 저장되어있는 아이디 즉 로그인된 아이디를 가져오기
 	
 	if(winnerID == null){
 		PrintWriter script = response.getWriter();
@@ -39,12 +41,14 @@
 		script.close();
 		return;	
 	}
+	//로그인 보낼 때 옥션코드를 함께 보내주므로 당첨된 회원이 링크를 눌렀을때 당첨된 상품이 나오게 세팅
 	String host = "http://localhost:8089/jspProject/JSP/";
 	String from = "kyusung612@gmail.com";
 	String to = userDAO.getUserEmail(id);
 	String subject = "BLUEOCEAN에서 당첨된 결과 이메일입니다.";
 	String content = "축하드립니다 경매에 당첨 되셨습니다. 다음 링크에 접속하여  주소와 결제정보를 입력해주세요." + 
-			"<a href='" + host + "front/userOrder.jsp?code=" + "'>~!~!다시한번 축하드려요~!~!</a>";
+			"<a href='" + host + "front/userOrder.jsp?auctioncode=" +auctionCode+ "'>~!~!다시한번 축하드려요~!~!</a>";	
+	
 	
 	//메일 환경 변수 설정
 	Properties p  = new Properties();

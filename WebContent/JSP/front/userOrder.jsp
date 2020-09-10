@@ -1,17 +1,38 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="user.UserDTO, user.MypageDAO"%>
+<%@ page import="user.UserDTO, user.MypageDAO"%>
+<%@ page import="auction.auctionDAO" %>
+<%@ page import="auction.auctionDTO" %>
+<%@ page import="auction.winnerDAO" %>
+
 <%
+	//해당 상품의 옥션코드 가져오기
+	int auctioncode = Integer.parseInt(request.getParameter("auctioncode"));
+	//옥션코드에 맞는 상품의 정보를 가져오기
+	auctionDAO info = new auctionDAO();
+	auctionDTO winnerInfo = new auctionDTO();
+	//list로 원하는 컬럼을 뽑아와 하나하나 값을 winnerInfo에다가 넣어주기
+	ArrayList<auctionDTO> list = null;
+	list = info.getWinnerOrderInfo(auctioncode);
+	
+	for(int i=0; i<list.size(); i++){
+	 winnerInfo = (auctionDTO) list.get(i);
+	}
+	
 	MypageDAO dao = new MypageDAO();
 	UserDTO mem = dao.select(id);
 	
 	if(session.getAttribute("id") != null){
 		 id = (String) session.getAttribute("id");
 	}
+	//winner테이블에서 당첨된 가격을 가져오기
+	int betPrice = winnerDAO.getInstance().getWinnerPrice(auctioncode);
 %>
 <div class="content-wrap userOrder">
 <div class="content">
 <form action="<%=request.getContextPath()%>/JSP/userOrderBack/userOrderAction.jsp" method="post">
+<input type="hidden" name="auctioncode" value="<%=auctioncode%>">
 	<!-- 상단 페이지이름/버튼 영역 -->
 	<div class="page-top cf">
 		<div class="page-name">상품 주문하기</div>
@@ -21,13 +42,13 @@
 	<div class="tbl-tit">상품정보</div>
 	<table class="tbl tbl-reg">
 		<tr>
-			<th class="bg-white"><div class="p-thumb-s" style="background-image: url(/jspProject/images/thumbnail01.jpeg)"></div></th>
+			<th class="bg-white"><div class="p-thumb-s" style="background-image:  url(<%=request.getContextPath()%>/uploadFile/<%=winnerInfo.getFilename()%>)"></div></th>
 			<td>
-				<div class="tit">콩나물두쪽</div>
-				<div class="desc">이건 사과가 만든 콩나물 두쪽임</div>
+				<div class="tit"><%=winnerInfo.getRealProduct() %></div>
+				<div class="desc"><%=winnerInfo.getDetail() %></div>
 				<div class="price">
-					<span>최종 입찰가</span>
-					<span class="highlight01">120,000원</span>
+					<span>최종 입찰가</span><br/>
+					<span class="highlight01"><%=betPrice%>원</span>
 				</div>
 			</td>
 		</tr>
@@ -94,7 +115,7 @@
 		<tr>
 			<th>총 결제 금액</th>
 			<td>
-				<span class="highlight03">120,000원</span>
+				<span class="highlight03"><%=betPrice%>원</span>
 			</td>
 		</tr>
 		<tr>
