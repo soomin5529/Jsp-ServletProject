@@ -216,7 +216,7 @@ auctionDAO db = auctionDAO.getInstance();
   
 function onMessage(event) {
       textarea.innerHTML += "<div class='bubble-wrap cf'><div id='you' class='bubble you'"
-      + "style='width:" + (event.data.length*12)+"px;'>" + event.data + "</div>" + "<div id='curr_time'></div>"+"<span class='time fl' id='time1'> " + "</span></div><br>";
+      + "style='width:" + (event.data.length*12)+"px;'>" + event.data + "</div>" + "<div class='time fr' id='curr_time'>"+ div.value +"</div> "  + "</div><br>";
       textarea.scrollTop = textarea.scrollHeight;
    };
    
@@ -229,7 +229,7 @@ function onMessage(event) {
 	   
       textarea.innerHTML += "<div class='bubble-wrap cf'><div id='me' class='bubble me'"
       + "style='width:" + (inputMessage.value.length*12)+"px;'>나: "
-      + inputMessage.value + "</div>" +"<div class='time fr' id='curr_time'>"+ div.value +"</div> " + "<span class='time fr' id='time1'> " +  "</span></div><br>";
+      + inputMessage.value + "</div>" +"<div class='time fr' id='curr_time'>"+ div.value +"</div> " + "</div><br>";
       textarea.scrollTop = textarea.scrollHeight;
       webSocket.send("<%=name1%>:" + inputMessage.value);
 				inputMessage.value = "";
