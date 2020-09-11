@@ -53,7 +53,7 @@ auctionDAO db = auctionDAO.getInstance();
 	auctionDetailDTO detailDTO = new auctionDetailDTO();
     auctionDetailDAO detailDAO = auctionDetailDAO.getInstance();
     int betcount = detailDAO.getbetCnt(auctioncode, name1);
-//회원 개개인의 betcount 값
+     //회원 개개인의 betcount 값
  	int minPrice = db.getMinPrice(auctioncode); //최소입찰가보다 작으면 입력 X
  	int state = db.getState(auctioncode);
  	

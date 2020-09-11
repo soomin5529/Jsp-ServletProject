@@ -28,8 +28,7 @@
 <%
 	Date date = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-	String today = sdf.format(date);
-	Date toDay = sdf.parse(today);
+	
 	int auctionState = 1;
 %>
 <body>
@@ -67,8 +66,12 @@
 						int auctioncode = article.getAuctionCode();
 						Date retime1 = sdf.parse(article.getOpenDate());
 						Date retime2 = sdf.parse(article.getCloseDate());
-						int beforeCompare = toDay.compareTo(retime1);
-						int afterCompare = toDay.compareTo(retime2);
+                        Date to_day = new Date();
+						
+						
+						int beforeCompare = to_day.compareTo(retime1);
+						int afterCompare = to_day.compareTo(retime2);
+						
 						if (beforeCompare < 0) {
 							auctionState = 1;
 						}
