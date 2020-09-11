@@ -29,47 +29,6 @@ public class listDAO {
 		return instance;
 	}
 	
-	
-	//�������Ʈ ��ȸ - ����¡ �ȵǴ� ������(���� ����)
-	public ArrayList<UserDTO> memberList(String category, String sentence) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String strQuery = null;
-		ArrayList<UserDTO> list = new ArrayList<UserDTO>();
-		try {
-			con=DriverManager.getConnection(JDBC_URL,USER,PASS);
-			if (category == null || category.equals("")) {
-				strQuery = "select * from member";
-				pstmt = con.prepareStatement(strQuery);
-			}else {
-				strQuery = "select * from member where " + category + " like ?";
-				pstmt = con.prepareStatement(strQuery);
-				pstmt.setString(1, "%" + sentence + "%");
-			}
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				UserDTO bean = new UserDTO();
-				bean.setId(rs.getString("id"));
-				bean.setName(rs.getString("name"));
-				bean.setEmail(rs.getString("email"));
-				bean.setTel(rs.getString("tel"));
-				bean.setBirthdate(rs.getString("birthdate"));
-				bean.setGender(rs.getString("gender"));
-				bean.setZipcode(rs.getString("zipcode"));
-				bean.setAddress(rs.getString("address"));
-				bean.setUserEmailChecked(rs.getBoolean("userEmailChecked"));
-				bean.setAuthor(rs.getInt("author"));
-				list.add(bean);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			Util.close(con, pstmt, rs);
-		}
-		return list;
-	}
-	
 	//�Խñ� ���� ī��Ʈ
 	public int getArticleCount(String boardid, String category, String sentence) throws Exception {
 		PreparedStatement pstmt = null;
@@ -79,20 +38,10 @@ public class listDAO {
 		String sql = "";
 		try {
 			if (category == null || category.equals("")) {
-				if(boardid.equals("memberList")) {
-					sql = "select nvl(count(*),0) from member";
-				}
-				if(boardid.equals("auctionList")) {
-					sql = "select nvl(count(*),0) from auctionList";
-				}
+				sql = "select nvl(count(*),0) from member";
 				pstmt = con.prepareStatement(sql);
 			} else {
-				if(boardid.equals("memberList")) {
-					sql = "select nvl(count(*),0) from member where " + category + " like ?";
-				}
-				if(boardid.equals("auctionList")) {
-					sql = "select nvl(count(*),0) from auctionList where " + category + " like ?";
-				}
+				sql = "select nvl(count(*),0) from member where " + category + " like ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%" + sentence + "%");
 			}

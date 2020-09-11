@@ -7,36 +7,30 @@
 <jsp:useBean id="dao" class="auction.auctionDAO" />
 <%
 	String category = request.getParameter("category");
-String sentence = request.getParameter("sentence");
-String boardid = "auctionList";
-
-auctionDAO auctiontDao = new auctionDAO();
-int pageSize = 5;
-int currentPage = Integer.parseInt(pageNum);
-int startRow = (currentPage - 1) * pageSize + 1;
-int endRow = currentPage * pageSize;
-int count = 0;
-int number = 0;
-List articleList1 = null;
-auctionDAO db = auctionDAO.getInstance();
-
-count = auctiontDao.getArticleCount(boardid, category, sentence);
-if (count > 0) {
-	articleList1 = db.auctionList(startRow, endRow, boardid, category, sentence);
-}
-number = count - (currentPage - 1) * pageSize;
+	String sentence = request.getParameter("sentence");
+	String boardid = "auctionList";
+	
+	auctionDAO auctiontDao = new auctionDAO();
+	int pageSize = 5;
+	int currentPage = Integer.parseInt(pageNum);
+	int startRow = (currentPage - 1) * pageSize + 1;
+	int endRow = currentPage * pageSize;
+	int count = 0;
+	int number = 0;
+	List articleList = null;
+	auctionDAO db = auctionDAO.getInstance();
+	count = auctiontDao.getArticleCount(boardid, category, sentence);
+	if (count > 0) {
+		articleList = db.auctionList(startRow, endRow, boardid, category, sentence);
+	}
+	number = count - (currentPage - 1) * pageSize;
 %>
 <%
-	ArrayList<auctionDTO> articleList = null;
-Date date = new Date();
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-String today = sdf.format(date);
-
-Date toDay = sdf.parse(today);
-
-int auctionState = 1;
-
-articleList = dao.getArticles();
+	Date date = new Date();
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+	String today = sdf.format(date);
+	Date toDay = sdf.parse(today);
+	int auctionState = 1;
 %>
 <body>
 	<div class="content-wrap auction-list">
@@ -52,6 +46,7 @@ articleList = dao.getArticles();
 			<form method="post" action="auctionDetail.jsp">
 				<table class="tbl">
 					<tr>
+						<th style="width: 80px;">번호</th>
 						<th>경매코드</th>
 						<th>제품이름</th>
 						<th>최초가격</th>
@@ -61,14 +56,15 @@ articleList = dao.getArticles();
 						<th>참여자수</th>
 						<th style="width: 80px;">상태</th>
 					</tr>
-					<%
+					<% if(count == 0) {%>
+					<tr>
+						<td colspan="11">검색된 경매가 없습니다.</td>
+					</tr>
+					<%}else{
 						for (int i = 0; i < articleList.size(); i++) {
-
 						auctionDTO article = (auctionDTO) articleList.get(i);
 						String s = article.getOpenDate();
 						int auctioncode = article.getAuctionCode();
-
-
 						Date retime1 = sdf.parse(article.getOpenDate());
 						Date retime2 = sdf.parse(article.getCloseDate());
 						int beforeCompare = toDay.compareTo(retime1);
@@ -83,10 +79,8 @@ articleList = dao.getArticles();
 							auctionState = 3;
 						}
 					%>
-
-
-					<tr
-						onclick="location.href='<%=request.getContextPath()%>/JSP/front/auctionDetail.jsp?auctioncode=<%=auctioncode%>'">
+					<tr onclick="location.href='<%=request.getContextPath()%>/JSP/front/auctionDetail.jsp?auctioncode=<%=auctioncode%>'">
+						<td><%=number--%></td>
 						<td align="center" width="100"><%=article.getAuctionCode()%></td>
 						<td align="center" width="150"><%=article.getProduct()%></td>
 						<td align="center" width="50"><%=article.getMinPrice()%></td>
@@ -97,7 +91,7 @@ articleList = dao.getArticles();
 						<td><%=auctionState == 1 ? "<span class='highlight04'>대기</span>" : auctionState == 2 ? "<span class='highlight02'>진행</span>" : "<span class='highlight03'>마감</span>"%></td>
 					</tr>
 					<%
-						}
+						}}
 					%>
 
 				</table>
@@ -108,13 +102,13 @@ articleList = dao.getArticles();
 			<div class="page-num" align="center">
 				<%
 					int bottomLine = 3;
-				if (count > 0) {
-					int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-					int startPage = 1 + (currentPage - 1) / bottomLine * bottomLine;
-					int endPage = startPage + bottomLine - 1;
-					if (endPage > pageCount)
-						endPage = pageCount;
-					if (startPage > bottomLine) {
+					if (count > 0) {
+						int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+						int startPage = 1 + (currentPage - 1) / bottomLine * bottomLine;
+						int endPage = startPage + bottomLine - 1;
+						if (endPage > pageCount)
+							endPage = pageCount;
+						if (startPage > bottomLine) {
 				%>
 				<a href="auctionList.jsp?pageNum=<%=startPage - bottomLine%>">[이전]</a>
 				<%
@@ -124,12 +118,12 @@ articleList = dao.getArticles();
 					for (int i = startPage; i <= endPage; i++) {
 				%>
 				<a href="auctionList.jsp?pageNum=<%=i%>"> <%
- 	if (i != currentPage) {
- 	out.print("[" + i + "]");
- } else {
- 	out.print("<span class='on'>[" + i + "]</span>");
- }
- %>
+				 	if (i != currentPage) {
+				 	out.print("[" + i + "]");
+				 } else {
+				 	out.print("<span class='on'>[" + i + "]</span>");
+				 }
+				 %>
 				</a>
 				<%
 					}
@@ -146,7 +140,7 @@ articleList = dao.getArticles();
 			<div class="page-bottom" align="center">
 				<form name="searchForm" method="post">
 					<select name="category" class="category">
-						<option value="category">종류</option>
+						<option value="product">제품이름</option>
 					</select> <input type="text" size="16" name="sentence" class="sentence" />
 					<button type="submit" class="btn03-reverse">찾기</button>
 					<input type="hidden" name="nowPage" value="1" />
@@ -155,7 +149,3 @@ articleList = dao.getArticles();
 		</div>
 	</div>
 </body>
-
-<script>
-	console.log(new Date());
-</script>

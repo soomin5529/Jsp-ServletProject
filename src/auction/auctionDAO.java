@@ -171,20 +171,10 @@ public class auctionDAO {
 		String sql = "";
 		try {
 			if (category == null || category.equals("")) {
-				if(boardid.equals("memberList")) {
-					sql = "select nvl(count(*),0) from member";
-				}
-				if(boardid.equals("auctionList")) {
-					sql = "select nvl(count(*),0) from auction";
-				}
+				sql = "select nvl(count(*),0) from auction";
 				pstmt = con.prepareStatement(sql);
 			} else {
-				if(boardid.equals("memberList")) {
-					sql = "select nvl(count(*),0) from member where " + category + " like ?";
-				}
-				if(boardid.equals("auctionList")) {
-					sql = "select nvl(count(*),0) from auction where " + category + " like ?";
-				}
+				sql = "select nvl(count(*),0) from auction where " + category + " like ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%" + sentence + "%");
 			}

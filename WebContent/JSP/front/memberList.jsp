@@ -16,7 +16,6 @@
 	int endRow = currentPage * pageSize;
 	int count = 0;
 	int number = 0;
-	int num=1;
 	List articleList = null;
 	listDAO dbPro = listDAO.getInstance();
 	count = listDao.getArticleCount(boardid, category, sentence);
@@ -37,22 +36,22 @@
 			<table class="tbl">
 				<tr>
 					<th>번호</th>
-					<th>ID</th>
-					<th>회원명</th>
-					<th>이메일</th>
-					<th>연락처</th>
-					<th>생년월일</th>
-					<th>성별</th>
-					<th>우편번호</th>
-					<th>주소</th>
-					<th>이메일인증여부</th>
-					<th>계정권한</th>
+					<th width="10%">ID</th>
+					<th width="5%">회원명</th>
+					<th width="15%">이메일</th>
+					<th width="10%">연락처</th>
+					<th width="5%">생년월일</th>
+					<th width="5%">성별</th>
+					<th width="10%">우편번호</th>
+					<th >주소</th>
+					<th width="10%">이메일인증여부</th>
+					<th width="5%">계정권한</th>
 				</tr>
 				<% if(count == 0) {%>
 				<tr>
 					<td colspan="11">검색된 회원이 없습니다.</td>
 				</tr>
-				<%}else{ 
+				<%}else{
 					for (int i = 0; i < articleList.size(); i++) {
 						UserDTO bean = (UserDTO) articleList.get(i);
 						String memid = bean.getId();
@@ -68,7 +67,7 @@
 						
 				%>
 				<tr onclick="location.href='<%=request.getContextPath()%>/JSP/front/memberListDetail.jsp?memid=<%=memid%>'">
-					<td><%=num++%></td>
+					<td><%=number-- %></td>
 					<td><%=memid%></td>
 					<td><%=memname%></td>
 					<td><%=email%></td>
@@ -97,8 +96,8 @@
 				if (endPage > pageCount)
 					endPage = pageCount;
 				if (startPage > bottomLine) {%>
-		<a href="memberList.jsp?pageNum=<%=startPage - bottomLine%>">[이전]</a>
-		<%}%>
+					<a href="memberList.jsp?pageNum=<%=startPage - bottomLine%>">[이전]</a>
+				<%}%>
 		<%for (int i = startPage; i <= endPage; i++) {%>
 		<a href="memberList.jsp?pageNum=<%=i%>"> <%
 	 	if (i != currentPage){

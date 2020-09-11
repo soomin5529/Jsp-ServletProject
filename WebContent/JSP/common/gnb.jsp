@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <jsp:useBean id="userdao" class="user.UserDAO"></jsp:useBean>
 <%
+	request.setCharacterEncoding("UTF-8");	
 	String id = (String) session.getAttribute("id");
 	String name= (String) session.getAttribute("name");
 	

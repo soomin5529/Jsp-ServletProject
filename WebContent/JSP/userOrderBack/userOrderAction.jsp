@@ -20,12 +20,15 @@
 	int result = winnerDAO.getInstance().updateWinner(name, tel, zipcode, address, memo, bank, auctioncode);
 	
 	String location = null;
+	String msg = null;
 	
 	if(result == 1){
-		location = "/jspProject/JSP/";
+		msg ="주문이 완료되었습니다";
+		location = "/jspProject/JSP/front/userMainList.jsp";
 	}
 %>
 	
 <script>
+	alert("<%=msg%>");
 	location.href = "<%=location%>";
 </script>
