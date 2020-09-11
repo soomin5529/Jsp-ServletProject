@@ -136,13 +136,14 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .userMain.content-wrap .content .p-text .input-wrap input {margin-bottom:10px; height:42px; font-size:1.6rem; line-height:3rem;}
 .userMain.content-wrap .content .p-text .input-wrap button {width:100%; padding:5px; margin-bottom:20px;}
 .userMain.content-wrap .content .p-text .input-wrap .mem {font-size:1.6rem;}
-.userMain.content-wrap .content .chat-wrap {float:left; margin-top:50px; width:100%; height:300px; background-color: #fff; border: 1px solid #ddd;}
+.userMain.content-wrap .content .chat-wrap {float:left; margin-top:50px; width:100%; height:300px; background-color: #f7f7f7; border: 1px solid #ddd; background-image:url('/jspProject/images/ic_chat03.png'); background-position:center; background-repeat:no-repeat;}
 .userMain.content-wrap .content .chat-wrap .message-ball { width: 100%; height: 300px; position:relative; overflow: auto; padding:20px;}
-.userMain.content-wrap .content .chat-wrap .bubble-wrap {width:100%; padding:0 10px;}
-.userMain.content-wrap .content .chat-wrap .bubble { min-width: 100px; max-width: 400px; padding:10px; border-radius:5px; word-break:break-all;}
-.userMain.content-wrap .content .chat-wrap .me {float:right; background-color:#fff295;}
-.userMain.content-wrap .content .chat-wrap .you{float:left; background-color:#d2e6f1;}
-
+.userMain.content-wrap .content .chat-wrap .bubble-wrap  {width:100%; padding:0 10px;}
+.userMain.content-wrap .content .chat-wrap .bubble-wrap .bubble { min-width: 100px; max-width: 400px; padding:10px; word-break:break-all; font-size:1.4rem;}
+.userMain.content-wrap .content .chat-wrap .bubble-wrap.me .bubble {float:right; background-color:#fff295; border-radius:5px 0 5px 5px;}
+.userMain.content-wrap .content .chat-wrap .bubble-wrap.me:before {content:""; display:block; float:right; width:9px; height:12px; background-image:url('/jspProject/images/ic_chat02.png');}
+.userMain.content-wrap .content .chat-wrap .bubble-wrap.you .bubble{float:left; background-color:#d2e6f1; border-radius:0 5px 5px 5px; }
+.userMain.content-wrap .content .chat-wrap .bubble-wrap.you:before {content:""; display:block; float:left; width:9px; height:12px; background-image:url('/jspProject/images/ic_chat01.png');}
 
 /* qna */
 .qna.content-wrap .content .card-wrap {}

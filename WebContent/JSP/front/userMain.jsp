@@ -153,9 +153,9 @@ auctionDAO db = auctionDAO.getInstance();
 			<fieldset>
 				<div class="message-ball" id="messageWindow"></div>
 				<div id="curr_time" style="display:none"></div>
-				<br> <input id="inputMessage" type="text"
-					onkeypress="enterKey(event)" /> <input type="submit" value="send"
-					onclick="send()" />
+				<br>
+				<input id="inputMessage" type="text" onkeypress="enterKey(event)" style="width:calc(100% - 113px); margin-right: 10px;"/>
+				<button type="submit" value="send" onclick="send()" class="btn03" style="width:100px;">보내기</button>
 			</fieldset>
 		</div>
 <script>
@@ -215,8 +215,8 @@ auctionDAO db = auctionDAO.getInstance();
    };
   
 function onMessage(event) {
-      textarea.innerHTML += "<div class='bubble-wrap cf'><div id='you' class='bubble you'"
-      + "style='width:" + (event.data.length*12)+"px;'>" + event.data + "</div>" + "<div class='time fr' id='curr_time'>"+ div.value +"</div> "  + "</div><br>";
+      textarea.innerHTML += "<div class='bubble-wrap you cf'><div id='you' class='bubble'"
+      + "style='width:" + (event.data.length*12)+"px;'>" + event.data + "</div>" + "<div class='time fl' id='curr_time'>"+ div.value +"</div> "  + "</div><br>";
       textarea.scrollTop = textarea.scrollHeight;
    };
    
@@ -227,7 +227,7 @@ function onMessage(event) {
    
    function send() {
 	   
-      textarea.innerHTML += "<div class='bubble-wrap cf'><div id='me' class='bubble me'"
+      textarea.innerHTML += "<div class='bubble-wrap me cf'><div id='me' class='bubble'"
       + "style='width:" + (inputMessage.value.length*12)+"px;'>나: "
       + inputMessage.value + "</div>" +"<div class='time fr' id='curr_time'>"+ div.value +"</div> " + "</div><br>";
       textarea.scrollTop = textarea.scrollHeight;
