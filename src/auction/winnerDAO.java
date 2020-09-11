@@ -121,6 +121,56 @@ public class winnerDAO {
 		return id;
 	}
 	
+	public int getWinnerPrice(int auctioncode) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int id= 0 ;
+		try {
+			conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
+			pstmt = conn.prepareStatement("select betprice from winner where auctioncode = ?");
+			pstmt.setInt(1, auctioncode);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				id = rs.getInt(1);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			Util.close(conn, pstmt, rs);
+
+		}
+		return id;
+	}
+	
+	public int updateWinner(String name, String tel, String zipcode, String address, String memo, String bank, int auctioncode) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result= 0 ;
+		try {
+			conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
+			pstmt = conn.prepareStatement("update winner set name=?, tel=?, zipcode=?, address=?, ordermemo=?, bank=? where auctioncode=?");
+			pstmt.setString(1, name);
+			pstmt.setString(2, tel);
+			pstmt.setString(3, zipcode);
+			pstmt.setString(4, address);
+			pstmt.setString(5, memo);
+			pstmt.setString(6, bank);
+			pstmt.setInt(7, auctioncode);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = 1;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			Util.close(conn, pstmt, rs);
+
+		}
+		return result;
+	}
+	
 	
 
 	public static void main(String[] args) {

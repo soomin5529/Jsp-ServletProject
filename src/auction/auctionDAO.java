@@ -371,4 +371,35 @@ public class auctionDAO {
 		}
 		return state;
 	}
+	public ArrayList<auctionDTO> getWinnerOrderInfo(int auctioncode) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "";
+		ArrayList<auctionDTO> list = new ArrayList<auctionDTO>();
+		try {
+			conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
+			pstmt = conn.prepareStatement("select * from auction where auctioncode = ?");
+			pstmt.setInt(1, auctioncode);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				auctionDTO winner = new auctionDTO();
+				winner.setAuctionCode(rs.getInt("auctioncode"));
+				winner.setRealProduct(rs.getString("realproduct"));
+				winner.setDetail(rs.getString("detail"));
+				winner.setFilename(rs.getString("fileName"));
+				list.add(winner);
+			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			Util.close(conn, pstmt, rs);
+
+		}
+		return list;
+	}
+	
 }
