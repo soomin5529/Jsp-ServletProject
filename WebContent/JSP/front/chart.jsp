@@ -61,10 +61,10 @@
 							type : 'line',
 							// 챠트를 그릴 데이타
 							data : {
-								labels : [ 'January', 'February', 'March',
-										'April', 'May', 'June', 'July',
-										'August', 'September', 'October', 'November',
-										'December'],
+								labels : [ '1월', '2월', '3월',
+										'4월', '5월', '6월', '7월',
+										'8월', '9월', '10월', '11월',
+										'12월'],
 								datasets : [ {
 									label : '가입',
 									backgroundColor : 'transparent',
@@ -186,10 +186,10 @@
 						var myChart = new Chart(ctx, {
 							type : 'bar',
 							data : {
-								labels : [  'January', 'February', 'March',
-									'April', 'May', 'June', 'July',
-									'August', 'September', 'October', 'November',
-									'December' ],
+								labels : [ '1월', '2월', '3월',
+									'4월', '5월', '6월', '7월',
+									'8월', '9월', '10월', '11월',
+									'12월'],
 								datasets : [ {
 									label : 'player',
 									data : [ 

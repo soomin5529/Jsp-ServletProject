@@ -43,6 +43,23 @@
 					auctionState = 3;
 				}
 			betCnt = article.getBetCnt();
+			
+			if(auctionState == 1){%>
+			  <div class="my-masonry-grid-item fadein" onclick="checkAuction();">
+	        	<div class="p-thumb before">
+	        		<div style="background-image: url(<%=request.getContextPath()%>/uploadFile/<%=article.getFilename()%>)"></div>
+	        	</div>
+	        	<div class="p-text">
+				<div class="tit">경매가 열리기 전입니다</div>
+				<div class="desc">열리는 시간 : <%=article.getOpenDate()%> </div>
+	        	</div>
+			<div class="mem">
+					<span></span> <span class="highlight01" id="betCnt">
+						<br/>
+					</span>
+				</div>
+	        </div>
+			<% }
 			if(auctionState == 2){ /* 경매 진행중일 경우 썸네일 이미지만 표시 */
 		%>
 	        <div class="my-masonry-grid-item fadein" onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMain.jsp?auctioncode=<%=article.getAuctionCode()%>'">
@@ -87,6 +104,11 @@
 </script>
 <script type="text/javascript">
 
+function checkAuction() {
+		alert("경매가 열리지 않았습니다. 시간 확인 해 주세요");
+		return;
+
+};
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36251023-1']);
   _gaq.push(['_setDomainName', 'jqueryscript.net']);

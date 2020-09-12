@@ -269,9 +269,9 @@ public class auctionDAO {
 	      return articleList;
 	   }
 	
-	public auctionDTO getData() throws Exception {
+	public jsonDTO getData() throws Exception {
 		
-		auctionDTO auctionData = new auctionDTO();
+		jsonDTO auctionData = new jsonDTO();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -279,18 +279,14 @@ public class auctionDAO {
 	
 		try {
 			conn = DriverManager.getConnection(JDBC_URL, USER, PASS);
-			pstmt = conn.prepareStatement("select product, opendate, closedate from auction where closedate <  "
+			pstmt = conn.prepareStatement("select realproduct, opendate, closedate from auction where closedate <  "
 					+ "(select to_char(sysdate, 'YYYY/MM/DD HH24:MI:SS') from dual)");
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				auctionData.setProduct(rs.getString("product"));
+				auctionData.setRealProduct(rs.getString("realproduct"));
 				auctionData.setOpenDate(rs.getString("opendate"));
 				auctionData.setCloseDate(rs.getString("closedate"));
 			}	
-			System.out.println(auctionData.getProduct());
-			System.out.println(auctionData.getOpenDate());
-			System.out.println(auctionData.getCloseDate());
-
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
@@ -361,6 +357,7 @@ public class auctionDAO {
 		}
 		return state;
 	}
+	
 	public ArrayList<auctionDTO> getWinnerOrderInfo(int auctioncode) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

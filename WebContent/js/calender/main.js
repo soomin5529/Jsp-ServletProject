@@ -145,22 +145,24 @@ var calendar = $('#calendar').fullCalendar({
    * ************** */
   events: function (start, end, timezone, callback) {
     $.ajax({
-      type: "get",
-      url: "/jspProject/JSP/calenderData.jsp",
+      cache:false,
+      url: "/JSP/front/calenderData.jsp",
       dataType: "json",
       data: {
-        // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
-    	
+    	  start: start.format('YYYY/MM/DD T HH:mm'),
+          end: end.format('YYYY/MM/DD T HH:mm')
       },
-      success: function (response) {
-        var fixedDate = response.map(function (array) {
-          if (array.allDay && array.start !== array.end) {
-            // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
-            array.end = moment(array.end).add(1, 'days');
-          }
-          return array;
-        })
-        callback(fixedDate);
+      success: function(data) {
+          //alert(doc);
+            var events = [];
+            $(data).find('event').each(function() {
+                events.push({
+                    start: $(this).attr('opendate'),
+                    end: $(this).attr('closedate'),
+                    product: $(this).attr('realproduct')
+                });
+            });
+           callback(events);
       }
     });
   },
