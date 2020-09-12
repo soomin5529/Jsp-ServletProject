@@ -61,7 +61,7 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .header .right a {color: #aaa; font-size:1.2rem;}
 .header.scroll {background-color: rgba(245,245,245,0.9); padding: 15px 30px;}
 /*content-wrap*/
-.content-wrap {width:calc(100% - 300px); height:100%; margin-left: 300px; overflow:auto; background-color:#f9f9f9;}
+.content-wrap {width:calc(100% - 300px); min-width:850px; height:100%; margin-left: 300px; overflow:auto; background-color:#f9f9f9;}
 .content-wrap .content { margin:50px auto 0; padding: 50px;}
 /*page-top*/
 .page-top {margin-bottom:20px;}
@@ -80,16 +80,16 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 /* screen */
 /* intro */
 .intro .jb-box { width: 100%; height:100%; overflow: hidden;margin: 0px auto; position: relative; }
-.intro .jb-text {position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center; transition: 0.5s; }
+.intro .jb-text {position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-align: center; }
 .intro .jb-text span {display: inline-block; vertical-align: middle; text-align: center; font-size: 48px; color: #ffffff; font-weight: 900;}
 .intro .jb-text:before { content: ''; display: inline-block; width: 0; height: 100%; vertical-align: middle;}
-.intro .btn-box {position: absolute; top:55%; left:50%; transform: translate(-50%,0); transition: 0.5s; }
+.intro .btn-box {position: absolute; top:55%; left:50%; transform: translate(-50%,0); }
 
 /* intro login */
-.intro #logbar {height: 100%;   width: 100%; display: none;   position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
-.intro .closeb {position: absolute; top:20px; right: 45px;   font-size: 50px; cursor: pointer; color: white;}
+.intro #logbar {height: 100%; width: 100%; display: none; position: fixed; z-index: 1; top: 0; left: 0; background-color: rgba(0, 0, 0, .5);}
+.intro .closeb {position: absolute; top:20px; right: 45px; font-size: 50px; cursor: pointer; color: white;}
 .intro .closeb:hover {color: #ccc;}
-.intro .form {position:absolute; top:0; left:0; bottom:0; right:0; width: 300px; height:300px; margin: auto; padding: 30px;   background-color: #fff;   border-radius: 1em;   overflow: hidden;}
+.intro .form {position:absolute; top:0; left:0; bottom:0; right:0; width: 300px; height:300px; margin: auto; padding: 30px; background-color: #fff; border-radius: 1em; overflow: hidden; opacity:0; transition: all 0.5s ease;}
 .intro .form h2 {margin-bottom:20px;}
 .intro .form label {color: #aaa; font-size: 12px; text-align: left;}
 .intro .form input {width:100%; border: none; border-bottom: 1px solid #ccc; background: transparent; height: 40px; color: #666; font-size: 16px; margin-bottom:10px;}
@@ -112,10 +112,10 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 
 
 /* userMainList */
-.userMainList .my-masonry-grid-item {background-color: #fff; border-radius:10px; margin: 0 6px 12px; box-shadow: 0 2px 10px rgba(170, 173, 181, .2); cursor:pointer;}
+.userMainList .my-masonry-grid-item {background-color: #fff; border-radius:10px; margin: 100px 6px 12px; box-shadow: 0 2px 10px rgba(170, 173, 181, .2); cursor:pointer;}
 .userMainList .my-masonry-grid-item .p-thumb {position:relative; width:100%; border-radius:10px 10px 0 0; height:200px;  background-color: #efefef; overflow:hidden;}
-.userMainList .my-masonry-grid-item .p-thumb div {width:100%; height:100%; background-size:cover; background-position:center; background-repeat:no-repeat;}
-.userMainList .my-masonry-grid-item .p-thumb div:hover {transform: scale(1.2); transition: all .5s; }
+.userMainList .my-masonry-grid-item .p-thumb div {width:100%; height:100%; background-size:cover; background-position:center; background-repeat:no-repeat; transition: all .5s;}
+.userMainList .my-masonry-grid-item:hover .p-thumb.start div {transform: scale(1.2); transition: all .5s; background-size: cover;}
 .userMainList .my-masonry-grid-item .p-thumb.end:before {content:'경매마감'; position:absolute; padding:70px 0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); color:#fff; text-align:center; font-size:4rem; font-weight:bold;}
 .userMainList .my-masonry-grid-item .p-text {padding:20px 20px 0;}
 .userMainList .my-masonry-grid-item .p-text .tit {font-size:2rem; font-weight:500;}
@@ -136,7 +136,7 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .userMain.content-wrap .content .p-text .input-wrap input {margin-bottom:10px; height:42px; font-size:1.6rem; line-height:3rem;}
 .userMain.content-wrap .content .p-text .input-wrap button {width:100%; padding:5px; margin-bottom:20px;}
 .userMain.content-wrap .content .p-text .input-wrap .mem {font-size:1.6rem;}
-.userMain.content-wrap .content .chat-wrap {float:left; margin-top:50px; width:100%; height:300px; background-color: #f7f7f7; border: 1px solid #ddd; background-image:url('/jspProject/images/ic_chat03.png'); background-position:center; background-repeat:no-repeat;}
+.userMain.content-wrap .content .chat-wrap {float:left; margin-top:50px; width:100%; background-color: #f7f7f7; border: 1px solid #ddd; background-image:url('/jspProject/images/ic_chat03.png'); background-position:center; background-repeat:no-repeat;}
 .userMain.content-wrap .content .chat-wrap .message-ball { width: 100%; height: 300px; position:relative; overflow: auto; padding:20px;}
 .userMain.content-wrap .content .chat-wrap .bubble-wrap  {width:100%; padding:0 10px;}
 .userMain.content-wrap .content .chat-wrap .bubble-wrap .bubble { min-width: 100px; max-width: 400px; padding:10px; word-break:break-all; font-size:1.4rem;}
@@ -144,6 +144,8 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .userMain.content-wrap .content .chat-wrap .bubble-wrap.me:before {content:""; display:block; float:right; width:9px; height:12px; background-image:url('/jspProject/images/ic_chat02.png');}
 .userMain.content-wrap .content .chat-wrap .bubble-wrap.you .bubble{float:left; background-color:#d2e6f1; border-radius:0 5px 5px 5px; }
 .userMain.content-wrap .content .chat-wrap .bubble-wrap.you:before {content:""; display:block; float:left; width:9px; height:12px; background-image:url('/jspProject/images/ic_chat01.png');}
+.userMain.content-wrap .content .chat-wrap .chat-input {width: calc(100% - 110px); border: none; border-top: 1px solid #d2d2d2; padding: 10px; height: 42px;}
+.userMain.content-wrap .content .chat-wrap .chat-send {width: 110px; height: 42px; float: right;}
 
 /* qna */
 .qna.content-wrap .content .card-wrap {}
@@ -175,7 +177,7 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .pop-wrap {width:100%; height:100%; position:fixed; top:0; left:0; z-index:999; display: none;}
 .pop-wrap .pop-bg {height:100%; cursor:pointer; background:rgba(0,0,0,0.5);}
 .pop-wrap .closeb {position: absolute; top:20px; right: 45px; font-size: 50px; cursor: pointer; color: white;}
-.pop-wrap .pop-box {position:absolute;  top:0; left:0; bottom:0; right:0; margin: auto; padding: 30px;   background-color: #fff;   border-radius: 1em;   overflow: hidden;}
+.pop-wrap .pop-box {position:absolute;  top:50%; left:50%; bottom:0; right:0; padding: 30px; background-color: #fff; border-radius: 1em; overflow: hidden; transform: translate(-50%,-50%); transition:0.5s;}
 
 
 /* winner popup */
@@ -187,6 +189,5 @@ table.tbl {width:100%; border-top: 2px solid #2f66ff;}
 .winner .pop-box .input-box .btn03-reverse {width:100%; padding:10px;}
 
 /* interactive style */
-.fadeinslide{margin-top:-100px;max-width:100%; opacity:0;}
 .fadein {opacity: 0;}
 .hide {display: none;}

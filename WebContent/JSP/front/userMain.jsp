@@ -10,13 +10,6 @@
 <%@page import="auction.winnerDAO"%>
 <%@page import="auction.winnerDTO"%>
 <jsp:useBean id="dao" class="auction.auctionDAO" />
-
-<style type="text/css">
-font {
-	font-size: 3em;
-	color: lightblue;
-}
-</style>
 <%
 
 if(id == null){
@@ -94,7 +87,7 @@ auctionDAO db = auctionDAO.getInstance();
 					<% 	
 						if(state == 1){
 							%>
-							<button type="button" class="btn03-reverse" onclick="openWinner(); " >당첨자 확인하기</button>
+							<button type="button" class="btn03-reverse" onclick="openPop(); " >당첨자 확인하기</button>
 								<div class="mem">
 									<span>현재 경매 참여자 수</span> : <span class="highlight01"><%=betCnt%>
 								</span>
@@ -149,13 +142,11 @@ auctionDAO db = auctionDAO.getInstance();
 		
 		<!-- 채팅영역 -->
 		<div class="chat-wrap">
-
 			<fieldset>
 				<div class="message-ball" id="messageWindow"></div>
 				<div id="curr_time" style="display:none"></div>
-				<br>
-				<input id="inputMessage" type="text" onkeypress="enterKey(event)" style="width:calc(100% - 113px); margin-right: 10px;"/>
-				<button type="submit" value="send" onclick="send()" class="btn03" style="width:100px;">보내기</button>
+				<input id="inputMessage" type="text" onkeypress="enterKey(event)" class="chat-input"/>
+				<button type="submit" value="send" onclick="send()" class="btn03-reverse chat-send">보내기</button>
 			</fieldset>
 		</div>
 <script>
@@ -176,29 +167,20 @@ auctionDAO db = auctionDAO.getInstance();
 			}
 		};
 
-		   function openWinner() {
-			   document.getElementById("popup").style.display = "block";
-			}
-			function closeWinner() {
-			   document.getElementById("popup").style.display = "none";
-			}
-		   
-			
-			var div = document.getElementById("curr_time"); 
-			function time() {
-			
-			  var d = new Date();
-			  var s = d.getSeconds();
-			  var m = d.getMinutes();
-			  var h = d.getHours();
-			  var tt = h + "시 " + m + "분 " + s +"초";
-			  if(div){
-				  div.value = tt;
-			  }
-			 
-			}
+		var div = document.getElementById("curr_time"); 
+		function time() {
+		  var d = new Date();
+		  var s = d.getSeconds();
+		  var m = d.getMinutes();
+		  var h = d.getHours();
+		  var tt = h + "시 " + m + "분 " + s +"초";
+		  if(div){
+			  div.value = tt;
+		  }
+		 
+		}
 
-			setInterval(time, 1000);
+		setInterval(time, 1000);
 	
    var textarea = document.getElementById("messageWindow");
    

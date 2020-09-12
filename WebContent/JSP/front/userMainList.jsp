@@ -45,8 +45,8 @@
 			betCnt = article.getBetCnt();
 			if(auctionState == 2){ /* 경매 진행중일 경우 썸네일 이미지만 표시 */
 		%>
-	        <div class="my-masonry-grid-item" onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMain.jsp?auctioncode=<%=article.getAuctionCode()%>'">
-	        	<div class="p-thumb">
+	        <div class="my-masonry-grid-item fadein" onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMain.jsp?auctioncode=<%=article.getAuctionCode()%>'">
+	        	<div class="p-thumb start">
 	        		<div style="background-image: url(<%=request.getContextPath()%>/uploadFile/<%=article.getFilename()%>)"></div>
 	        	</div>
 	        	<div class="p-text">
@@ -60,7 +60,7 @@
 				</div>
 	        </div>
 	    <%}if(auctionState == 3){%> <!-- 경매 마감일 경우 썸네일에 '경매마감' 표시 -->
-	    	<div class="my-masonry-grid-item" onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMain.jsp?auctioncode=<%=article.getAuctionCode()%>'">
+	    	<div class="my-masonry-grid-item fadein" onclick="location.href='<%=request.getContextPath()%>/JSP/front/userMain.jsp?auctioncode=<%=article.getAuctionCode()%>'">
 	        	<div class="p-thumb end">
 	        		<div style="background-image: url(<%=request.getContextPath()%>/uploadFile/<%=article.getFilename()%>)"></div>
 	        	</div>

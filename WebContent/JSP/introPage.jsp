@@ -10,8 +10,9 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/201901_reset.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/common.css">
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js" charset="utf-8">
-</script>
+<script src = "http://code.jquery.com/jquery-1.7.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js" charset="utf-8"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jcommon.js" charset="utf-8"></script>
 <title>BLUEOCEAN에 온것을 환영합니다</title>
 </head>
 <body class="intro">
@@ -21,7 +22,7 @@
 		</video>
 		
 		<div class="jb-text">
-			<span>B L U E O C E A N</span>
+			<span class="fadein">B L U E O C E A N</span>
 		</div>
 
 		<div class="btn-box">
@@ -29,13 +30,12 @@
 			&nbsp;&nbsp;
 			<button onClick="openRegister();" class="btn01">회원가입</button>
 		</div>
-
 	</div>
 
 	<div id="logbar">
 		<span class="closeb" onclick="closeLogin()">×</span>
 		<div>
-			<form class="form" name="formm" method="post" action="<%=request.getContextPath()%>/JSP/introBack/userLoginAction.jsp">
+			<form class="form" name="formm" method="post" action="<%=request.getContextPath()%>/JSP/introBack/userLoginAction.jsp" >
 				<fieldset> 
 					<h2>로그인</h2>
 					<label for="id">아이디</label><br> <input TYPE="text" name="id" placeholder="아이디를 입력해주세요"><br> 
