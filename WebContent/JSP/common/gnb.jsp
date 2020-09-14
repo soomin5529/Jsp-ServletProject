@@ -46,8 +46,8 @@
 			<%if(authorCheck == 0){%>
 				<!-- 사용자 권한 메뉴 -->
 				<li id="userMain"><a href="<%=request.getContextPath()%>/JSP/front/userMainList.jsp">Home</a></li>
-				<li id="schedule"><a
-					href="<%=request.getContextPath()%>/JSP/front/userSchedule.jsp">Schedule</a></li>
+				<%-- <li id="schedule"><a
+					href="<%=request.getContextPath()%>/JSP/front/userSchedule.jsp">Schedule</a></li> --%>
 				<li id="mypage"><a href="<%=request.getContextPath()%>/JSP/front/userMypage.jsp">My page</a></li>
 			<%} else if(authorCheck == 1){ %>
 				<!-- 관리자 권한 메뉴 -->
