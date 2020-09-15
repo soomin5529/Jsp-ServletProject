@@ -68,18 +68,32 @@ public class MypageDAO {
 		
 		try {
 			con=DriverManager.getConnection(JDBC_URL,USER,PASS);
-			sql = "update member set pwd=?, name=?, email=?, agency=?, tel=?, birthdate=?, gender=?, zipcode=?,address=? where id=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, bean.getPwd());
-			pstmt.setString(2, bean.getName());
-			pstmt.setString(3, bean.getEmail());
-			pstmt.setString(4, bean.getAgency());
-			pstmt.setString(5, bean.getTel());
-			pstmt.setString(6, bean.getBirthdate());
-			pstmt.setString(7, bean.getGender());
-			pstmt.setString(8, bean.getZipcode());
-			pstmt.setString(9, bean.getAddress());
-			pstmt.setString(10, bean.getId());
+			if(bean.getPwd() == null || bean.getPwd().equals("")) {
+				sql = "update member set name=?, email=?, agency=?, tel=?, birthdate=?, gender=?, zipcode=?,address=? where id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, bean.getName());
+				pstmt.setString(2, bean.getEmail());
+				pstmt.setString(3, bean.getAgency());
+				pstmt.setString(4, bean.getTel());
+				pstmt.setString(5, bean.getBirthdate());
+				pstmt.setString(6, bean.getGender());
+				pstmt.setString(7, bean.getZipcode());
+				pstmt.setString(8, bean.getAddress());
+				pstmt.setString(9, bean.getId());
+			}else{
+				sql = "update member set pwd=?, name=?, email=?, agency=?, tel=?, birthdate=?, gender=?, zipcode=?,address=? where id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, bean.getPwd());
+				pstmt.setString(2, bean.getName());
+				pstmt.setString(3, bean.getEmail());
+				pstmt.setString(4, bean.getAgency());
+				pstmt.setString(5, bean.getTel());
+				pstmt.setString(6, bean.getBirthdate());
+				pstmt.setString(7, bean.getGender());
+				pstmt.setString(8, bean.getZipcode());
+				pstmt.setString(9, bean.getAddress());
+				pstmt.setString(10, bean.getId());
+			}
 			if(pstmt.executeUpdate() == 1)
 				flag = true;
 		} catch (Exception e) {

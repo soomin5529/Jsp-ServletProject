@@ -117,7 +117,7 @@
 	    var pwd = regForm.pwd.value;
 	    var repwd = regForm.repwd.value;
 	    
-	    if(oldpwd=="" || pwd=="" || repwd==""){
+	    if(oldpwd==""){
 	        alert("비밀번호를 입력해주세요.");
 	    }else if(oldpwd != <%=mem.getPwd()%>){
 	    	alert("기존 비밀번호가 맞지 않습니다.")
